@@ -1,0 +1,17 @@
+Número de Fibonacci 
+1
+Escreva uma função que receba um inteiro n≤10^7 e retorne 
+o n-ésimo número da sequência de Fibonacci [O(n)]. 
+O primeiro elemento de tal sequência é o 0, o segundo 
+é o 1, e, para todo i≥3, i-ésimo elemento é obtido 
+pela soma dois dois elementos anteriores da sequência.
+
+Assim, a sequência (infinita) de Fibonacci é:
+0, 1, 1, 2, 3, 5, 8, 13, 21, ...
+
+Como o n-ésimo número de Fibonacci, para valores elevados
+de n, pode ser muito grande, pede-se que o resultado
+seja expresso módulo 10^9. Para tanto, pode ser útil
+a seguinte propriedade dos módulos:
+
+(a+b) mod c = ((a mod c) + (b mod c)) mod c

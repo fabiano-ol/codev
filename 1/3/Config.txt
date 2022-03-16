@@ -1,0 +1,8 @@
+Soma de múltiplos entre 1 e n 
+4
+Escreva um programa que peça ao usuário um número n, um número k,
+k inteiros a1,...,ak e imprima a soma dos números entre 1 e n que
+sejam múltiplos de alguns dos números a1,...,ak. [O(n)]
+
+Ex: se n=17, k=3, a1,a2,a3=2,3,5, então o somatório solicitado
+deve considerar apenas os números 2,3,4,5,6,8,9,10,12,14,15,16.

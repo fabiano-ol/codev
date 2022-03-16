@@ -1,0 +1,9 @@
+Permutação circular
+1
+Escreva um procedimento que receba um vetor A de caracteres, 
+além de dois inteiros n,k, e gire os n primeiros elementos 
+de A de forma circular em k posições à direita.  [O(n)]
+
+Ex: A = ['R','E','S','U','L','T','A','D','O','X','Y'], n=9, k=3, 
+deve resultar na transformação de A em 
+['A','D','O','R','E','S','U','L','T','X','Y']

@@ -1,0 +1,4 @@
+Maior elemento do vetor
+1
+Escreva uma função que recebe um vetor A de inteiros, um inteiro n≥1, 
+e retorne o maior elemento entre os n primeiros.

@@ -1,0 +1,5 @@
+Palíndromo
+3
+Faça um algoritmo recursivo que verifique se uma cadeia, dada por um vetor C[1..N]: Caractere, 
+é um palíndromo (uma cadeia que pode ser lida da esquerda para a direita ou vice-versa visitando 
+a mesma sequência se símbolos em ambas as leituras).

@@ -1,0 +1,13 @@
+Soma entre representações decimais
+1
+Escreva uma função que adicione dois números passados como 
+dois vetores A, B e dois inteiros n,m≤10^3, sabendo-se que 
+os n (resp. m) primeiros elementos do vetor A (resp. B) 
+contém os algarismos do primeiro (resp. segundo) número. 
+O retorno deve consistir de um vetor R com o resultado 
+também como vetor de algarismos, além de uma variável k 
+para indicar o número de algarismos em R. Assuma que o 
+número representado por A é maior ou igual aquele de B. [O(n)]
+
+Ex: se A=[2,4,9], n=3, B=[7,2], m=2, então deve resultar 
+no vetor R=[3,2,1], k=3.

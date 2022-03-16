@@ -1,0 +1,8 @@
+Transformar número em sua representação decimal
+1
+Escreva uma função que receba um inteiro n≤10^15 e retorne 
+um vetor R de inteiros no qual os elementos, do primeiro ao 
+último, consiste dos algarismos de n. Além do vetor, deve 
+ser retornado em uma variável k o número de tais algarismos.
+
+Ex.: N=7023 deve resultar em R=[7,0,2,3] e k=4.

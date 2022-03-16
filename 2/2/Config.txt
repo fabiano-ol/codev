@@ -1,0 +1,5 @@
+Lista Encadeada (Número de Valores)
+3
+Considere que uma lista encadeada consiste de ponteiro para uma estrutura No que contém 2 campos: 
+Valor: Inteiro, Próximo: ^No. Faça algoritmos recursivos que, dado uma lista L: ^No, determine
+o número de valores.

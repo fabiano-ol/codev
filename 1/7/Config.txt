@@ -1,0 +1,8 @@
+Concatenção de Prefixos de Vetores
+1
+Elabore uma função que receba dois vetores A,B de caracteres, 
+dois inteiros m,m, e retorne um vetor C com a concatenação dos 
+n primeiros elementos de A com os m primeiros de B. [O(n+m)]
+
+Ex: A = [ 'R','E','S', 'X'], B = ['U','L','T','A','D','O','Y','Z'], 
+n=3, m=6, deve resultar no vetor C = ['R','E','S','U','L','T','A','D','O']

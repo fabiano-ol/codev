@@ -1,0 +1,4 @@
+Lista de primos
+1
+Escreva um programa que imprima a quantidade de números primos até certo 
+número n dado de entrada. [O(n√(n))]
