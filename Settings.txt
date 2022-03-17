@@ -3,5 +3,5 @@ COMPILER_CMD = g++ -o <EXE_FILE> <CODE_FILE>
 DIFF_CMD = diff -c --strip-trailing-cr <FILE1> <FILE2>
 UPDATE_SOFTWARE = 1
 SERVER_URL = https://raw.githubusercontent.com/fabiano-ol/codev/master
-REPOSITORY_FOLDER = ./repository_production
+REPOSITORY_FOLDER = ./repository
 PDF_READER = /opt/google/chrome/chrome <PDF_FILE>
