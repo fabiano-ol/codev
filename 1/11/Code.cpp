@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// codev remove
+// codevremove
 void Imprime(int R[], int k) {
 	printf("%d\n", k);
 	for (int i=0; i<k; i++) {
@@ -17,7 +17,7 @@ void Inverte(int R[], int k) {
 		R[k-1-i] = t;
 	}
 }
-// codev
+// codevremove
 
 void Soma(int A[], int n, int B[], int m, int R[], int &k) {
 	// codev 
