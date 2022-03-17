@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// codevremove
 void Imprime(int R[], int k) {
 	printf("%d\n", k);
 	for (int i=0; i<k; i++) {
@@ -10,6 +9,7 @@ void Imprime(int R[], int k) {
 	printf("\n");
 }
 
+// codevremove
 void Inverte(int R[], int k) {
 	for (int i=0; i<k/2; i++) {
 		int t = R[i];
