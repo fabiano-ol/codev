@@ -629,13 +629,15 @@ def GenMenuSettings():
 def UpdateSoftware():
 	if UPDATE_SOFTWARE == "1":
 		hwurl = SERVER_URL
-		hwfolder = REPOSITORY_FOLDER
+		hwfolder = os.getcwd()
 		files = ["Codev.py", "Settings.txt"]
-		mv(hwfolder + "/" + "Settings.txt", hwfolder + "/" + "Settings.old")
+		if isFile(hwfolder + "/" + "Settings.txt"):
+			mv(hwfolder + "/" + "Settings.txt", hwfolder + "/" + "Settings.old")
 		for f in files:
 			writeFile(hwfolder + "/" + f, getURL(hwurl + "/" + f))
-		mv(hwfolder + "/" + "Settings.txt", hwfolder + "/" + "Settings.new")
-		mv(hwfolder + "/" + "Settings.old", hwfolder + "/" + "Settings.txt")
+		if isFile(hwfolder + "/" + "Settings.old"):
+			mv(hwfolder + "/" + "Settings.txt", hwfolder + "/" + "Settings.new")
+			mv(hwfolder + "/" + "Settings.old", hwfolder + "/" + "Settings.txt")
 		print()
 		input("You must restart in order to run the new version... ")
 
