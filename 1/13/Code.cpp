@@ -16,8 +16,10 @@ typedef struct E2 {
 	// codev 
 } E2;
 
+// codev
 E1 V[3]; 
 E2 * L;
+// codev
 
 void TestarMemoria() {
 	/* Atente para o que está sendo impresso nesse teste, e 
