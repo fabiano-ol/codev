@@ -1,0 +1,60 @@
+MÓDULOS
+=======
+
+Deve ser usado o Python 3.x.
+
+Se houver erros indicando falta de módulos (por exemplo, "requests"), 
+é porque essa biblioteca de Python não foi instalada em sua máquina. 
+Para fazê-lo, usar o comando:
+
+[assumindo que o Python é invocado pelo comando 'python3' no seu sistema;
+ mude para 'python' caso contrário]
+
+python3 -m pip install requests		[ou o módulo que estiver faltando]   
+
+O comando acima supõe que o módulo PIP esteja instalado no seu Python. 
+Caso contrário, é necessário instalá-lo antes, da seguinte forma.
+
+LINUX
+
+	sudo apt-get install python3 pip
+
+WINDOWS
+
+	Visite https://pip.pypa.io/en/stable/installation/ e siga as instruções.
+
+
+FERRAMENTAS EXTERNAS
+====================
+
+O arquivo de Settings.txt vem configurado com algumas ferramentas externas
+do Linux, a saber:
+
+- gedit : para abrir o código-fonte (nativo do Linux)
+- g++   : compilador de C++	(sudo apt-get install g++)
+- Chrome: para visualizador de PDFs (baixar do Google)
+
+Se não houver alguma das ferramentas acima, elas devem ser instaladas ou
+então as configurações devem ser trocadas para ferramentas equivalentes.
+
+WINDOWS
+
+No caso do uso de Windows, elas devem ser alteradas para ferramentas
+existentes instaladas no Windows. 
+
+Sugestão de ferramentas externas para Windows:
+
+- Editor de Código: Notepad++ (https://notepad-plus-plus.org/downloads/)
+- Compilador C++: Dev-C++ 6.3 (http://www.bloodshed.net/)
+- Comparador de Arquivos: FC (comando nativo do Windows)
+- Visualizador de PDF (Navegador Chrome)
+
+Se você optar por usar exatamente as ferramentas acima, as configurações
+abaixo, encontradas dentro de Settings.txt, devem ser alteradas para algo 
+parecido com o abaixo (ajuste para os locais de instalação corretos):
+
+EDITOR_CMD = C:\\Program Files\\Notepad++\\notepad++.exe,<CODE_FILE>
+COMPILER_CMD = C:\\Program Files (x86)\\Embarcadero\\Dev-Cpp\\TDM-GCC-64\\bin\\g++.exe,<CODE_FILE>,-o,<EXE_FILE> 
+DIFF_CMD = fc,<FILE1>,<FILE2>
+PDF_READER = C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe,<PDF_FILE>
+
