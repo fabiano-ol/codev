@@ -341,6 +341,8 @@ def VerifyCode(eid, hid):
 		print("----------------------")
 		diffCmd = ParseParams(DIFF_CMD.replace("<FILE1>", OSPath(outputTXT)).replace("<FILE2>", OSPath(solutionTXT)))
 		diffout = run(diffCmd[0], diffCmd[1:])
+		diffout = diffout.strip().strip('\n')
+		diffout = diffout.split('\n')[-1]
 		print(diffout)
 		writeFile(diffTXT, diffout)
 		print("----------------------")
