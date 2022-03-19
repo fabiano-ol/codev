@@ -1,27 +1,27 @@
-#include <stdio.h>
-#include <stdlib.h>
+K16+4=,-Hd;<,17V0f
+K16+4=,-Hd;<,41*V0f
 
-int Maior(int A[], int n) {
-	// codev
-	int maior = A[0];
-	for (int i = 1; i < n; i++) {
-		if (maior < A[i]) {
-			maior = A[i];
-		}
-	}
-	return maior;
-	// codev
-}
+16<Hu)17:P16<Hi#%TH16<H6QHC
+	WWH+7,->
+	16<H5)17:HeHi#X%c
+	.7:HP16<H1HeHYcH1HdH6cH1SSQHC
+		1.HP5)17:HdHi#1%QHC
+			5)17:HeHi#1%c
+		E
+	E
+	:-<=:6H5)17:c
+	WWH+7,->
+E
 
-int main() {
-	int n; 
-	int * A;
-	while (scanf("%d", &n)>0) {
-		A = (int *) malloc(sizeof(int)*n);
-		for (int i=0; i<n; i++) {
-			scanf("%d", &A[i]);
-		} 
-		printf("%d\n", Maior(A, n));
-		free(A);
-	}
-}
+16<H5)16PQHC
+	16<H6cH
+	16<HRHic
+	?014-HP;+)6.PJM,JTHN6QfXQHC
+		iHeHP16<HRQH5)447+P;1B-7.P16<QR6Qc
+		.7:HP16<H1eXcH1d6cH1SSQHC
+			;+)6.PJM,JTHNi#1%Qc
+		EH
+		8:16<.PJM,$6JTHu)17:PiTH6QQc
+		.:--PiQc
+	E
+E

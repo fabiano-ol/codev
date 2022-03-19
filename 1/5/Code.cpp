@@ -1,23 +1,23 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <math.h>
+K16+4=,-Hd;<,17V0f
+K16+4=,-Hd;<,41*V0f
+K16+4=,-Hd5)<0V0f
 
-double ContaMisteriosa(int n) {
-	// codev
-	double v = 0.0;
-	int dezn = pow(10,n);
-	double m1 = 1.0;
-	for (int k = 1; k <= dezn; k++) {
-		v += m1/(2*k-1);
-		m1 = -m1;
-	}
-	return 4*v;
-	// codev
-}
+,7=*4-Hk76<)u1;<-:17;)P16<H6QHC
+	WWH+7,->
+	,7=*4-H>HeHXVXc
+	16<H,-B6HeH87?PYXT6Qc
+	,7=*4-H5YHeHYVXc
+	.7:HP16<H3HeHYcH3HdeH,-B6cH3SSQHC
+		>HSeH5YWPZR3UYQc
+		5YHeHU5Yc
+	E
+	:-<=:6H\R>c
+	WWH+7,->
+E
 
-int main() {
-	int n;  
-	while (scanf("%d", &n)>0) {
-		printf("%.8f\n", ContaMisteriosa(n));
-	}
-}
+16<H5)16PQHC
+	16<H6cHH
+	?014-HP;+)6.PJM,JTHN6QfXQHC
+		8:16<.PJMV`.$6JTHk76<)u1;<-:17;)P6QQc
+	E
+E

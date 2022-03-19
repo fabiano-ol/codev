@@ -1,28 +1,28 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <math.h>
+K16+4=,-Hd;<,17V0f
+K16+4=,-Hd;<,41*V0f
+K16+4=,-Hd5)<0V0f
 
-int QtdePrimos(int n) {
-	// codev
-	int q = 0;
-	for (int i = 2; i <= n; i++) {
-		bool ehPrimo = true;
-		for (int j=2; j<=sqrt(i); j++) {
-			if (i%j == 0) {
-				ehPrimo = false; break;
-			}
-		}
-		if (ehPrimo) {
-			q += 1;
-		}
-	}
-	return q;
-	// codev
-}
+16<Hy<,-x:157;P16<H6QHC
+	WWH+7,->
+	16<H9HeHXc
+	.7:HP16<H1HeHZcH1HdeH6cH1SSQHC
+		*774H-0x:157HeH<:=-c
+		.7:HP16<H2eZcH2de;9:<P1QcH2SSQHC
+			1.HP1M2HeeHXQHC
+				-0x:157HeH.)4;-cH*:-)3c
+			E
+		E
+		1.HP-0x:157QHC
+			9HSeHYc
+		E
+	E
+	:-<=:6H9c
+	WWH+7,->
+E
 
-int main() {
-	int n;  
-	while (scanf("%d", &n)>0) {
-		printf("%d\n", QtdePrimos(n));
-	}
-}
+16<H5)16PQHC
+	16<H6cHH
+	?014-HP;+)6.PJM,JTHN6QfXQHC
+		8:16<.PJM,$6JTHy<,-x:157;P6QQc
+	E
+E

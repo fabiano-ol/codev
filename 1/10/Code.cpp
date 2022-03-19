@@ -1,35 +1,35 @@
-#include <stdio.h>
-#include <stdlib.h>
+K16+4=,-Hd;<,17V0f
+K16+4=,-Hd;<,41*V0f
 
-void RepresentacaoDecimal(long long int n, int R[], int & k) {
-	// codev
-	if (n==0) {
-		R[0] = 0; k=1;
-	} else {
-		k = 0;
-		while (n>0) {
-			R[k] = n%10;
-			n = n/10;
-			k = k+1;
-		}
-		for (int i=0; i<k/2; i++) {
-			int t = R[i];
-			R[i] = R[k-1-i];
-			R[k-1-i] = t;
-		}
-	}
-	// codev
-}
+>71,Hz-8:-;-6<)+)7l-+15)4P476/H476/H16<H6TH16<Hz#%TH16<HNH3QHC
+	WWH+7,->
+	1.HP6eeXQHC
+		z#X%HeHXcH3eYc
+	EH-4;-HC
+		3HeHXc
+		?014-HP6fXQHC
+			z#3%HeH6MYXc
+			6HeH6WYXc
+			3HeH3SYc
+		E
+		.7:HP16<H1eXcH1d3WZcH1SSQHC
+			16<H<HeHz#1%c
+			z#1%HeHz#3UYU1%c
+			z#3UYU1%HeH<c
+		E
+	E
+	WWH+7,->
+E
 
-int main() {
-	long long int n; 
-	int R[16]; int k;
-	while (scanf("%lld", &n)>0) {
-		RepresentacaoDecimal(n, R, k);
-		printf("%d\n", k);
-		for (int i=0; i<k; i++) {
-			printf("%d ", R[i]);
-		}
-		printf("\n");
-	}
-}
+16<H5)16PQHC
+	476/H476/H16<H6cH
+	16<Hz#Y^%cH16<H3c
+	?014-HP;+)6.PJM44,JTHN6QfXQHC
+		z-8:-;-6<)+)7l-+15)4P6THzTH3Qc
+		8:16<.PJM,$6JTH3Qc
+		.7:HP16<H1eXcH1d3cH1SSQHC
+			8:16<.PJM,HJTHz#1%Qc
+		E
+		8:16<.PJ$6JQc
+	E
+E

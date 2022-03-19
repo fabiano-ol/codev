@@ -1,28 +1,28 @@
-#include <stdio.h>
-#include <stdlib.h>
+K16+4=,-Hd;<,17V0f
+K16+4=,-Hd;<,41*V0f
 
-int Fibonacci(int n) {
-	// codev
-	if (n==1) {
-		return 0;
-	} else if (n==2) {
-		return 1;
-	} else {
-		long long int f, v1, v2;
-		v1 = 0; v2 = 1; f = 1;
-		for (int i=3; i<n; i++) {
-			v1 = v2;
-			v2 = f;
-			f = (v1+v2) % 1000000000;
-		}
-		return f;
-	}
-	// codev
-}
+16<Hn1*76)++1P16<H6QHC
+	WWH+7,->
+	1.HP6eeYQHC
+		:-<=:6HXc
+	EH-4;-H1.HP6eeZQHC
+		:-<=:6HYc
+	EH-4;-HC
+		476/H476/H16<H.TH>YTH>Zc
+		>YHeHXcH>ZHeHYcH.HeHYc
+		.7:HP16<H1e[cH1d6cH1SSQHC
+			>YHeH>Zc
+			>ZHeH.c
+			.HeHP>YS>ZQHMHYXXXXXXXXXc
+		E
+		:-<=:6H.c
+	E
+	WWH+7,->
+E
 
-int main() {
-	int n; 
-	while (scanf("%d", &n)>0) {
-		printf("%d\n", Fibonacci(n));
-	}
-}
+16<H5)16PQHC
+	16<H6cH
+	?014-HP;+)6.PJM,JTHN6QfXQHC
+		8:16<.PJM,$6JTHn1*76)++1P6QQc
+	E
+E

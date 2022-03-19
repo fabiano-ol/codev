@@ -1,3 +1,4 @@
+import sys
 import os
 import os.path
 import requests
@@ -198,7 +199,7 @@ def mkdir(folder):
 
 def readFile(filename):
 	filename = OSPath(filename)
-	f = open(filename, "r")
+	f = open(filename, "r", encoding="utf-8")
 	strRead = f.read()
 	f.close()
 	return strRead
@@ -206,7 +207,7 @@ def readFile(filename):
 
 def writeFile(filename, content):
 	filename = OSPath(filename)
-	f = open(filename, "w")
+	f = open(filename, "w", encoding="utf-8")
 	f.write(content)
 	f.close()
 
@@ -241,7 +242,7 @@ def readConfigFile(filename):
 
 
 def printHeader():
-	os.system('cls||clear')
+	os.system("clear" if platform.system() != "Windows" else "cls")
 	print()
 	print(r"       ██████╗ ██████╗ ██████╗ ███████╗██╗   ██╗ ")
 	print(r"      ██╔════╝██╔═══██╗██╔══██╗██╔════╝██║   ██║ ")
@@ -262,7 +263,7 @@ def run(cmd, params=None, inputfile=""):
 	if inputfile == "":
 		infileObj = None
 	else:
-		infileObj = open(OSPath(inputfile), "r")
+		infileObj = open(OSPath(inputfile), "r", encoding="utf-8")
 	p = subprocess.run(fullcmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=infileObj)
 	return p.stdout.decode("utf-8") + p.stderr.decode("utf-8")
 
@@ -284,15 +285,20 @@ def removeCodev(text):
 		i = text.find(token)
 	return text
 
+def ParseParams(text):
+	return text.split(",")
+
 def EditCode(eid, hid):
 	path = "{0}/{1}/{2}/Code.cpp".format(REPOSITORY_FOLDER, hid, eid)
 	path = OSPath(path)
-	run(EDITOR_CMD.replace("<CODE_FILE>", path))
+	cmd = ParseParams(EDITOR_CMD.replace("<CODE_FILE>", path))
+	run(cmd[0], cmd[1:])
 
 def OpenFigure(fig, eid, hid):
 	path = "{0}/{1}/{2}/Figure{3}.pdf".format(REPOSITORY_FOLDER, hid, eid, fig)
 	path = OSPath(path)
-	run(PDF_READER.replace("<PDF_FILE>", path))
+	cmd = ParseParams(PDF_READER.replace("<PDF_FILE>", path))
+	run(cmd[0],cmd[1:])
 
 def VerifyCode(eid, hid):
 	rep = repository("local")
@@ -316,8 +322,8 @@ def VerifyCode(eid, hid):
 	print("Running my solution:")
 	print("----------------------")
 	print("Starting compilation...")
-	COMPILER_CMD_STR = OSPath(COMPILER_CMD).replace("<EXE_FILE>", OSPath(exeFile)).replace("<CODE_FILE>", OSPath(code))
-	print(run(COMPILER_CMD_STR))
+	compCmd = ParseParams(COMPILER_CMD.replace("<EXE_FILE>", OSPath(exeFile)).replace("<CODE_FILE>", OSPath(code)))
+	print(run(compCmd[0],compCmd[1:]))
 	print("Compilation done.")
 	print("---")
 	print("Running executable file...")
@@ -333,7 +339,8 @@ def VerifyCode(eid, hid):
 	if output != "":
 		print("Comparing results:")
 		print("----------------------")
-		diffout = run(DIFF_CMD.replace("<FILE1>", OSPath(outputTXT)).replace("<FILE2>", OSPath(solutionTXT)))
+		diffCmd = ParseParams(DIFF_CMD.replace("<FILE1>", OSPath(outputTXT)).replace("<FILE2>", OSPath(solutionTXT)))
+		diffout = run(diffCmd[0], diffCmd[1:])
 		print(diffout)
 		writeFile(diffTXT, diffout)
 		print("----------------------")
@@ -364,12 +371,12 @@ def RunCode(eid, hid):
 	print("Running my solution:")
 	print("----------------------")
 	print("Starting compilation...")
-	COMPILER_CMD_STR = OSPath(COMPILER_CMD).replace("<EXE_FILE>", OSPath(exeFile)).replace("<CODE_FILE>", OSPath(code))
-	print(run(COMPILER_CMD_STR))
+	compCmd = ParseParams(COMPILER_CMD.replace("<EXE_FILE>", OSPath(exeFile)).replace("<CODE_FILE>", OSPath(code)))
+	print(run(compCmd[0],compCmd[1:]))
 	print("Compilation done.")
 	print("---")
 	print("Running executable file...")
-	print("(type the input; use {0} to finish)".format("Ctrl+D" if platform.system() != "Windows" else "Ctrl+Z"))
+	print("(type the input; use {0} to finish)".format("Ctrl+D" if platform.system() != "Windows" else "Ctrl+D or Ctrl+Z"))
 	output = run(exeFile)
 	print("---")
 	print("Execution done. Output:")
@@ -415,7 +422,7 @@ def DownloadHW(hid, creating):
 		for f in filesKeepOriginal:
 			fn = exfolder + "/" + f
 			if not isFile(fn):
-				writeFile(fn, removeCodev(getURL(exurl + "/" + f)))
+				writeFile(fn, removeCodev(clear(getURL(exurl + "/" + f))))
 		for f in filesRem:
 			rm(exfolder + "/" + f)
 		i = 1; f = "Figure{0}.pdf".format(i)
@@ -597,12 +604,16 @@ def GenMenuSettings():
 	Opt.append(r"<value> should be a valid command line for opening")
 	Opt.append(r"the code editor; the substring of value named <CODE_FILE>")
 	Opt.append(r"will be replaced with the code filename.")
+	Opt.append(r"If a space between arguments does not work well, try replacing")
+	Opt.append(r"with a comma (,) those spaces that delimit arguments.")
 	Opt.append(None)
 	Opt.append(r"COMPILER_CMD = <value>")
 	Opt.append(r"<value> should be a valid command line for compiling")
 	Opt.append(r"the code; the substring <CODE_FILE> will be replaced with")
 	Opt.append(r"the code filename, and <EXE_FILE> with the executable file")
 	Opt.append(r"to be created.")
+	Opt.append(r"If a space between arguments does not work well, try replacing")
+	Opt.append(r"with a comma (,) those spaces that delimit arguments.")
 	Opt.append(None)
 	Opt.append(r"UPDATE_SOFTWARE = 0/1")
 	Opt.append(r"0 for hiding the option for downloading new versions of Codev.")
@@ -617,11 +628,15 @@ def GenMenuSettings():
 	Opt.append(r"<value> should be a valid command line for executing a")
 	Opt.append(r"file comparison tool; the substrings <FILE1> and <FILE2>")
 	Opt.append(r"will be replaced with the two files to be compared.")
+	Opt.append(r"If a space between arguments does not work well, try replacing")
+	Opt.append(r"with a comma (,) those spaces that delimit arguments.")
 	Opt.append(None)
 	Opt.append(r"PDF_READER = <value>")
 	Opt.append(r"<value> should be a valid command line for executing a")
 	Opt.append(r"pdf reader tool; the substrings <PDF_FILE>")
 	Opt.append(r"will be replaced with the filename to be opened.")
+	Opt.append(r"If a space between arguments does not work well, try replacing")
+	Opt.append(r"with a comma (,) those spaces that delimit arguments.")
 	Opt.append(None)
 	Opt.append(["b", "Go Back", ["hwList"]])
 	return Opt
@@ -640,6 +655,30 @@ def UpdateSoftware():
 			mv(hwfolder + "/" + "Settings.old", hwfolder + "/" + "Settings.txt")
 		print()
 		input("You must restart in order to run the new version... ")
+
+def obscure(text):
+	r = ""
+	li = 32; ls = 127; t = ls - li + 1; s = 40
+	for i in range(len(text)):
+		c = text[i]
+		if li <= ord(c) <= ls:
+			r += chr((ord(c) - li + s) % t + li)
+		else:
+			r += c
+	return r
+
+
+def clear(text):
+	r = ""
+	li = 32; ls = 127; t = ls - li + 1; s = 40
+	for i in range(len(text)):
+		c = text[i]
+		if li <= ord(c) <= ls:
+			r += chr((ord(c) - li - s) % t + li)
+		else:
+			r += c
+	return r
+
 
 def GenMenu():
 	cmd = "hwList"
@@ -690,7 +729,6 @@ def GenMenu():
 			chosen = ["readHW", chosen[2], chosen[3]]
 		cmd = chosen[0]
 
-
 cfg = readConfigFile("Settings.txt")
 
 REPOSITORY_FOLDER = cfg.get("REPOSITORY_FOLDER", "./repository")
@@ -704,4 +742,16 @@ DIFF_NO_TEXT = cfg.get("DIFF_NO_TEXT", "")
 UPDATE_SOFTWARE = cfg.get("UPDATE_SOFTWARE", "1")
 PDF_READER = cfg.get("PDF_READER", "<PDF_FILE>")
 
-GenMenu()
+if len(sys.argv) > 1:
+		if sys.argv[1] == "upload":
+			hid = sys.argv[2]; eid = sys.argv[3]
+			exfolder = "{0}/{1}/{2}".format(REPOSITORY_FOLDER, hid, eid)
+			if isFile(exfolder + "/KeyCode.cpp"):
+				writeFile(exfolder + "/Code.cpp", obscure(readFile(exfolder + "/KeyCode.cpp")))
+			else:
+				print("KeyCode.cpp not found.")
+		else:
+			print("Codev could not recognize the given parameters.")
+else:
+
+	GenMenu()

@@ -1,0 +1,5 @@
+Último elemento da lista encadeada
+1
+Dada uma lista linear encadeada circular de inteiros, 
+elabore uma função que compute o último elemento, ou 
+retorne -1 caso a lista não tenha elementos. [O(n)]

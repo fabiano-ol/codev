@@ -1,33 +1,33 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+K16+4=,-Hd;<,17V0f
+K16+4=,-Hd;<,41*V0f
+K16+4=,-Hd;<:16/V0f
 
-void PermutacaoCircular(char A[], int n, int k) {
-	// codev
-	char c = A[0]; char pc; 
-	int j=0; int ji = 0;
-	for (int i=0; i<n; i++) {
-		pc = A[(j+k)%n];
-		A[(j+k)%n] = c;
-		j = (j+k)%n;
-		c = pc;
-		if (j==ji) {
-			ji = ji+1;
-			j = ji;
-			c = A[ji]; 
-		}
-	}
-	// codev
-}
+>71,Hx-:5=<)+)7k1:+=4):P+0):Hi#%TH16<H6TH16<H3QHC
+	WWH+7,->
+	+0):H+HeHi#X%cH+0):H8+cH
+	16<H2eXcH16<H21HeHXc
+	.7:HP16<H1eXcH1d6cH1SSQHC
+		8+HeHi#P2S3QM6%c
+		i#P2S3QM6%HeH+c
+		2HeHP2S3QM6c
+		+HeH8+c
+		1.HP2ee21QHC
+			21HeH21SYc
+			2HeH21c
+			+HeHi#21%cH
+		E
+	E
+	WWH+7,->
+E
 
-int main() {
-	int n,k; 
-	char * A; 
-	while (scanf("%d %d", &n, &k)>0) {
-		A = (char *) malloc(sizeof(char)*(n+600000));
-		scanf("%s", A);
-		PermutacaoCircular(A, n, k);
-		printf("%s\n", A);
-		free(A);
-	}
-}
+16<H5)16PQHC
+	16<H6T3cH
+	+0):HRHicH
+	?014-HP;+)6.PJM,HM,JTHN6THN3QfXQHC
+		iHeHP+0):HRQH5)447+P;1B-7.P+0):QRP6S^XXXXXQQc
+		;+)6.PJM;JTHiQc
+		x-:5=<)+)7k1:+=4):PiTH6TH3Qc
+		8:16<.PJM;$6JTHiQc
+		.:--PiQc
+	E
+E

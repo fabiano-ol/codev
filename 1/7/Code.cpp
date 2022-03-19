@@ -1,30 +1,30 @@
-#include <stdio.h>
-#include <stdlib.h>
+K16+4=,-Hd;<,17V0f
+K16+4=,-Hd;<,41*V0f
 
-void ConcatenaPrefixos(char A[], char B[], int n, int m, char C[]) {
-	// codev
-	int k=0;
-	for (int i=0; i<n; i++) {
-		C[k] = A[i]; 
-		k = k+1;
-	}
-	for (int i=0; i<m; i++) {
-		C[k] = B[i]; 
-		k = k+1;
-	}
-	// codev
-}
+>71,Hk76+)<-6)x:-.1@7;P+0):Hi#%TH+0):Hj#%TH16<H6TH16<H5TH+0):Hk#%QHC
+	WWH+7,->
+	16<H3eXc
+	.7:HP16<H1eXcH1d6cH1SSQHC
+		k#3%HeHi#1%cH
+		3HeH3SYc
+	E
+	.7:HP16<H1eXcH1d5cH1SSQHC
+		k#3%HeHj#1%cH
+		3HeH3SYc
+	E
+	WWH+7,->
+E
 
-int main() {
-	int n,m; 
-	char A[100]; char B[100]; char C[200];
-	while (scanf("%d %d", &n, &m)>0) {
-		scanf("%s", A);
-		scanf("%s", B);
-		ConcatenaPrefixos(A, B, n, m, C);
-		for (int i=0; i<n+m; i++) {
-			printf("%c", C[i]);
-		}
-		printf("\n");
-	}
-}
+16<H5)16PQHC
+	16<H6T5cH
+	+0):Hi#YXX%cH+0):Hj#YXX%cH+0):Hk#ZXX%c
+	?014-HP;+)6.PJM,HM,JTHN6THN5QfXQHC
+		;+)6.PJM;JTHiQc
+		;+)6.PJM;JTHjQc
+		k76+)<-6)x:-.1@7;PiTHjTH6TH5THkQc
+		.7:HP16<H1eXcH1d6S5cH1SSQHC
+			8:16<.PJM+JTHk#1%Qc
+		E
+		8:16<.PJ$6JQc
+	E
+E

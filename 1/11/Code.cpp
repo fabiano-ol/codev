@@ -1,63 +1,63 @@
-#include <stdio.h>
-#include <stdlib.h>
+K16+4=,-Hd;<,17V0f
+K16+4=,-Hd;<,41*V0f
 
-void Imprime(int R[], int k) {
-	printf("%d\n", k);
-	for (int i=0; i<k; i++) {
-		printf("%d ", R[i]);
-	}
-	printf("\n");
-}
+>71,Hq58:15-P16<Hz#%TH16<H3QHC
+	8:16<.PJM,$6JTH3Qc
+	.7:HP16<H1eXcH1d3cH1SSQHC
+		8:16<.PJM,HJTHz#1%Qc
+	E
+	8:16<.PJ$6JQc
+E
 
-// codevremove
-void Inverte(int R[], int k) {
-	for (int i=0; i<k/2; i++) {
-		int t = R[i];
-		R[i] = R[k-1-i];
-		R[k-1-i] = t;
-	}
-}
-// codevremove
+WWH+7,->:-57>-
+>71,Hq6>-:<-P16<Hz#%TH16<H3QHC
+	.7:HP16<H1eXcH1d3WZcH1SSQHC
+		16<H<HeHz#1%c
+		z#1%HeHz#3UYU1%c
+		z#3UYU1%HeH<c
+	E
+E
+WWH+7,->:-57>-
 
-void Soma(int A[], int n, int B[], int m, int R[], int &k) {
-	// codev 
-	Inverte(A,n); Inverte(B,m); /*mais fácil fazer a operação com os vetores em ordem inversa */ 
-	k = 0;
-	int vaium = 0;
-	while ((k<n) || (k<m) || (vaium == 1)) {
-		int a, b; a=0; b=0;
-		//printf("k=%d; n=%d m=%d\n", k, n, m);
-		if (k<n) {
-			a = A[k];
-		}
-		if (k<m) {
-			b = B[k];
-		}
-		//printf("a=%d; b=%d;vaium=%d\n", a, b, vaium);
-		R[k] = (a+b+vaium)%10;
-		vaium = (a+b+vaium)/10;
-		k = k+1;
-	}
-	Inverte(A,n); Inverte(B,m); Inverte(R,k); 
-	// codev
-}
+>71,H{75)P16<Hi#%TH16<H6TH16<Hj#%TH16<H5TH16<Hz#%TH16<HN3QHC
+	WWH+7,->H
+	q6>-:<-PiT6QcHq6>-:<-PjT5QcHWR5)1;H.á+14H.)B-:H)H78-:)çã7H+75H7;H>-<7:-;H-5H7:,-5H16>-:;)HRWH
+	3HeHXc
+	16<H>)1=5HeHXc
+	?014-HPP3d6QHDDHP3d5QHDDHP>)1=5HeeHYQQHC
+		16<H)TH*cH)eXcH*eXc
+		WW8:16<.PJ3eM,cH6eM,H5eM,$6JTH3TH6TH5Qc
+		1.HP3d6QHC
+			)HeHi#3%c
+		E
+		1.HP3d5QHC
+			*HeHj#3%c
+		E
+		WW8:16<.PJ)eM,cH*eM,c>)1=5eM,$6JTH)TH*TH>)1=5Qc
+		z#3%HeHP)S*S>)1=5QMYXc
+		>)1=5HeHP)S*S>)1=5QWYXc
+		3HeH3SYc
+	E
+	q6>-:<-PiT6QcHq6>-:<-PjT5QcHq6>-:<-PzT3QcH
+	WWH+7,->
+E
 
 
-int main() {
-	int n, m; 
+16<H5)16PQHC
+	16<H6TH5cH
 	
-	int * A, * B, *R; int k;
-	A = (int *) malloc(sizeof(int)*1000);
-	B = (int *) malloc(sizeof(int)*1000);
-	R = (int *) malloc(sizeof(int)*1000*1000);
-	while (scanf("%d %d", &n, &m)>0) {
-		for (int i=0; i<n; i++) {
-			scanf("%d", &A[i]);
-		}
-		for (int i=0; i<m; i++) {
-			scanf("%d", &B[i]);
-		}
-		Soma(A, n, B, m, R, k);  Imprime(R, k);
-	}
-	free(A); free(B); free(R);
-}
+	16<HRHiTHRHjTHRzcH16<H3c
+	iHeHP16<HRQH5)447+P;1B-7.P16<QRYXXXQc
+	jHeHP16<HRQH5)447+P;1B-7.P16<QRYXXXQc
+	zHeHP16<HRQH5)447+P;1B-7.P16<QRYXXXRYXXXQc
+	?014-HP;+)6.PJM,HM,JTHN6THN5QfXQHC
+		.7:HP16<H1eXcH1d6cH1SSQHC
+			;+)6.PJM,JTHNi#1%Qc
+		E
+		.7:HP16<H1eXcH1d5cH1SSQHC
+			;+)6.PJM,JTHNj#1%Qc
+		E
+		{75)PiTH6THjTH5THzTH3QcHHq58:15-PzTH3Qc
+	E
+	.:--PiQcH.:--PjQcH.:--PzQc
+E
