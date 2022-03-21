@@ -1,4 +1,4 @@
 Conta misteriosa
 2
 Escreva um programa que compute, dado um inteiro n, o valor da expressão:
-  4 ⋅ ∑ { (-1)^(k+1) / (2k-1) : k = 1,...,10^n }. [O(10^n)]
+  4 × ∑ { (-1)^(k+1) / (2k-1) : k = 1,...,10^n }. [O(10^n)]
