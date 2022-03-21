@@ -255,6 +255,16 @@ def printHeader():
 	print(r"                     version {0}".format(getVersion()))
 	print()
 
+def bytesDecode(arrbytes):
+	while True:
+		try:
+			return arrbytes.decode("utf-8")
+		except UnicodeDecodeError as e:
+			p = e.start
+			arrbytes = arrbytes[:p] + arrbytes[p+1:]
+		except:
+			return ""
+
 def run(cmd, params=None, inputfile=""):
 	if params==None:
 		params = []
@@ -265,7 +275,12 @@ def run(cmd, params=None, inputfile=""):
 	else:
 		infileObj = open(OSPath(inputfile), "r", encoding="utf-8")
 	p = subprocess.run(fullcmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=infileObj)
-	return p.stdout.decode("utf-8") + p.stderr.decode("utf-8")
+	r = bytesDecode(p.stdout); rerr = bytesDecode(p.stderr)
+	if rerr != "":
+		if r != "":
+			r += '\n'
+		r += rerr
+	return r
 
 def removeCodev(text):
 	token = r"// codevremove"
