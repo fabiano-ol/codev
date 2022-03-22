@@ -183,6 +183,10 @@ def mv(src, dst):
 		shutil.copy(OSPath(src), OSPath(dst))
 		rm(src)
 
+def cp(src, dst):
+	if isFile(src) or isDir(src):
+		shutil.copy(OSPath(src), OSPath(dst))
+
 def rm(obj):
 	if isFile(obj):
 		obj = OSPath(obj)
@@ -211,6 +215,13 @@ def writeFile(filename, content):
 	f.write(content)
 	f.close()
 
+def checkConnection():
+	try:
+		servurl = "{0}/{1}".format(SERVER_URL, CONFIG_FILE)
+		return getURL(servurl) != ""
+	except:
+		return False
+
 def downloadFile(url, filename):
 	r = requests.get(url, allow_redirects=True)
 	if r.status_code == 200:
@@ -232,6 +243,10 @@ def getURL(url):
 		return ""
 
 def readConfigFile(filename):
+	if not isFile(filename):
+		osstr = "Windows" if platform.system()=="Windows" else "Linux"
+		if isFile(filename + "." + osstr):
+			cp(filename + "." + osstr, filename)
 	params = {}
 	for l in split(readFile(filename), "\n"):
 		ld = split(l, "=")
@@ -298,6 +313,17 @@ def removeCodev(text):
 		ej = text.find("\n", j)
 		text = text[:i] + r"/* insert your code here */" + text[ej:]
 		i = text.find(token)
+	return text
+
+def removeCodevComments(text):
+	tokens = [r"// codevremove", r"// codev"]
+	for token in tokens:
+		i = text.find(token)
+		while i >= 0:
+			ej = text.find("\n", i)
+			ei = text[:i].rfind("\n")
+			text = text[:ei+1] + text[ej+1:]
+			i = text.find(token)
 	return text
 
 def ParseParams(text):
@@ -412,6 +438,10 @@ def DelConfirmCode(eid, hid):
 	rm(path)
 
 def DownloadHW(hid, creating):
+	if not checkConnection():
+		print ("Connection to the server seems to be down...")
+		input("Press ENTER to continue...")
+		return
 	hwurl = "{0}/{1}".format(SERVER_URL, hid)
 	hwfolder = "{0}/{1}".format(REPOSITORY_FOLDER, hid)
 	if creating:
@@ -482,6 +512,9 @@ def GenMenuReadHW(eid, hid):
 	Opt.append(["2", "Run Code", ["runCode", eid, hid]])
 	Opt.append(["3", "Validate Code", ["verifyCode", eid, hid]])
 	Opt.append(None)
+	hwurl = "{0}/{1}".format(SERVER_URL, hid)
+	if checkConnection() and getURL(hwurl + "/Pass.txt") != "":
+		Opt.append(["s", "See Solution", ["editKeyCode", eid, hid]])
 	Opt.append(["d", "Delete Code", ["delCode", eid, hid]])
 	Opt.append(None)
 	Opt.append(["b", "Go Back", ["openHW", hid]])
@@ -508,15 +541,20 @@ def GenMenuOpenHW(hid):
 
 
 def GenMenuNewHW():
+	connec = checkConnection()
+
 	rep = repository("remote")
-	rep.load()
+	if connec:
+		rep.load()
 
 	Opt = []
 	i = 1
 	Opt.append("New Homeworks:")
 	Opt.append(None)
-	if len(rep.hws) == 0:
+	if connec and len(rep.hws) == 0:
 		Opt.append("(no new homeworks have been found)")
+	elif not connec:
+		Opt.append("(connection to the server seems to be down...)")
 	else:
 		for hw in rep.hws:
 			Opt.append([str(i), hw.description + " (" + hw.status + ")", ["downloadHW", hw.hid]])
@@ -555,6 +593,23 @@ def GenMenuDelCode(eid, hid):
 	Opt.append(["n", "No", ["readHW", eid, hid]])
 	return Opt
 
+def EditKeyCode(eid, hid):
+	path = "{0}/{1}/{2}/KeyCode.cpp".format(REPOSITORY_FOLDER, hid, eid)
+	Pwd = input("Please, enter the password: ")
+	hwurl = "{0}/{1}".format(SERVER_URL, hid)
+	sPwd = clear(getURL(hwurl + "/" + "Pass.txt"))
+	if sPwd == "" or Pwd != sPwd:
+		print("This given password for this homework does not match.")
+		input("Press ENTER to continue...")
+	else:
+		exurl = hwurl + "/" + eid
+		f = "Code.cpp"
+		writeFile(path, removeCodevComments(clear(getURL(exurl + "/" + f))))
+
+	if isFile(path):
+		path = OSPath(path)
+		cmd = ParseParams(EDITOR_CMD.replace("<CODE_FILE>", path))
+		run(cmd[0], cmd[1:])
 
 def GenMenuHWList():
 	rep = repository("local")
@@ -731,6 +786,9 @@ def GenMenu():
 			chosen = ["readHW", chosen[1], chosen[2]]
 		elif cmd == "delCode":
 			chosen = DisplayMenu(GenMenuDelCode(chosen[1], chosen[2]))
+		elif cmd == "editKeyCode":
+			EditKeyCode(chosen[1], chosen[2])
+			chosen = ["readHW", chosen[1], chosen[2]]
 		elif cmd == "delConfirmCode":
 			DelConfirmCode(chosen[1], chosen[2])
 			chosen = ["readHW", chosen[1], chosen[2]]
@@ -746,7 +804,7 @@ def GenMenu():
 			chosen = ["readHW", chosen[2], chosen[3]]
 		cmd = chosen[0]
 
-cfg = readConfigFile("Settings.txt")
+cfg = readConfigFile("./Settings.txt")
 
 REPOSITORY_FOLDER = cfg.get("REPOSITORY_FOLDER", "./repository")
 if not isDir(REPOSITORY_FOLDER):
@@ -767,6 +825,13 @@ if len(sys.argv) > 1:
 				writeFile(exfolder + "/Code.cpp", obscure(readFile(exfolder + "/KeyCode.cpp")))
 			else:
 				print("KeyCode.cpp not found.")
+		elif sys.argv[1] == "pass":
+			hid = sys.argv[2]
+			hwfolder = "{0}/{1}".format(REPOSITORY_FOLDER, hid)
+			if isFile(hwfolder + "/KeyPass.txt"):
+				writeFile(hwfolder + "/Pass.txt", obscure(readFile(hwfolder + "/KeyPass.txt")))
+			else:
+				print("KeyPass.txt not found.")
 		else:
 			print("Codev could not recognize the given parameters.")
 else:
