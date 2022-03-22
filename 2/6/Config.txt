@@ -1,0 +1,5 @@
+Remoção de lista sequencial não-ordenada
+1
+Dados um inteiro n, uma lista linear L sequencial não-ordenada de 
+n inteiros, e um inteiro k, elabore uma função que remova todos os 
+elementos maiores que k de L. [O(n)]
