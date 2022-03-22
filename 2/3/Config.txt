@@ -1,4 +1,4 @@
-Último elemento da lista encadeada
+Último elemento de lista encadeada
 1
 Dada uma lista linear encadeada circular de inteiros, 
 elabore uma função que compute o último elemento, ou 

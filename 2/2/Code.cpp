@@ -1,45 +1,51 @@
-#include <stdio.h>
-#include <stdlib.h>
+K16+4=,-Hd;<,17V0f
+K16+4=,-Hd;<,41*V0f
 
-typedef struct No {
-	int E;
-	No * Prox;
-} No;
+<A8-,-.H;<:=+<Hv7HC
+	16<Hmc
+	v7HRHx:7@c
+EHv7c
 
-// codevremove
-int max(int a, int b) {
-	return (a<b ? b : a);
-}
-// codevremove
+WWH+7,->:-57>-
+16<H5)@P16<H)TH16<H*QHC
+	:-<=:6HP)d*HgH*HbH)Qc
+E
+WWH+7,->:-57>-
 
-int Maior(No * L) {
-	// codev
-	int m = L->E;
-	No * p = L->Prox;
-	while (p != NULL) {
-		m = max(m, p->E);
-		p = p->Prox;
-	}
-	return m;
-	// codev
-}
+16<Hu)17:Pv7HRHtQHC
+	WWH+7,->
+	16<H5HeHtUfmc
+	v7HRH8HeHtUfx:7@c
+	?014-HP8HIeHv}ttQHC
+		5HeH5)@P5TH8UfmQc
+		8HeH8Ufx:7@c
+	E
+	:-<=:6H5c
+	WWH+7,->
+E
 
-void Insere(No * &L, int e) {
-	No * novo = (No *) malloc(sizeof(No));
-	novo->E = e;
-	novo->Prox = L;
-	L = novo;
-}
+>71,Hq6;-:-Pv7HRHNtTH16<H-QHC
+	v7HRH67>7HeHPv7HRQH5)447+P;1B-7.Pv7QQc
+	67>7UfmHeH-c
+	67>7Ufx:7@HeHtc
+	tHeH67>7c
+E
 
-int main() {
-	No * L = NULL; 
-	Insere(L,-1000000000);
-	printf("%d\n", Maior(L));
-	Insere(L,2);
-	printf("%d\n", Maior(L));
-	for (int i=3; i<=1000000; i++) {
-		Insere(L,i);
-	}	
-	printf("%d\n", Maior(L));
-	return 0;
-}
+16<H5)16PQHC
+	v7HRHtHeHv}ttcH
+	q6;-:-PtTUYXXXXXXXXXQc
+	8:16<.PJM,$6JTHu)17:PtQQc
+	q6;-:-PtTUYXXXXXXXXYQcHq6;-:-PtTUYXXXXXXXXZQc
+	8:16<.PJM,$6JTHu)17:PtQQc
+	q6;-:-PtTZQc
+	8:16<.PJM,$6JTHu)17:PtQQc
+	16<H6HeHYXXXXXXc
+	.7:HP16<H1e6WZcH1de6cH1SSQHC
+		q6;-:-PtT1Qc
+	E	
+	.7:HP16<H1e[cH1HdH6WZcH1SSQHC
+		q6;-:-PtT1Qc
+	E	
+	8:16<.PJM,$6JTHu)17:PtQQc
+	:-<=:6HXc
+E

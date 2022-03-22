@@ -1,8 +1,8 @@
-K-último elemento de lista encadeada [O(n)]
+K-último elemento de lista encadeada [O(k)]
 1
 Dada uma lista linear encadeada circular de inteiros, 
-com nó cabeça, e um inteiro k, elabore uma função que 
+duplamente encadeada, e um inteiro k, elabore uma função que 
 compute o k-último elemento, ou retorne -1 caso esse
 elemento não esteja definido. O k-último elemento de 
 uma lista é o último quando k=1, é o penúltimo quando
-k=2, o antepenúltimo quando k=3, e assim por diante. [O(n)]
+k=2, o antepenúltimo quando k=3, e assim por diante. [O(k)]

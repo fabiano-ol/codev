@@ -1,4 +1,4 @@
-Maior elemento da lista encadeada
+Maior elemento de lista encadeada
 1
 Dada uma lista linear encadeada de inteiros, elabore uma
 função que compute o maior elemento. Assuma que haja ao
