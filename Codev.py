@@ -427,6 +427,17 @@ def RunCode(eid, hid):
 	print("----------------------")
 	input("Press ENTER to continue...")
 
+def ShowInput(eid, hid):
+	path = "{0}/{1}/{2}/Input.txt".format(REPOSITORY_FOLDER, hid, eid)
+	print("Below, you find the input data that Codev will give")
+	print("to your program during the validation process. Be aware")
+	print("that some (or even all) input data may be produced")
+	print("directly from the code. So, check the code out too.")
+	print("----------------------")
+	print(readFile(path))
+	print("----------------------")
+	input("Press ENTER to continue...")
+
 
 def DelConfirmHW(hid):
 	path = "{0}/{1}".format(REPOSITORY_FOLDER, hid)
@@ -513,6 +524,7 @@ def GenMenuReadHW(eid, hid):
 	Opt.append(["3", "Validate Code", ["verifyCode", eid, hid]])
 	Opt.append(None)
 	hwurl = "{0}/{1}".format(SERVER_URL, hid)
+	Opt.append(["i", "Show Input", ["showInput", eid, hid]])
 	if checkConnection() and getURL(hwurl + "/Pass.txt") != "":
 		Opt.append(["s", "See Solution", ["editKeyCode", eid, hid]])
 	Opt.append(["d", "Delete Code", ["delCode", eid, hid]])
@@ -783,6 +795,9 @@ def GenMenu():
 			chosen = ["readHW", chosen[1], chosen[2]]
 		elif cmd == "verifyCode":
 			VerifyCode(chosen[1], chosen[2])
+			chosen = ["readHW", chosen[1], chosen[2]]
+		elif cmd == "showInput":
+			ShowInput(chosen[1], chosen[2])
 			chosen = ["readHW", chosen[1], chosen[2]]
 		elif cmd == "delCode":
 			chosen = DisplayMenu(GenMenuDelCode(chosen[1], chosen[2]))
