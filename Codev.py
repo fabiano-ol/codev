@@ -270,17 +270,30 @@ def printHeader():
 	print(r"                     version {0}".format(getVersion()))
 	print()
 
+def getFirstLines(text, n):
+	i = -1
+	for j in range(n):
+		i = text.find('\n', i+1)
+		if i == -1:
+			i = len(text)
+			break
+	if i == -1:
+		i = 0
+	return text[:i]
+
 def bytesDecode(arrbytes):
 	while True:
 		try:
-			return arrbytes.decode("utf-8")
+			s = arrbytes.decode("utf-8")
+			break
 		except UnicodeDecodeError as e:
 			p = e.start
 			arrbytes = arrbytes[:p] + arrbytes[p+1:]
 		except:
 			return ""
+	return getFirstLines(s, 50000)
 
-def run(cmd, params=None, inputfile=""):
+def run(cmd, params=None, inputfile="", timelimit=None):
 	if params==None:
 		params = []
 	cmd = OSPath(cmd)
@@ -289,12 +302,17 @@ def run(cmd, params=None, inputfile=""):
 		infileObj = None
 	else:
 		infileObj = open(OSPath(inputfile), "r", encoding="utf-8")
-	p = subprocess.run(fullcmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=infileObj)
-	r = bytesDecode(p.stdout); rerr = bytesDecode(p.stderr)
-	if rerr != "":
-		if r != "":
-			r += '\n'
-		r += rerr
+	try:
+		p = subprocess.run(fullcmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=infileObj, timeout=timelimit)
+		r = bytesDecode(p.stdout)
+		rerr = bytesDecode(p.stderr)
+		if rerr != "":
+			if r != "":
+				r += '\n'
+			r += rerr
+	except subprocess.TimeoutExpired as e:
+		r = bytesDecode(e.stdout)
+		r += "\n---\nTime limit has been reached. Codev has forced the process to stop.".format(timelimit)
 	return r
 
 def removeCodev(text):
@@ -369,7 +387,7 @@ def VerifyCode(eid, hid):
 	print("---")
 	print("Running executable file...")
 	starttime = time.time()
-	output = run(exeFile, inputfile=inputTXT)
+	output = run(exeFile, inputfile=inputTXT, timelimit=(EXE_TIMELIMIT_FACTOR * ex.timelimit))
 	endtime = time.time()
 	elapsedTime = endtime - starttime
 	print(output)
@@ -420,8 +438,11 @@ def RunCode(eid, hid):
 	print("---")
 	print("Running executable file...")
 	print("(type the input; use {0} to finish)".format("Ctrl+D" if platform.system() != "Windows" else "Ctrl+D or Ctrl+Z"))
-	output = run(exeFile)
-	print("---")
+	try:
+		output = run(exeFile)
+	except KeyboardInterrupt:
+		output = "Execution has been forced to stop."
+	print("\n---")
 	print("Execution done. Output:")
 	print(output)
 	print("----------------------")
@@ -831,6 +852,7 @@ DIFF_CMD = cfg["DIFF_CMD"]
 DIFF_NO_TEXT = cfg.get("DIFF_NO_TEXT", "")
 UPDATE_SOFTWARE = cfg.get("UPDATE_SOFTWARE", "1")
 PDF_READER = cfg.get("PDF_READER", "<PDF_FILE>")
+EXE_TIMELIMIT_FACTOR = int(cfg.get("EXE_TIMELIMIT_FACTOR", "3"))
 
 if len(sys.argv) > 1:
 		if sys.argv[1] == "upload":
