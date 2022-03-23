@@ -1,0 +1,5 @@
+Lista encadeada sem repetições
+1
+Dado uma lista linear L encadeada, elabore uma função que
+retorne uma nova lista encadeada com os valores de L sem 
+repetições. [O(n^2)]
