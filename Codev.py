@@ -310,6 +310,8 @@ def run(cmd, params=None, inputfile="", timelimit=None):
 			if r != "":
 				r += '\n'
 			r += rerr
+	except KeyboardInterrupt:
+		r = "\nCodev has forced the process to stop."
 	except subprocess.TimeoutExpired as e:
 		r = bytesDecode(e.stdout)
 		r += "\n---\nTime limit has been reached. Codev has forced the process to stop.".format(timelimit)
@@ -438,10 +440,7 @@ def RunCode(eid, hid):
 	print("---")
 	print("Running executable file...")
 	print("(type the input; use {0} to finish)".format("Ctrl+D" if platform.system() != "Windows" else "Ctrl+D or Ctrl+Z"))
-	try:
-		output = run(exeFile)
-	except KeyboardInterrupt:
-		output = "Execution has been forced to stop."
+	output = run(exeFile)
 	print("\n---")
 	print("Execution done. Output:")
 	print(output)
