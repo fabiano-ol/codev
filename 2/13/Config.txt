@@ -1,0 +1,10 @@
+Pares de elementos iguais
+1
+Dadas duas listas lineares sequenciais ordenadas A e B 
+com n elementos, determinar o número de pares de elementos 
+x, y, onde x um elemento de A e y de B, tais que x e y 
+possuam o mesmo valor. [θ(n)]
+
+Ex: A = [1, 4, 4, 7, 7, 7, 9, 9, 10], 
+    B = [1, 1, 3, 4, 7, 7, 10, 10, 11]
+    Saída: 12
