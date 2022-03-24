@@ -1,0 +1,4 @@
+Remoção de nó de lista simplesmente encadeada
+1
+Dados uma lista encadeada L e um ponteiro p para um nó de L, 
+remover o nó p. [O(N)]
