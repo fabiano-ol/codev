@@ -1,0 +1,5 @@
+Inversão de lista encadeada
+1
+Dado uma lista linear L encadeada, elabore uma função que
+retorne uma outra lista linear encadeada com os elementos 
+de L em ordem inversa. [O(n)]
