@@ -1,0 +1,7 @@
+Elemento pertencente à matriz ordenada [O(n log n)]
+1
+Dada uma matriz B[1..n,1..n] de inteiros, na qual cada linha 
+e cada coluna está ordenada (isto é, se 1 ≤ i < j ≤ n então 
+B[k,i] ≤ B[k,j] e B[i,k] ≤ B[j,k] para todo 1 ≤ k ≤ N), 
+determinar se um elemento x dado como entrada pertence à 
+matriz B. [O(n log n)]
