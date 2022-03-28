@@ -920,7 +920,7 @@ def UpdateSoftware():
 		print("updated Installation.txt file and compare the updated Settings.txt.Linux")
 		print("(or Settings.txt.Windows) to your Settings.txt to see whether there are")
 		print("new or modified settings required in this new version.")
-
+		printWait()
 
 def obscure(text):
 	r = ""
