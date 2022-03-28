@@ -1,3 +1,4 @@
+import random
 import sys
 import os
 import os.path
@@ -6,12 +7,18 @@ import platform
 import shutil
 import time
 import subprocess
+import queue
+import threading
 
 CONFIG_FILE = "Config.txt"
 VERIFIED_FILE = "Verified.txt"
 
 def getVersion():
-	return "0.2"
+	return "1.0"
+
+def printWait():
+	print("----------------------")
+	input("Press ENTER to continue...")
 
 class repository(object):
 	target = None
@@ -142,7 +149,7 @@ class exercise(object):
 			exdata = getURL(exfolder + "/" + CONFIG_FILE)
 		exdata = split(exdata, "\n")
 		self.title = exdata[0]
-		self.timelimit = int(exdata[1])
+		self.timelimit = float(exdata[1])
 		desc = ""
 		for t in exdata[2:]:
 			if desc != "":
@@ -215,14 +222,18 @@ def writeFile(filename, content):
 	f.write(content)
 	f.close()
 
-def checkConnection():
+def checkConnection(printWarning=False):
 	try:
 		servurl = "{0}/{1}".format(SERVER_URL, CONFIG_FILE)
 		return getURL(servurl) != ""
 	except:
+		if printWarning:
+			print("Connection to the server seems to be down...")
+			printWait()
 		return False
 
 def downloadFile(url, filename):
+	filename = OSPath(filename)
 	r = requests.get(url, allow_redirects=True)
 	if r.status_code == 200:
 		f = open(filename, 'wb')
@@ -243,10 +254,6 @@ def getURL(url):
 		return ""
 
 def readConfigFile(filename):
-	if not isFile(filename):
-		osstr = "Windows" if platform.system()=="Windows" else "Linux"
-		if isFile(filename + "." + osstr):
-			cp(filename + "." + osstr, filename)
 	params = {}
 	for l in split(readFile(filename), "\n"):
 		ld = split(l, "=")
@@ -255,6 +262,57 @@ def readConfigFile(filename):
 		params[keyw] = keyv
 	return params
 
+def getRandomWord():
+	p = 0
+	def getPart(ncon):
+		c = 'bcdfghjlmnpqrstvxz'; v = 'aeiou'
+		p = ''
+		for _ in range(ncon):
+			p += c[random.randint(0,len(c)-1)]
+		return  p + v[random.randint(0,len(v)-1)]
+	w = getPart(1) + getPart(2) + getPart(2)
+	while random.randint(1,100) <= p:
+		w += getPart(2)
+	return w
+
+def printFormatted(text, cols):
+	for l in text.split('\n'):
+		i = 0
+		l += ' '
+		while i < len(l):
+			e = l[:min(len(l),i+cols)].rfind(' ')
+			print(l[i:e])
+			i = e + 1
+		print()
+
+def getDisclaimer():
+	text = "ATENÇÃO!! Aviso de isenção de responsabilidade:\n" +\
+			"Antes de continuar, é muito importante ter tentado pensar em diversas soluções antes de ver uma.\n" +\
+			"A razão é que o seu cérebro é muito bom em esquecer algo que tenha vindo de maneira fácil. Se não conseguir encontrar uma solução, mesmo tendo empregado certo tempo, isto não caracteriza de forma nenhuma um desperdício de seu tempo, mas um investimento: saiba que, quando tomar conhecimento da solução, seu cérebro fará o trabalho necessário para gravar a maior parte do conhecimento que lhe faltou para chegar àquela solução, justamente por reconhecer o quanto aquele assunto lhe é importante. E não adianta afirmar para si próprio o quanto para você é importante aquela solução, se não gastar tempo com ela: seu cérebro acredita em suas ações, não em suas intenções.\n" +\
+			"Como mentor de seu aprendizado, sinto-me obrigado a lhe lembrar disso. Se continuar, você confirma que assume os riscos daqui em diante."
+	keypwd = getRandomWord()
+	esp = 0; i = 0
+	while True:
+		j = text.find(' ', i)
+		if j >= 0:
+			esp += 1; i = j+1
+		else:
+			break
+	cesp = random.randint(1,esp)
+	i = -1
+	for j in range(cesp):
+		i = text.find(' ', i+1)
+	text = text[:i] + ' ' + keypwd + text[i:]
+	printFormatted(text, 80)
+	print("---")
+	print("There is a random generated word which does not belong to the text.")
+	pwd = input("Which is it? ")
+	if pwd != keypwd:
+		print("Wrong word!")
+		printWait()
+		return False
+	else:
+		return True
 
 def printHeader():
 	os.system("clear" if platform.system() != "Windows" else "cls")
@@ -316,6 +374,83 @@ def run(cmd, params=None, inputfile="", timelimit=None):
 		r = bytesDecode(e.stdout)
 		r += "\n---\nTime limit has been reached. Codev has forced the process to stop.".format(timelimit)
 	return r
+
+
+def output_reader(outpipe, errpipe, queue):
+	try:
+		for lout in outpipe:
+			lout = lout.rstrip('\n')
+			queue.put(lout)
+		for lerr in errpipe:
+			lerr = lerr.rstrip('\n')
+			queue.put(lerr)
+		queue.put(None)
+	except:
+		queue.put(None)
+
+def runAsync(cmd, params=None, inputfile="", outputfile="", timelimit=None):
+	if params==None:
+		params = []
+	cmd = OSPath(cmd)
+	fullcmd = [cmd] + params
+	if inputfile == "":
+		fin = None
+	else:
+		fin = open(OSPath(inputfile), "r", encoding="utf-8")
+
+	outputs = []
+	def addOutput(line):
+		print(line)
+		outputs.append(line)
+
+	elapsedtime = 0
+	realelapsedtime = 0
+	userealtime = True
+	try:
+		p = subprocess.Popen(fullcmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=fin, bufsize=0,
+							 universal_newlines=True)
+		q = queue.Queue()
+		t = threading.Thread(target=output_reader, args=[p.stdout, p.stderr, q])
+		t.daemon = True
+		t.start()
+		starttime = time.time()
+		realstarttime = starttime
+		while True:
+			elapsed = realelapsedtime if userealtime else elapsedtime
+			if timelimit != None and (elapsed > timelimit):
+				addOutput("Time limit has been reached. Codev has forced the process to stop.")
+				p.kill()
+				break
+			else:
+				try:
+					realelapsedtime = time.time() - realstarttime
+					lout = q.get(timeout=0.1)
+					if lout == None:
+						break
+					else:
+						if lout == "CODEV_PREPARE_EXEC":
+							userealtime = False
+						elif lout == "CODEV_BEGIN_EXEC":
+							userealtime = False
+							starttime = time.time()
+						elif lout == "CODEV_END_EXEC":
+							elapsedtime += (time.time() - starttime)
+							starttime = time.time()
+						else:
+							addOutput(lout)
+				except queue.Empty:
+					continue
+				except:
+					break
+
+	except KeyboardInterrupt:
+		addOutput("Codev has forced the process to stop.")
+
+	finally:
+		if outputfile != "":
+			writeFile(outputfile, '\n'.join(outputs))
+		elapsed = realelapsedtime if userealtime else elapsedtime
+		return elapsed, outputs
 
 def removeCodev(text):
 	token = r"// codevremove"
@@ -387,33 +522,36 @@ def VerifyCode(eid, hid):
 	print(run(compCmd[0],compCmd[1:]))
 	print("Compilation done.")
 	print("---")
-	print("Running executable file... (type Ctrl+C to stop the execution)")
-	starttime = time.time()
-	output = run(exeFile, inputfile=inputTXT, timelimit=(EXE_TIMELIMIT_FACTOR * ex.timelimit))
-	endtime = time.time()
-	elapsedTime = endtime - starttime
-	print(output)
-	writeFile(outputTXT, output.strip("\n"))
-	print("Execution done in {:.1f} sec.".format(elapsedTime))
-	print("----------------------")
-	diffout = ""
-	if output != "":
-		print("Comparing results:")
+	if isFile(exeFile):
+		print("Running executable file... (type Ctrl+C to stop the execution)")
+		starttime = time.time()
+		#output = run(exeFile, inputfile=inputTXT, timelimit=(EXE_TIMELIMIT_FACTOR * ex.timelimit))
+		#print(output)
+		(algElapsedTime, outputs) = runAsync(exeFile, inputfile=inputTXT, outputfile=outputTXT, timelimit=(EXE_TIMELIMIT_FACTOR * ex.timelimit))
+		realElapsedTime = time.time() - starttime
+		print("Execution done in {:.1f} sec. (Total time: {:.1f} sec)".format(algElapsedTime, realElapsedTime))
 		print("----------------------")
-		diffCmd = ParseParams(DIFF_CMD.replace("<FILE1>", OSPath(outputTXT)).replace("<FILE2>", OSPath(solutionTXT)))
-		diffout = run(diffCmd[0], diffCmd[1:])
-		diffout = diffout.strip().strip('\n')
-		diffout = diffout.split('\n')[-1]
-		print(diffout)
-		writeFile(diffTXT, diffout)
-		print("----------------------")
+		difflastline = ""
+		if len(outputs)>0:
+			print("Comparing results:")
+			print("----------------------")
+			diffCmd = ParseParams(DIFF_CMD.replace("<FILE1>", OSPath(outputTXT)).replace("<FILE2>", OSPath(solutionTXT)))
+			diffout = run(diffCmd[0], diffCmd[1:])
+			diffout = diffout.strip().strip('\n')
+			difflastline = diffout.split('\n')[-1]
+			print(diffout)
+			writeFile(diffTXT, diffout)
+			print("----------------------")
+	else:
+		outputs = []; difflastline = ""; algElapsedTime = 0
+
 	verOkay = True
-	if output != "" and diffout == DIFF_NO_TEXT:
+	if len(outputs)>0 and difflastline == DIFF_NO_TEXT:
 		print("Correctness: Checked!")
 	else:
 		print("Correctness: Failed...")
 		verOkay = False
-	if elapsedTime <= ex.timelimit:
+	if algElapsedTime <= ex.timelimit:
 		print("Time Complexity: Checked!")
 	else:
 		print("Time Complexity: Failed...")
@@ -423,8 +561,7 @@ def VerifyCode(eid, hid):
 		print("Veredict: Correct!")
 	else:
 		print("Veredict: Wrong Answer...")
-	print("----------------------")
-	input("Press ENTER to continue...")
+	printWait()
 
 def RunCode(eid, hid):
 
@@ -442,11 +579,13 @@ def RunCode(eid, hid):
 	print("(type the input; use {0} to indicate that there is no more input data)".format("Ctrl+D" if platform.system() != "Windows" else "Ctrl+D or Ctrl+Z"))
 	print("(type Ctrl+C to stop the execution)")
 	output = run(exeFile)
+	#for lout in runAsync(exeFile):
+	#	print(lout)
 	print("\n---")
+	#print("Execution done.")
 	print("Execution done. Output:")
 	print(output)
-	print("----------------------")
-	input("Press ENTER to continue...")
+	printWait()
 
 def ShowInput(eid, hid):
 	path = "{0}/{1}/{2}/Input.txt".format(REPOSITORY_FOLDER, hid, eid)
@@ -456,9 +595,7 @@ def ShowInput(eid, hid):
 	print("directly from the code. So, check the code out too.")
 	print("----------------------")
 	print(readFile(path))
-	print("----------------------")
-	input("Press ENTER to continue...")
-
+	printWait()
 
 def DelConfirmHW(hid):
 	path = "{0}/{1}".format(REPOSITORY_FOLDER, hid)
@@ -468,11 +605,11 @@ def DelConfirmHW(hid):
 def DelConfirmCode(eid, hid):
 	path = "{0}/{1}/{2}/Code.cpp".format(REPOSITORY_FOLDER, hid, eid)
 	rm(path)
+	path = "{0}/{1}/{2}/KeyCode.cpp".format(REPOSITORY_FOLDER, hid, eid)
+	rm(path)
 
 def DownloadHW(hid, creating):
-	if not checkConnection():
-		print ("Connection to the server seems to be down...")
-		input("Press ENTER to continue...")
+	if not checkConnection(True):
 		return
 	hwurl = "{0}/{1}".format(SERVER_URL, hid)
 	hwfolder = "{0}/{1}".format(REPOSITORY_FOLDER, hid)
@@ -545,9 +682,16 @@ def GenMenuReadHW(eid, hid):
 	Opt.append(["3", "Validate Code", ["verifyCode", eid, hid]])
 	Opt.append(None)
 	hwurl = "{0}/{1}".format(SERVER_URL, hid)
+	exfolder = "{0}/{1}/{2}".format(REPOSITORY_FOLDER, hid, eid)
 	Opt.append(["i", "Show Input", ["showInput", eid, hid]])
-	if checkConnection() and getURL(hwurl + "/Pass.txt") != "":
-		Opt.append(["s", "See Solution", ["editKeyCode", eid, hid]])
+	Opt.append(None)
+	if isFile(exfolder + "/" + "Hint1.txt"):
+		Opt.append(["h1", "Get a Hint", ["seeBasicHint", eid, hid]])
+	if isFile(exfolder + "/" + "Hint2.txt"):
+		Opt.append(["h2", "Get a Spoiler Hint", ["seeSpoilerHint", eid, hid]])
+	if isFile(exfolder + "/" + "KeyCode.cpp") or (checkConnection() and getURL(hwurl + "/Pass.txt") != ""):
+		Opt.append(["s", "See a Solution", ["editKeyCode", eid, hid]])
+	Opt.append(None)
 	Opt.append(["d", "Delete Code", ["delCode", eid, hid]])
 	Opt.append(None)
 	Opt.append(["b", "Go Back", ["openHW", hid]])
@@ -626,18 +770,35 @@ def GenMenuDelCode(eid, hid):
 	Opt.append(["n", "No", ["readHW", eid, hid]])
 	return Opt
 
+def SeeBasicHint(eid, hid):
+	path = "{0}/{1}/{2}/Hint1.txt".format(REPOSITORY_FOLDER, hid, eid)
+	print()
+	print(readFile(path))
+	printWait()
+
+def SeeSpoilerHint(eid, hid):
+	path = "{0}/{1}/{2}/Hint2.txt".format(REPOSITORY_FOLDER, hid, eid)
+	print()
+	text = clear(readFile(path))
+	if getDisclaimer():
+		print()
+		print(text)
+		printWait()
+
 def EditKeyCode(eid, hid):
 	path = "{0}/{1}/{2}/KeyCode.cpp".format(REPOSITORY_FOLDER, hid, eid)
-	Pwd = input("Please, enter the password: ")
-	hwurl = "{0}/{1}".format(SERVER_URL, hid)
-	sPwd = clear(getURL(hwurl + "/" + "Pass.txt"))
-	if sPwd == "" or Pwd != sPwd:
-		print("This given password for this homework does not match.")
-		input("Press ENTER to continue...")
-	else:
-		exurl = hwurl + "/" + eid
-		f = "Code.cpp"
-		writeFile(path, removeCodevComments(clear(getURL(exurl + "/" + f))))
+
+	if not isFile(path):
+		Pwd = input("Please, enter the password: ")
+		hwurl = "{0}/{1}".format(SERVER_URL, hid)
+		sPwd = clear(getURL(hwurl + "/" + "Pass.txt"))
+		if sPwd == "" or Pwd != sPwd:
+			print("This given password for this homework does not match.")
+			printWait()
+		else:
+			exurl = hwurl + "/" + eid
+			f = "Code.cpp"
+			writeFile(path, removeCodevComments(clear(getURL(exurl + "/" + f))))
 
 	if isFile(path):
 		path = OSPath(path)
@@ -747,19 +908,19 @@ def GenMenuSettings():
 	return Opt
 
 def UpdateSoftware():
-	if UPDATE_SOFTWARE == "1":
+	if checkConnection(True) and UPDATE_SOFTWARE == "1":
 		hwurl = SERVER_URL
 		hwfolder = os.getcwd()
-		files = ["Codev.py", "Settings.txt"]
-		if isFile(hwfolder + "/" + "Settings.txt"):
-			mv(hwfolder + "/" + "Settings.txt", hwfolder + "/" + "Settings.old")
+		files = ["Codev.py", "Installation.txt", "Settings.txt.Linux", "Settings.txt.Windows"]
 		for f in files:
 			writeFile(hwfolder + "/" + f, getURL(hwurl + "/" + f))
-		if isFile(hwfolder + "/" + "Settings.old"):
-			mv(hwfolder + "/" + "Settings.txt", hwfolder + "/" + "Settings.new")
-			mv(hwfolder + "/" + "Settings.old", hwfolder + "/" + "Settings.txt")
 		print()
-		input("You must restart in order to run the new version... ")
+		print("You must restart in order to run the new version.")
+		print("If anythink goes wrong with the new version, try reading the")
+		print("updated Installation.txt file and compare the updated Settings.txt.Linux")
+		print("(or Settings.txt.Windows) to your Settings.txt to see whether there are")
+		print("new or modified settings required in this new version.")
+
 
 def obscure(text):
 	r = ""
@@ -825,9 +986,15 @@ def GenMenu():
 		elif cmd == "editKeyCode":
 			EditKeyCode(chosen[1], chosen[2])
 			chosen = ["readHW", chosen[1], chosen[2]]
-		elif cmd == "delConfirmCode":
-			DelConfirmCode(chosen[1], chosen[2])
+		elif cmd == "seeBasicHint":
+			SeeBasicHint(chosen[1], chosen[2])
 			chosen = ["readHW", chosen[1], chosen[2]]
+		elif cmd == "seeSpoilerHint":
+			SeeSpoilerHint(chosen[1], chosen[2])
+			chosen = ["readHW", chosen[1], chosen[2]]
+		elif cmd == "delConfirmCode":
+				DelConfirmCode(chosen[1], chosen[2])
+				chosen = ["readHW", chosen[1], chosen[2]]
 		elif cmd == "about":
 			chosen = DisplayMenu(GenMenuAbout())
 		elif cmd == "updSoft":
@@ -840,11 +1007,32 @@ def GenMenu():
 			chosen = ["readHW", chosen[2], chosen[3]]
 		cmd = chosen[0]
 
+if not isFile("./Settings.txt"):
+	osstr = "Windows" if platform.system() == "Windows" else "Linux"
+	if isFile("./Settings.txt." + osstr):
+		cp("./Settings.txt." + osstr, "./Settings.txt")
+	else:
+		print("Codev did not find the file Settings.txt")
+		exit(0)
+
 cfg = readConfigFile("./Settings.txt")
 
 REPOSITORY_FOLDER = cfg.get("REPOSITORY_FOLDER", "./repository")
+if OSPath(REPOSITORY_FOLDER).find(" ") >= 0:
+	print("ATTENTION: The path of the repository folder has")
+	print("blank spaces: '{0}'".format(OSPath(REPOSITORY_FOLDER)))
+	print("Since Codev has to call external programs passing files")
+	print("in this folder as arguments, it is highly recommended")
+	print("setting a respository folder with no blank spaces to")
+	print("avoid integration issues. Change it in Settings.txt")
+	print("or reinstall Codev in another folder.")
+	print("(Continue as is only if you are sure the settings of")
+	print("external programs can manage paths with blank spaces.)")
+	printWait()
+
 if not isDir(REPOSITORY_FOLDER):
 	mkdir(REPOSITORY_FOLDER)
+
 SERVER_URL = cfg["SERVER_URL"]
 EDITOR_CMD = cfg["EDITOR_CMD"]
 COMPILER_CMD = cfg["COMPILER_CMD"]
@@ -854,14 +1042,24 @@ UPDATE_SOFTWARE = cfg.get("UPDATE_SOFTWARE", "1")
 PDF_READER = cfg.get("PDF_READER", "<PDF_FILE>")
 EXE_TIMELIMIT_FACTOR = int(cfg.get("EXE_TIMELIMIT_FACTOR", "3"))
 
+if checkConnection():
+	minver = getURL(SERVER_URL + "/" + "MinVersion.txt")
+	if minver != "" and float(getVersion()) < float(minver):
+		print("ATTENTION: Your Codev client software may not work with")
+		print("the current server version. It is highly recommended")
+		print("updating Codev before continuing.")
+		printWait()
+
 if len(sys.argv) > 1:
 		if sys.argv[1] == "upload":
 			hid = sys.argv[2]; eid = sys.argv[3]
 			exfolder = "{0}/{1}/{2}".format(REPOSITORY_FOLDER, hid, eid)
-			if isFile(exfolder + "/KeyCode.cpp"):
-				writeFile(exfolder + "/Code.cpp", obscure(readFile(exfolder + "/KeyCode.cpp")))
-			else:
-				print("KeyCode.cpp not found.")
+			for f in ["Code.cpp","Hint2.txt"]:
+				keyf = "Key" + f
+				if isFile(exfolder + "/" + keyf):
+					writeFile(exfolder + "/" + f, obscure(readFile(exfolder + "/" + keyf)))
+				else:
+					print(keyf + " not found.")
 		elif sys.argv[1] == "pass":
 			hid = sys.argv[2]
 			hwfolder = "{0}/{1}".format(REPOSITORY_FOLDER, hid)
