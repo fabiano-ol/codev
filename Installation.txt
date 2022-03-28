@@ -7,13 +7,14 @@ Se houver erros indicando falta de módulos (por exemplo, "requests"),
 é porque essa biblioteca de Python não foi instalada em sua máquina. 
 Para fazê-lo, usar o comando:
 
-[assumindo que o Python é invocado pelo comando 'python3' no seu sistema;
- mude para 'python' caso contrário]
+[assumindo que o Python é invocado pelo comando 'python' no seu sistema;
+ mude para o comando correto (como 'python3') caso contrário]
 
-python3 -m pip install requests		[ou o módulo que estiver faltando]   
+python -m pip install requests		[ou o módulo que estiver faltando]   
 
 O comando acima supõe que o módulo PIP esteja instalado no seu Python. 
-Caso contrário, é necessário instalá-lo antes, da seguinte forma.
+Se a tentativa acima falhar por falta do PIP, é necessário instalá-lo antes,
+da seguinte forma.
 
 LINUX
 
@@ -55,6 +56,14 @@ parecido com o abaixo (ajuste para os locais de instalação corretos):
 
 EDITOR_CMD = C:\\Program Files\\Notepad++\\notepad++.exe,<CODE_FILE>
 COMPILER_CMD = C:\\Program Files (x86)\\Embarcadero\\Dev-Cpp\\TDM-GCC-64\\bin\\g++.exe,<CODE_FILE>,-o,<EXE_FILE> 
-DIFF_CMD = fc,<FILE1>,<FILE2>
-PDF_READER = C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe,<PDF_FILE>
+DIFF_CMD = fc,/W,<FILE1>,<FILE2>
+DIFF_NO_TEXT = FC: no differences encountered
+PDF_READER = C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe,<PDF_FILE>
+
+No caso do Windows em português, a saída do comando FC pode ser "FC: nenhuma diferena encontrada".
+Nesse caso, use este texto em português para o DIFF_NO_TEXT. (Note que falta o "ç" na mensagem 
+acima, supondo que o "ç" não aparece na tela de saída do FC, como ocorre em algumas instalações. 
+É importante colocar no arquivo de configuração exatamente a saída do programa FC como apresentado 
+pelo Codev, se possível copiando e colando o texto para evitar digitação incorreta.)
+
 
