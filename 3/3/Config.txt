@@ -1,0 +1,10 @@
+Ordenando uma pilha
+3
+Uma pilha é ordenada se os elementos removidos de P são, 
+nessa ordem, e_1,…,e_n, e tais que e_i ≤ e_(i+1), para 
+todo 1 ≤ i < n. Dada uma pilha P, escreva um algoritmo 
+que remova e reinsira elementos de P (através das funções 
+empilha e desempilha) até que P se torne ordenada. Seu 
+algoritmo deverá utilizar espaço auxiliar constante 
+acrescido de outra pilha. [O(n^2)]
+

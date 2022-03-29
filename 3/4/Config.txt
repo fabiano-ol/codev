@@ -1,0 +1,29 @@
+Verificando parentizações bem formadas
+3
+Em diversos contextos, a avaliação de expressões requer
+a determinação de uma ordem de execução, feito em geral com
+a introdução de parênteses. Esse é o caso, por exemplo, das
+avaliações de expressões aritméticas. 
+
+Embora um único tipo de parênteses (em geral, denotado pelo 
+par "(" e ")" para denotar abertura e fechamento) seja possível 
+em uma expressão, em diversos contextos, deseja-se empregar 
+diversos tipos. Mesmo em expressões aritméticas, é comum se
+empregar o par "[]" e o par "{}" como tipos alternativos de 
+parênteses. Ex. {[(1+2)/3]+4}*(4-3)
+
+Escrever um algoritmo que verifique se uma expressão com n
+parênteses, usando um número arbitrário de tipos de parênteses,
+está corretamente parentizada. Cada abertura de parênteses deve 
+corresponder a um fechamento do mesmo tipo, e vice-versa. 
+Todos os parênteses abertos são denotados por "(" e os fechados
+por ")", mas o tipo do parênteses sendo aberto ou fechado é 
+especificado por um identificador logo após cada parêntese. [O[n]]
+
+Não haverá mais do que 10^6 parênteses na entrada, e todos os
+tipos serão menores que 10^3.
+
+Exemplos de entrada:    Saída:
+(1(1)1(1)1(1(1)1)1)1    V (só um tipo de parênteses, o tipo 1)
+(1(2)1)2                F (tipos 1 e 2 de parênteses)
+(1(2)2)1                V (tipos 1 e 2 de parênteses)

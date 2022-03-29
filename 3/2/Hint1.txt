@@ -1,0 +1,11 @@
+- Note que os números positivos e negativos lidos
+  devem ser armazenados em uma estrutura de dados,
+  para posterior impressão. E, nesse momento, devem
+  manter a mesma ordem de entrada. Que tal usar 
+  alguma estrutura de dados para tal armazenamento
+  que naturalmente mantenha a ordem de entrada no
+  momento de remover os dados?
+
+- Evite criar algoritmos que, indiretamente, implementam
+  uma fila ou uma pilha. Utilize essas estruturas já
+  prontas, manipulando-as pela interface padrão.

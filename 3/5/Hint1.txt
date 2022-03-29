@@ -1,0 +1,11 @@
+- Ao ler um novo inteiro, guarde-o em uma estrutura de 
+  dados auxiliar. Note que, na saída, os elementos devem
+  sair dessa estrutura na mesma ordem com que entraram.
+  
+- Não é necessário armazenar todos os elementos lidos até
+  o final. Assim que o armazenamento de um elemento se 
+  tornar inútil, remova esse elemento.
+  
+- Pela complexidade final esperada, tanto a inserção quanto
+  a remoção dessa estrutura auxiliar deve ser de tempo
+  constante.

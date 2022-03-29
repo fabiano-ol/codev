@@ -1,0 +1,19 @@
+Os últimos k elementos
+3
+Elabore um algoritmo para ler um inteiro k e, em seguida
+e de forma contínua, ler inteiros do
+teclado, em sequência. O fim da entrada é caracterizada pela
+leitura do número 0, cujo valor não deve ser considerado. 
+Em seguida, escreva os k últimos números lidos dessa sequeência,
+na mesma ordem com que foram lidos. A complexidade de espaço
+deve ser O(k), enquanto a de tempo O(n), onde n denota a 
+quantidade de inteiros da sequência.
+
+Exemplo:
+Entrada:                Saída:
+2 
+1 2 4 2 43 5 6 3 0      6 3
+
+6
+1 2 4 2 43 5 6 3 0      4 2 43 5 6 3
+

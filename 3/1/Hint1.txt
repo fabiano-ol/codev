@@ -1,0 +1,10 @@
+- Todos os dados a serem enfileirados precisam ser armazenados
+  em algum lugar; como só há duas pilhas a disposição, pode-se
+  armazená-los, digamos, na pilha P1.
+
+- Agora, se assim for feito, pense em como seria obter o próximo
+  elemento da fila. Note que ele estará no fundo da pilha P1.
+  Para obtê-lo, você precisará tirar todos os elementos de cima
+  e armazená-los temporariamente em algum lugar -- agora nota-se
+  a utilidade da pilha P2 à disposição.
+

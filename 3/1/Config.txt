@@ -1,0 +1,6 @@
+Escrevendo uma fila com o auxílio de pilhas
+3
+Reescreva as operações de Fila utilizando duas Pilhas como estrutura 
+de dados auxiliar para guardar os elementos. Manipule as pilhas por 
+suas interfaces padrão. [O(n^2)]
+
