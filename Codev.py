@@ -633,6 +633,19 @@ def DownloadHW(hid, creating):
 		filesKeepOriginal = ["Code.cpp"]
 		filesRem = [VERIFIED_FILE]
 
+		def DownloadSeqFiles(basename, extension):
+			i = 1
+			f = "{0}{1}.{2}".format(basename, i, extension)
+			while isFile(exfolder + "/" + f):
+				rm(exfolder + "/" + f)
+				i = i + 1
+				f = "{0}{1}.{2}".format(basename, i, extension)
+			i = 1
+			f = "{0}{1}.{2}".format(basename, i, extension)
+			while downloadFile(exurl + "/" + f, exfolder + "/" + f):
+				i = i + 1
+				f = "{0}{1}.{2}".format(basename, i, extension)
+
 		for f in filesOverwrite:
 			writeFile(exfolder + "/" + f, getURL(exurl + "/" + f))
 		for f in filesKeepOriginal:
@@ -641,13 +654,10 @@ def DownloadHW(hid, creating):
 				writeFile(fn, removeCodev(clear(getURL(exurl + "/" + f))))
 		for f in filesRem:
 			rm(exfolder + "/" + f)
-		i = 1; f = "Figure{0}.pdf".format(i)
-		while isFile(exfolder + "/" + f):
-			rm(exfolder + "/" + f)
-			i = i+1; f = "Figure{0}.pdf".format(i)
-		i = 1; f = "Figure{0}.pdf".format(i)
-		while downloadFile(exurl + "/" + f, exfolder + "/" + f):
-			i = i+1; f = "Figure{0}.pdf".format(i)
+		DownloadSeqFiles('Figure', 'pdf')
+		DownloadSeqFiles('Bib', 'h')
+		DownloadSeqFiles('Hint', 'txt')
+
 		econt += 1
 
 	if creating:
