@@ -1,0 +1,12 @@
+- Inicializar uma nova lista encadeada, que armazenará os
+  elementos da lista de entrada sem repetições. Essa será
+  a lista retornada pela função.
+
+  Em seguida, percorrer cada elemento da lista, e para cada
+  elemento, deve-se verificar se ele deve entrar ou não para
+  a nova lista.
+  
+  Quando que ele deve ser inserido?
+  
+  Em que posição da nova lista ele pode ser inserido no menor
+  tempo possível?
