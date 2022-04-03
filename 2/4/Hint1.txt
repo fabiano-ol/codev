@@ -1,0 +1,13 @@
+- Faça uma varredura por cada elemento, até que o fim
+  da lista seja atingida. Nesse momento, o k-ésimo
+  último elemento deve estar sendo apontado separadamente,
+  para que possa ser retornado. 
+  
+  Que tal manter um ponteiro para o k-ésimo último elemento
+  em relação ao elemento atual da varredura? Quando esse for
+  o último, o k-ésimo ultimo estará à mão.
+  
+- Lembre-se que há nó-cabeça e, sendo assim, o primeiro
+  nó da lista deve ser desconsiderado. Além disso, por ser
+  circular, a condição de parada da varredura é quando o 
+  próximo elemento retorna ao nó-cabeça.

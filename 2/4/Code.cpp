@@ -8,23 +8,25 @@ EHv7c
 
 16<Hs}4<157Pv7HRHtTH16<H3QHC
 	WWH+7,->
-	v7HRRHs}4<HeHPv7HRRQH5)447+P;1B-7.Pv7HRQHRH3QcH
+	v7HRH8s}4<HeHv}ttcH
 	v7HRH8HeHtUfx:7@c
-	16<H1eXcH16<H6eXc
+	16<H6eXc
 	?014-HP8HIeHtQHHC
 		6HeH6SYc
-		s}4<#1%HeH8c
-		1HeHP1SYQM3c
+		1.HP6HfeH3QHCHWW)6,):H+75H7H876<-1:7H,7H3Uú4<157
+			1.HP8s}4<HeeHv}ttQHC
+				8s}4<HeHtUfx:7@c
+			EH-4;-HC
+				8s}4<HeH8s}4<Ufx:7@c
+			E
+		E
 		8HeH8Ufx:7@c
 	E
-	16<H:c
-	1.HP6HdH3QHC
-		:HeHUYc
+	1.HP8s}4<HeeHv}ttQHC
+		:-<=:6HUYc
 	EH-4;-HC
-		:HeHs}4<#1%Ufmc
+		:-<=:6H8s}4<Ufmc
 	E
-	.:--Ps}4<Qc
-	:-<=:6H:c
 	WWH+7,->
 E
 

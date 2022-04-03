@@ -1,0 +1,4 @@
+- Faça uma varredura por cada elemento, até que o fim
+  da lista seja atingida. 
+  
+  Em que o último elemento se difere dos demais?
