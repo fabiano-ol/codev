@@ -1,0 +1,7 @@
+- Se o exercício pedisse o k-ésimo elemento (ao invés do
+  k-ésimo último), bastaria percorrer os k primeiros elementos,
+  e ao final, você terá um ponteiro para o k-ésimo (lembre-se
+  que ele pode não existir!). 
+  
+  Como fazer algo análogo para obter o k-ésimo último elemento, 
+  levando-se em conta que a lista é duplamente encadeada e circular?

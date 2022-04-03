@@ -1,0 +1,8 @@
+- Deve-se percorrer cada elemento da lista, e se maior que k,
+  ele deve ser eliminado. Para que a complexidade final seja
+  O(n), tal eliminação deve ser feita em tempo constante.
+  
+  Qual elemento pode ocupar o lugar do elemento sendo eliminado,
+  de modo que essa substituição seja feita em tempo constante
+  e o vetor resultante continue consistente com uma lista linear
+  sequencial? (Atente para o fato que a lista é não-ordenada.)

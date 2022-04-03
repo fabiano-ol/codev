@@ -1,0 +1,8 @@
+- Deve-se percorrer cada elemento da lista, e se maior que k,
+  ele deve ser eliminado. Para que a complexidade final seja
+  O(n), tal eliminação deve ser feita em tempo constante.
+  
+  Como podemos eliminar um elemento da lista encadeada apontado
+  por um ponteiro? Talvez seja interessante manter um ponteiro 
+  adicional, para outro elemento da lista, que permita que a 
+  remoção seja feita em tempo constante.
