@@ -1,0 +1,5 @@
+- Faça uma varredura por cada elemento, até que o fim
+  da lista seja atingida. Ao fazê-la, anote o maior
+  elemento encontrado.
+  
+
