@@ -1,0 +1,5 @@
+- Para remover esse nó p dado de entrada, 
+  é necessário modificar o ponteiro Prox
+  do nó anterior. Como a lista é simplesmente
+  encadeada, como acessar o nó anterior, se
+  ele não foi dado?

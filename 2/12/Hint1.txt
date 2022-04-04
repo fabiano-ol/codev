@@ -1,0 +1,5 @@
+- Quais ponteiros devem ser alterados de modo que p
+  seja removido da lista?
+  
+  Como acessar esses nós em tempo constante? (Você deve
+  usar o fato que a lista é duplamente encadeada.)
