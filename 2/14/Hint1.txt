@@ -1,0 +1,7 @@
+- Note que as linhas da matriz B são ordenadas.
+
+  É possível verificar se o elemento buscado x 
+  está na primeira linha de B em tempo O(log n)?
+  
+  Se sim, o que fazer se x não for encontrado
+  na primeira linha?

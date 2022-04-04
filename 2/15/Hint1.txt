@@ -1,0 +1,24 @@
+- Note que as linhas e as colunas da matriz B são ordenadas.
+
+  Considere o algoritmo manter o seguinte invariante:
+  
+  x ∈ B[1..n,1..n] <==> x ∈ B[i..n,1..j]
+  
+  Inicialmente, fazendo-se i=1 e j=n, o invariante acima é
+  trivialmente satisfeito. Agora, note que
+  
+  - se B[i,j] = x, o elemento foi encontrado e a função é
+    encerrada;
+    
+  - se B[i,j] < x, então nenhum elemento em B[i,1..j] é
+    igual a x, pois todos são menores ou iguais a B[i,j].
+    Assim, como atualizar i,j de modo que o invariante 
+    continue sendo satisfeito?
+	
+	
+  - se B[i,j] > x, então nenhum elemento em B[i..n,j] é
+    igual a x, pois todos são maiores ou iguais a B[i,j].
+    Assim, como atualizar i,j de modo que o invariante 
+    continue sendo satisfeito?
+	
+  O processo acima deve continuar até quando?
