@@ -934,7 +934,7 @@ def UpdateSoftware():
 			writeFile(hwfolder + "/" + f, getURL(hwurl + "/" + f))
 		print()
 		print("You must restart in order to run the new version.")
-		print("If anythink goes wrong with the new version, try reading the")
+		print("If anything goes wrong with the new version, try reading the")
 		print("updated Installation.txt file and compare the updated Settings.txt.Linux")
 		print("(or Settings.txt.Windows) to your Settings.txt to see whether there are")
 		print("new or modified settings required in this new version.")
