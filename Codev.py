@@ -415,6 +415,7 @@ def runAsync(cmd, params=None, inputfile="", outputfile="", timelimit=None):
 		t.start()
 		starttime = time.time()
 		realstarttime = starttime
+		countingtime = False
 		while True:
 			elapsed = realelapsedtime if userealtime else elapsedtime
 			if timelimit != None and (elapsed > timelimit):
@@ -423,7 +424,12 @@ def runAsync(cmd, params=None, inputfile="", outputfile="", timelimit=None):
 				break
 			else:
 				try:
-					realelapsedtime = time.time() - realstarttime
+					instanttime = time.time()
+					realelapsedtime = instanttime - realstarttime
+					if countingtime:
+						elapsedtime += (instanttime - starttime)
+						starttime = instanttime
+
 					lout = q.get(timeout=0.1)
 					if lout == None:
 						break
@@ -432,8 +438,10 @@ def runAsync(cmd, params=None, inputfile="", outputfile="", timelimit=None):
 							userealtime = False
 						elif lout == "CODEV_BEGIN_EXEC":
 							userealtime = False
+							countingtime = True
 							starttime = time.time()
 						elif lout == "CODEV_END_EXEC":
+							countingtime = False
 							elapsedtime += (time.time() - starttime)
 							starttime = time.time()
 						else:
