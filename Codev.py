@@ -16,6 +16,13 @@ VERIFIED_FILE = "Verified.txt"
 def getVersion():
 	return "1.0"
 
+def getCompilation():
+	return "1"
+
+def getFullVersion():
+	c = getCompilation()
+	return getVersion() + ("" if c == "0" else ".{0}".format(c))
+
 def printWait():
 	print("----------------------")
 	input("Press ENTER to continue...")
@@ -325,7 +332,7 @@ def printHeader():
 	print(r"       ╚═════╝ ╚═════╝ ╚═════╝ ╚══════╝  ╚═══╝   ")
 	print()
 	print(r"   CODEV : a CODE Validator for programming learners ")
-	print(r"                     version {0}".format(getVersion()))
+	print(r"                     version {0}".format(getFullVersion()))
 	print()
 
 def getFirstLines(text, n):
