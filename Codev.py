@@ -1072,7 +1072,7 @@ EXE_TIMELIMIT_FACTOR = int(cfg.get("EXE_TIMELIMIT_FACTOR", "3"))
 
 if checkConnection():
 	minver = getURL(SERVER_URL + "/" + "MinVersion.txt")
-	if minver != "" and isVersionAtLeast(minver):
+	if minver != "" and not isVersionAtLeast(minver):
 		print("ATTENTION: Your Codev client software may not work with")
 		print("the current server version. It is highly recommended")
 		print("updating Codev before continuing.")
