@@ -1,0 +1,7 @@
+- Considere obter o último elemento x pertecente à 
+  lista L->Prox. 
+  
+  Há alguma relação de x com o último elemento 
+  pertecente à lista L?
+
+  (Cuidado com o fato de que L->Prox pode ser nulo!)

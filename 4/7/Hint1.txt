@@ -1,0 +1,7 @@
+- Considere que seja dada a quantidade x dos divisores
+  de n que sejam menores ou iguais a k-1. A recursão 
+  pode lhe ajudar a obter x.
+
+  Como que o valor de x se relaciona com a quantidade
+  dos divisores de n que sejam menores ou iguais a k?
+

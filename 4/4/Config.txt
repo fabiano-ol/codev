@@ -1,0 +1,10 @@
+Binomial (n,k) 
+1
+Faça um algoritmo recursivo que, dados naturais n,k, com
+n ≥ k ≥ 0, determine o binomial de n,k, denotado por 
+bin(n,k), isto é, o número de combinações que se pode obter
+com k elementos tomados de um conjunto de n elementos. [O(k)]
+
+Lembre-se que
+
+    bin(n,k) = n! / (k! (n-k)!)

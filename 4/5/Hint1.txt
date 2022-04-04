@@ -1,0 +1,10 @@
+- Considere que seja dado o valor x = ⌊√(n-1)⌋. 
+  A recursão pode lhe ajudar a obter x.
+
+  Note que x, em boa parte dos casos, é também igual 
+  a ⌊√(n)⌋. Mas nem sempre. 
+  
+  Quando é que x e ⌊√(n)⌋ diferem? 
+  
+  Pense em como detectar tais caso e qual seria o valor 
+  correto de ⌊√(n)⌋ em função de x.

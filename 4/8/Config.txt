@@ -1,0 +1,14 @@
+Detectando um palíndromo
+0.1
+Faça um algoritmo recursivo que verifique, dados um vetor de 
+caracteres e um inteiro n, se a cadeia formada pelos elementos
+C[1..n], é um palíndromo (uma cadeia que pode ser lida da 
+esquerda para a direita ou vice-versa visitando a mesma 
+sequência se símbolos em ambas as leituras). [O(n)]
+
+Ex.: 
+Entrada:                          Saída:
+C = ['a','r','a,'r',a'], n=5      V
+C = ['a','r','a,'r',a'], n=4      F
+C = ['a','r','a,'r',a'], n=3      V
+

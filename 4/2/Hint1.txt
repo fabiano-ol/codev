@@ -1,0 +1,4 @@
+- Considere que seja dado o valor de x = b^(n-1). 
+  A recursão pode lhe ajudar a obter x.
+
+  Como que o valor de x se relaciona ao valor de b^n?

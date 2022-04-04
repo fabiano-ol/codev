@@ -1,0 +1,4 @@
+Determinando o n-ésimo ímpar
+1
+Faça um algoritmo recursivo que, dado um natural n, determine
+o n-ésimo número ímpar. [O(n)]

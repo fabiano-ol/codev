@@ -1,0 +1,6 @@
+Lista encadeada: número de elementos
+1
+Dada uma lista linear encadeada de inteiros, elabore uma
+função recursiva que compute o número de elementos. [O(n)]
+
+

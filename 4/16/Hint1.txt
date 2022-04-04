@@ -1,0 +1,16 @@
+- Considere resolver o seguinte problema mais geral:
+  
+  Dada uma lista linear L encadeada, elabore uma função recursiva
+  que retorne: 
+  (i)  uma outra lista linear encadeada R com os elementos de L em 
+       ordem inversa.
+  (ii) um ponteiro u para o último elemento de R
+  
+- Considere obter uma nova lista R com todos os elementos
+  de L->Prox invertidos, além de um ponteiro u para o último elemento
+  de R. A recursão pode lhe prover isso.
+    
+  De posse de R e u, como podemos modificar R de modo que ela passe
+  a representar a inversão de L? Ao descobrir uma solução, não se
+  esqueça de atribuir a u o valor correto, isto é, o último elemento
+  da lista R.

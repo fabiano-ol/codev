@@ -1,0 +1,3 @@
+- Considere obter o número x de nós da lista L->Prox.
+  Qual o número de nós da lista L, em função de x?
+

@@ -1,0 +1,7 @@
+Lista encadeada: maior elemento
+1
+Dada uma lista linear encadeada de inteiros, elabore uma
+função recursiva que compute o maior elemento. Assuma que haja ao
+menos um elemento na lista. [O(n)]
+
+

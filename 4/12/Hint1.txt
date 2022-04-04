@@ -1,0 +1,12 @@
+- Conhecer o número de nós da lista é fundamental
+  para se determinar o k-último elemento. Assim, considere
+  a seguinte versão mais geral desse problema:
+  
+  Dada uma lista linear encadeada de inteiros e um inteiro k, 
+  elabore uma função recursiva que retorne (i) o k-último elemento,
+  ou retorne -1 caso esse elemento não esteja definido, e 
+  (ii) o número de elementos dessa lista.
+  
+  Agora, considere obter o k-último elemento da lista L->Prox, além
+  do número de elementos dessa sublista. De posse das duas informações
+  acima, como podemos determinar o k-último elemento da lista L?

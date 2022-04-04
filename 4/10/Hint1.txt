@@ -1,0 +1,6 @@
+- Considere obter o maior elemento m pertecente à 
+  lista L->Prox. 
+  
+  Tal valor m pode ser o maior elemento de L? 
+  Há algum outro elemento que pode ser o maior?
+  Como distinguir o maior da lista, entre tais candidatos?

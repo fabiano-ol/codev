@@ -1,0 +1,8 @@
+Lista encadeada: elementos somados 2 a 2
+1
+Dado uma lista linear L encadeada, elabore uma função recursiva 
+que retorne uma nova lista linear encadeada com todos os valores 
+da lista original somados dois a dois. [O(n^2)]
+
+Ex: se L->1->5->4->10, então o retorno deve ser uma
+lista encadeada R->6->5->11->9->15->14. 

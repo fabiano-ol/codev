@@ -1,0 +1,15 @@
+- Considere resolver o seguinte problema mais geral:
+
+  Faça um algoritmo recursivo que, dados naturais n,i,f, 
+  tais que i <= ⌊√(n)⌋ < f, determine ⌊√(n)⌋.
+  
+  Note que i=0 e f=n+1 são valores que trivialmente
+  satisfazem i <= ⌊√(n)⌋ < f para qualquer n.
+  
+- Considere fazer uma "pesquisa binária" ⌊√(n)⌋ no
+  intervalo de inteiros [i,f]: localize o ponto médio
+  do intervalo, e faça algum teste que indentifique se 
+  ⌊√(n)⌋ está à esquerda desse ponto médio, ou à direita.
+  Seja qual for o caso, o intervalo de busca diminui pela
+  metade, e recursão pode ser aplicada para encontrar
+  ⌊√(n)⌋ nesse novo intervalo de busca reduzido.

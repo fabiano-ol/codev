@@ -1,0 +1,12 @@
+Raiz quadrada inteira [O(n)]
+1
+Faça um algoritmo recursivo que, dado natural n, determine 
+a raiz quadrada inteira de n, isto é, o valor r tal que
+
+r = ⌊√(n)⌋
+
+ou, ainda, o valor r tal que
+
+r^2 <= n < (r+1)^2 
+
+[O(n)]

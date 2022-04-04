@@ -1,0 +1,5 @@
+Lista encadeada: último elemento
+1
+Dada uma lista linear encadeada de inteiros, elabore 
+uma função recursiva que compute o último elemento, ou 
+retorne -1 caso a lista não tenha elementos. [O(n)]

@@ -1,0 +1,7 @@
+- Considere que n seja par, e seja dado o valor 
+  x = b^(n/2). A recursão pode lhe ajudar a obter x.
+
+  Como que o valor de x se relaciona ao valor de b^n?
+
+  Se n é ímpar, como um raciocínio análogo ao acima
+  pode ser usado?

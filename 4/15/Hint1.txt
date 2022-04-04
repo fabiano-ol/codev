@@ -1,0 +1,6 @@
+- Considere obter uma nova lista Lr com todos os elementos
+  de L->Prox somados dois a dois. A recursão pode lhe prover isso.
+    
+  Há alguma diferença entre Lr e a lista com todos os elementos de
+  L somados dois a dois? Se sim, como devemos ajustar Lr para que ela
+  se torne a lista procurada pelo problema?

@@ -1,0 +1,6 @@
+- Considere obter uma nova lista Lr com todos os elementos
+  de L->Prox sem repetições. A recursão pode lhe prover isso.
+    
+  Há alguma diferença entre Lr e a lista com todos os elementos de
+  L sem repetições? Se sim, como devemos ajustar Lr para que ela
+  se torne a lista procurada pelo problema?

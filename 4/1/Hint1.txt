@@ -1,0 +1,7 @@
+- Considere que seja dado o valor x correspondendo ao
+  (n-1)-ésimo número ímpar. A recursão pode lhe ajudar 
+  a obter tal x.
+
+  Como que o valor de x se relaciona ao valor do n-ésimo 
+  número ímpar?
+

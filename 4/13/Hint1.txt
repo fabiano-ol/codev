@@ -1,0 +1,6 @@
+- Considere remover todos os elementos maiores do que k
+  que estão na lista L->Prox. A recursão pode realizar essa
+  tarefa.
+  
+  Há algum outro elemento que precisa ser removido?
+

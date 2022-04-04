@@ -1,0 +1,9 @@
+- Considere que seja dado o valor x = Bin(n-1,k-1). 
+  A recursão pode lhe ajudar a obter x.
+
+  Escreva as expressões, que envolvem fatoriais, 
+  tanto de Bin(n,k) quanto de x. 
+  Olhando para tais expressões, responda: 
+
+  Como a expressão de Bin(n,k) pode ser escrita em
+  função de x?
