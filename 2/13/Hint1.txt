@@ -1,0 +1,16 @@
+- Tome o primeiro elemento da lista A. Se ele for menor do
+  que o primeiro de B, ele não pode ser igual a nenhum elemento
+  de B e, portanto, podemos descartá-lo da análise. Mas se ele
+  for maior que o primeiro de B, então é o primeiro elemento de 
+  B que pode ser descartado.
+  
+  Logo, se os primeiros são diferentes, a situação resulta em
+  descartar algum deles. Mas se iguais? Suponha que hajam vários
+  em sequência iguais, como por exemplo:
+  
+  A = [1 1 1 2 ....]
+  B = [1 1 3 4 ....]
+  
+  Note que há 6 pares de elementos iguais a 1. Como fazer essa
+  contagem eficientemente, linear no tamanho de 1's das duas
+  listas?
