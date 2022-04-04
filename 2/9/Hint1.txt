@@ -1,0 +1,25 @@
+- Inicializar uma nova lista encadeada, que armazenará os
+  elementos da lista de entrada somados dois a dois. Essa 
+  será a lista retornada pela função.
+
+  Em seguida, percorrer cada elemento da lista com um ponteiro
+  p1. Quais são os elementos que devem fazer soma com o primeiro
+  elemento apontado por p1? 
+  
+  L -> e_1 -> e_2 -> e_3 -> ... -> e_(n-1) -> e_n 
+        |
+        p1  
+       
+  Percorra a lista com um ponteiro p2 sobre tais 
+  elementos e, para cada um, some os elementos p1 e p2 e adicione
+  na nova lista.
+  
+  Ao avançar com o ponteiro p1 pela lista, quais são os elementos 
+  que devem fazer soma com aquele de p1? Tome cuidado para não 
+  reconsiderar pares que já foram somados anteriormente.
+  
+  L -> e_1 -> e_2 -> e_3 -> ... -> e_(n-1) -> e_n 
+               |
+               p1  
+
+  Repita o raciocício para os próximos avanços de p1.

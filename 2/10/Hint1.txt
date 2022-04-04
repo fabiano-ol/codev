@@ -1,0 +1,6 @@
+- Inicializar uma nova lista encadeada, que armazenará os
+  elementos da lista de entrada em ordem invertida.
+
+  Em seguida, percorrer cada elemento da lista. Estude em
+  que posição da nova lista cada elemento sendo percorrido
+  da lista original deveria ser inserido. Notou algum padrão?
