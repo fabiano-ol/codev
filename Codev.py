@@ -9,12 +9,13 @@ import time
 import subprocess
 import queue
 import threading
+import psutil
 
 CONFIG_FILE = "Config.txt"
 VERIFIED_FILE = "Verified.txt"
 
 def getVersion():
-	return "1.0.1"
+	return "1.0.2"
 
 def isVersionAtLeast(ver):
 	def Convert(verTXT):
@@ -232,6 +233,12 @@ def writeFile(filename, content):
 	f.write(content)
 	f.close()
 
+def kill(pid):
+	p = psutil.Process(pid)
+	for sp in p.children(recursive=True):
+		sp.kill()
+	p.kill()
+
 def checkConnection(printWarning=False):
 	try:
 		servurl = "{0}/{1}".format(SERVER_URL, CONFIG_FILE)
@@ -430,7 +437,7 @@ def runAsync(cmd, params=None, inputfile="", outputfile="", timelimit=None):
 			elapsed = realelapsedtime if userealtime else elapsedtime
 			if timelimit != None and (elapsed > timelimit):
 				addOutput("Time limit has been reached. Codev has forced the process to stop.")
-				p.kill()
+				kill(p.pid)
 				break
 			else:
 				try:
