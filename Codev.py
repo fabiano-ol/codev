@@ -14,14 +14,17 @@ CONFIG_FILE = "Config.txt"
 VERIFIED_FILE = "Verified.txt"
 
 def getVersion():
-	return "1.0"
+	return "1.0.1"
 
-def getCompilation():
-	return "1"
-
-def getFullVersion():
-	c = getCompilation()
-	return getVersion() + ("" if c == "0" else ".{0}".format(c))
+def isVersionAtLeast(ver):
+	def Convert(verTXT):
+		verVEC = verTXT.split(".")
+		for i in range(len(verVEC)):
+			verVEC[i] = int(verVEC[i])
+		return verVEC
+	myVer = Convert(getVersion())
+	srvVer = Convert(ver)
+	return myVer >= srvVer
 
 def printWait():
 	print("----------------------")
@@ -332,7 +335,7 @@ def printHeader():
 	print(r"       ╚═════╝ ╚═════╝ ╚═════╝ ╚══════╝  ╚═══╝   ")
 	print()
 	print(r"   CODEV : a CODE Validator for programming learners ")
-	print(r"                     version {0}".format(getFullVersion()))
+	print(r"                     version {0}".format(getVersion()))
 	print()
 
 def getFirstLines(text, n):
@@ -1069,7 +1072,7 @@ EXE_TIMELIMIT_FACTOR = int(cfg.get("EXE_TIMELIMIT_FACTOR", "3"))
 
 if checkConnection():
 	minver = getURL(SERVER_URL + "/" + "MinVersion.txt")
-	if minver != "" and float(getVersion()) < float(minver):
+	if minver != "" and isVersionAtLeast(minver):
 		print("ATTENTION: Your Codev client software may not work with")
 		print("the current server version. It is highly recommended")
 		print("updating Codev before continuing.")
