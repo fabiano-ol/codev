@@ -158,7 +158,7 @@ class exercise(object):
 		else:
 			exfolder = SERVER_URL + "/" + self.hid + "/" + self.eid
 			exdata = getURL(exfolder + "/" + CONFIG_FILE)
-		exdata = split(exdata, "\n")
+		exdata = exdata.split("\n")
 		self.title = exdata[0]
 		self.timelimit = float(exdata[1])
 		desc = ""
