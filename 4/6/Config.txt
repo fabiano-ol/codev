@@ -3,7 +3,7 @@ Raiz quadrada inteira [O(log n)]
 Faça um algoritmo recursivo que, dado natural n, determine 
 a raiz quadrada inteira de n, isto é, o valor r tal que
 
-r = ⌊√(n)⌋
+r = piso(√(n))
 
 ou, ainda, o valor r tal que
 

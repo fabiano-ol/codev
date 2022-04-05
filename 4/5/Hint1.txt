@@ -1,10 +1,10 @@
-- Considere que seja dado o valor x = ⌊√(n-1)⌋. 
+- Considere que seja dado o valor x = piso(√(n-1)). 
   A recursão pode lhe ajudar a obter x.
 
   Note que x, em boa parte dos casos, é também igual 
-  a ⌊√(n)⌋. Mas nem sempre. 
+  a piso(√(n)). Mas nem sempre. 
   
-  Quando é que x e ⌊√(n)⌋ diferem? 
+  Quando é que x e piso(√(n)) diferem? 
   
   Pense em como detectar tais caso e qual seria o valor 
-  correto de ⌊√(n)⌋ em função de x.
+  correto de piso(√(n)) em função de x.

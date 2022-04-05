@@ -1,4 +1,4 @@
-Concatenção de Prefixos de Vetores
+Concatenação de Prefixos de Vetores
 1
 Elabore uma função que receba dois vetores A,B de caracteres, 
 dois inteiros m,m, e retorne um vetor C com a concatenação dos 
