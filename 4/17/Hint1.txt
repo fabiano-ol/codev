@@ -1,0 +1,29 @@
+- Considere resolver o problema mais geral a seguir:
+
+  Dados naturais nx, ny e matriz Obs[1..nx, 1..ny] de valores lógicos, 
+  determinar quantos caminhos distintos um robô pode percorrer em uma 
+  matriz nx x ny até chegar no canto inferior direito (célula (nx, ny)), 
+  sabendo-se que o robô começa na célula do canto superior esquerdo 
+  (célula (1, 1)), e que, a cada passo, o robô anda para a célula da 
+  direita ou para a célula de baixo da sua célula corrente. Além disso, 
+  ele não pode ultrapassar os limites da matriz e nem entrar em certas 
+  células, chamadas de obstáculos. Em dada célula (i,j) existe um obstáculo
+  se Obs[i,j]=V, ou não existe se Obs[i,j]=F. 
+  
+- Note que o problema acima se reduz ao problema original fazendo-se nx=n, 
+  ny=n, e convertendo a entrada dada pelos vetores X[1..m], Y[1..m] na
+  matriz Obs[1..n, 1..n].
+  
+- Suponha que seja dado o número q1 de caminhos para se sair da célula 
+  (1,1) e se chegar na célula (nx-1,ny) [célula de cima à celula destino),
+  assim como o número q2 de caminhos para se sair da célula (1,1) e se 
+  chegar na célula (nx,ny-1) [célula à esquerda da celula destino).
+   
+  A recursão pode lhe ajudar a obter tanto q1 quanto q2.
+
+  Como podemos obter o número de caminhos para se chegar na célula
+  (nx,ny) de posse dos valores q1 e q2?
+  
+- Ao obter a recursão acima, atente para o fato de haver subproblemas
+  repetidos; se for o caso, implemente a técnica da memorização ou de 
+  programação dinâmica.
