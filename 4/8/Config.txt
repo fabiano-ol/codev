@@ -1,5 +1,5 @@
 Detectando um palíndromo
-0.1
+1
 Faça um algoritmo recursivo que verifique, dados um vetor de 
 caracteres e um inteiro n, se a cadeia formada pelos elementos
 C[1..n], é um palíndromo (uma cadeia que pode ser lida da 
