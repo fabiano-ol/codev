@@ -1,5 +1,5 @@
 lista encadeada: remoção de elementos maiores que k
-0.1
+3
 Dados uma lista linear L encadeada e um inteiro k, 
 elabore uma função recursiva que remova todos os 
 elementos maiores que k de L. [O(n)]
