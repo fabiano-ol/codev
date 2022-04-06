@@ -15,7 +15,7 @@ CONFIG_FILE = "Config.txt"
 VERIFIED_FILE = "Verified.txt"
 
 def getVersion():
-	return "1.0.2"
+	return "1.0.3"
 
 def isVersionAtLeast(ver):
 	def Convert(verTXT):
@@ -179,6 +179,32 @@ def split(txt, sep):
 			r.append(v)
 	return r
 
+def SplitEscaped(text, sep):
+	if text == "":
+		return []
+	parts = text.split(sep)
+	i = 0
+	r = []
+	newPart = True
+	while i<len(parts):
+		if i==0 or parts[i] != '':
+			if newPart:
+				r.append(parts[i])
+			else:
+				r[-1] += parts[i]
+				newPart = True
+		else:
+			q = 1
+			while i+1<len(parts) and parts[i+1]=='':
+				q += 1
+				i += 1
+			f = 0 if i+1<len(parts) else 1
+			r[-1] += sep*((q+(1-f))//2)
+			newPart = ((q+f)%2 == 0)
+		i += 1
+	if parts[-1] == '' and newPart:
+		r.append('')
+	return r
 
 def isDir(obj):
 	obj = OSPath(obj)
@@ -507,7 +533,7 @@ def removeCodevComments(text):
 	return text
 
 def ParseParams(text):
-	return text.split(",")
+	return SplitEscaped(text, ",")
 
 def EditCode(eid, hid):
 	path = "{0}/{1}/{2}/Code.cpp".format(REPOSITORY_FOLDER, hid, eid)
