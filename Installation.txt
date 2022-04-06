@@ -55,7 +55,7 @@ abaixo, encontradas dentro de Settings.txt, devem ser alteradas para algo
 parecido com o abaixo (ajuste para os locais de instalação corretos):
 
 EDITOR_CMD = C:\\Program Files\\Notepad++\\notepad++.exe,<CODE_FILE>
-COMPILER_CMD = C:\\Program Files (x86)\\Embarcadero\\Dev-Cpp\\TDM-GCC-64\\bin\\g++.exe,<CODE_FILE>,-o,<EXE_FILE> 
+COMPILER_CMD = C:\\Program Files (x86)\\Embarcadero\\Dev-Cpp\\TDM-GCC-64\\bin\\g++.exe,<CODE_FILE>,-o,<EXE_FILE>,-Wl,,--stack,,16777216 
 DIFF_CMD = fc,/W,<FILE1>,<FILE2>
 DIFF_NO_TEXT = FC: no differences encountered
 PDF_READER = C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe,<PDF_FILE>
