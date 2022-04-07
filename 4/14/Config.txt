@@ -1,5 +1,5 @@
 Lista encadeada: remover repetições
-0.1
+3
 Dado uma lista linear L encadeada, elabore uma função 
 recursiva que retorne uma nova lista encadeada com os 
 valores de L sem repetições. [O(n^2)]
