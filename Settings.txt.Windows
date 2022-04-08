@@ -1,9 +1,10 @@
 EDITOR_CMD = C:\\Program Files\\Notepad++\\notepad++.exe,<CODE_FILE>
-COMPILER_CMD = C:\\Program Files (x86)\\Embarcadero\\Dev-Cpp\\TDM-GCC-64\\bin\\g++.exe,<CODE_FILE>,-o,<EXE_FILE>,-Wl,,--stack,,16777216 
+COMPILER_CMD = C:\\Program Files (x86)\\Embarcadero\\Dev-Cpp\\TDM-GCC-64\\bin\\g++.exe,<CODE_FILE>,-o,<EXE_FILE> 
 DIFF_CMD = fc,/W,<FILE1>,<FILE2>
 DIFF_NO_TEXT = FC: nenhuma diferena encontrada
 PDF_READER = C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe,<PDF_FILE>
 UPDATE_SOFTWARE = 1
 SERVER_URL = https://raw.githubusercontent.com/fabiano-ol/codev/master
 REPOSITORY_FOLDER = ./repository
-
+MONOCHROMATIC = 0
+EXE_TIMELIMIT_FACTOR = 10

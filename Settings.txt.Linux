@@ -5,4 +5,5 @@ PDF_READER = /opt/google/chrome/chrome <PDF_FILE>
 UPDATE_SOFTWARE = 1
 SERVER_URL = https://raw.githubusercontent.com/fabiano-ol/codev/master
 REPOSITORY_FOLDER = ./repository
-
+MONOCHROMATIC = 0
+EXE_TIMELIMIT_FACTOR = 10
