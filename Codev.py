@@ -10,12 +10,14 @@ import subprocess
 import queue
 import threading
 import psutil
+from colorama import Fore, Style
+from colorama import init as colorama_init
 
 CONFIG_FILE = "Config.txt"
 VERIFIED_FILE = "Verified.txt"
 
 def getVersion():
-	return "1.0.3"
+	return "1.1"
 
 def isVersionAtLeast(ver):
 	def Convert(verTXT):
@@ -28,8 +30,28 @@ def isVersionAtLeast(ver):
 	return myVer >= srvVer
 
 def printWait():
-	print("----------------------")
-	input("Press ENTER to continue...")
+	selectColor("CYAN")
+	print(color("----------------------"))
+	input(color("Press ") + color("ENTER", "LIGHTYELLOW_EX") + color(" to continue..."))
+
+def selectColor(color):
+	global SELECTED_COLOR
+	SELECTED_COLOR = color
+
+def selectOutputColor(colorname):
+	if colorname == None:
+		print(Style.RESET_ALL, end='')
+	else:
+		print(colorama_colors[colorname], end='')
+
+def color(text, colorname=None):
+	if MONOCHROMATIC == 1:
+		c = ""
+	elif colorname==None:
+		c = colorama_colors[SELECTED_COLOR]
+	else:
+		c = colorama_colors[colorname]
+	return c + text + Style.RESET_ALL
 
 class repository(object):
 	target = None
@@ -138,6 +160,13 @@ class homework(object):
 		else:
 			self.status = "{0}".format(len(self.exs))
 
+	def cstatus(self):
+		s = split(self.status, "/")
+		if len(s) == 1:
+			return color(self.status, "LIGHTYELLOW_EX")
+		else:
+			return color(self.status, "GREEN" if s[0] == s[1] else "YELLOW")
+
 
 class exercise(object):
 	hid = None
@@ -150,6 +179,12 @@ class exercise(object):
 	def __init__(self, eid, hid):
 		self.eid = eid
 		self.hid = hid
+
+	def cstatus(self):
+		if self.status == "OK":
+			return color(self.status, "GREEN")
+		else:
+			return color(self.status, "YELLOW")
 
 	def load(self, target):
 		if target == "local":
@@ -360,15 +395,17 @@ def getDisclaimer():
 def printHeader():
 	os.system("clear" if platform.system() != "Windows" else "cls")
 	print()
-	print(r"       ██████╗ ██████╗ ██████╗ ███████╗██╗   ██╗ ")
-	print(r"      ██╔════╝██╔═══██╗██╔══██╗██╔════╝██║   ██║ ")
-	print(r"      ██║     ██║   ██║██║  ██║█████╗  ██║   ██║ ")
-	print(r"      ██║     ██║   ██║██║  ██║██╔══╝  ╚██╗ ██╔╝ ")
-	print(r"      ╚██████╗╚██████╔╝██████╔╝███████╗ ╚████╔╝  ")
-	print(r"       ╚═════╝ ╚═════╝ ╚═════╝ ╚══════╝  ╚═══╝   ")
+	selectColor("LIGHTBLACK_EX")
+	print(color(r"       ██████╗ ██████╗ ██████╗ ███████╗██╗   ██╗ "))
+	print(color(r"      ██╔════╝██╔═══██╗██╔══██╗██╔════╝██║   ██║ "))
+	print(color(r"      ██║     ██║   ██║██║  ██║█████╗  ██║   ██║ "))
+	print(color(r"      ██║     ██║   ██║██║  ██║██╔══╝  ╚██╗ ██╔╝ "))
+	print(color(r"      ╚██████╗╚██████╔╝██████╔╝███████╗ ╚████╔╝  "))
+	print(color(r"       ╚═════╝ ╚═════╝ ╚═════╝ ╚══════╝  ╚═══╝   "))
 	print()
-	print(r"   CODEV : a CODE Validator for programming learners ")
-	print(r"                     version {0}".format(getVersion()))
+	selectColor("WHITE")
+	print(color(r"   CODEV : a CODE Validator for programming learners "))
+	print(color(r"                     version {0}".format(getVersion())))
 	print()
 
 def getFirstLines(text, n):
@@ -541,6 +578,12 @@ def EditCode(eid, hid):
 	cmd = ParseParams(EDITOR_CMD.replace("<CODE_FILE>", path))
 	run(cmd[0], cmd[1:])
 
+def ShowTextFile(filename):
+	path = filename
+	path = OSPath(path)
+	cmd = ParseParams(EDITOR_CMD.replace("<CODE_FILE>", path))
+	run(cmd[0], cmd[1:])
+
 def OpenFigure(fig, eid, hid):
 	path = "{0}/{1}/{2}/Figure{3}.pdf".format(REPOSITORY_FOLDER, hid, eid, fig)
 	path = OSPath(path)
@@ -566,52 +609,58 @@ def VerifyCode(eid, hid):
 	rm(outputTXT)
 	rm(diffTXT)
 
-	print("Running my solution:")
-	print("----------------------")
-	print("Starting compilation...")
+	selectColor("CYAN")
+	print(color("Running my solution:"))
+	print(color("----------------------"))
+	print(color("Starting compilation..."))
 	compCmd = ParseParams(COMPILER_CMD.replace("<EXE_FILE>", OSPath(exeFile)).replace("<CODE_FILE>", OSPath(code)))
-	print(run(compCmd[0],compCmd[1:]))
-	print("Compilation done.")
-	print("---")
+	print(color(run(compCmd[0],compCmd[1:]), "LIGHTYELLOW_EX"))
+	print(color("Compilation done."))
+	print(color("----------------------"))
 	if isFile(exeFile):
-		print("Running executable file... (type Ctrl+C to stop the execution)")
+		print(color("Running executable file... (type ") + color("Ctrl+C", "LIGHTYELLOW_EX") + color(" to stop the execution)"))
 		starttime = time.time()
 		#output = run(exeFile, inputfile=inputTXT, timelimit=(EXE_TIMELIMIT_FACTOR * ex.timelimit))
 		#print(output)
 		(algElapsedTime, outputs) = runAsync(exeFile, inputfile=inputTXT, outputfile=outputTXT, timelimit=(EXE_TIMELIMIT_FACTOR * ex.timelimit))
 		realElapsedTime = time.time() - starttime
-		print("Execution done in {:.1f} sec. (Total time: {:.1f} sec)".format(algElapsedTime, realElapsedTime))
-		print("----------------------")
+		print(color("Execution done in ") +\
+			  color("{:.1f} sec.".format(algElapsedTime), "LIGHTYELLOW_EX") +\
+			  color(" (Total time: {:.1f} sec)".format(realElapsedTime)))
+		print(color("----------------------"))
 		difflastline = ""
 		if len(outputs)>0:
-			print("Comparing results:")
-			print("----------------------")
+			print(color("Comparing results:"))
+			print(color("----------------------"))
 			diffCmd = ParseParams(DIFF_CMD.replace("<FILE1>", OSPath(outputTXT)).replace("<FILE2>", OSPath(solutionTXT)))
 			diffout = run(diffCmd[0], diffCmd[1:])
 			diffout = diffout.strip().strip('\n')
 			difflastline = diffout.split('\n')[-1]
-			print(diffout)
+			if diffout == "":
+				print("There are no differences between output and solution.")
+			else:
+				print(diffout)
 			writeFile(diffTXT, diffout)
-			print("----------------------")
+			print(color("----------------------"))
 	else:
 		outputs = []; difflastline = ""; algElapsedTime = 0
 
 	verOkay = True
 	if len(outputs)>0 and difflastline == DIFF_NO_TEXT:
-		print("Correctness: Checked!")
+		print(color("Correctness:") + " " + color("Checked!", "GREEN"))
 	else:
-		print("Correctness: Failed...")
+		print(color("Correctness:") + " " + color("Failed...", "YELLOW"))
 		verOkay = False
 	if algElapsedTime <= ex.timelimit:
-		print("Time Complexity: Checked!")
+		print(color("Time Complexity:") + " " + color("Checked!", "GREEN"))
 	else:
-		print("Time Complexity: Failed...")
+		print(color("Time Complexity:") + " " + color("Failed...", "YELLOW"))
 		verOkay = False
 	if verOkay:
 		writeFile(verifiedTXT, "Okay")
-		print("Veredict: Correct!")
+		print(color("Veredict:", "LIGHTYELLOW_EX") + " " + color("Correct!", "GREEN"))
 	else:
-		print("Veredict: Wrong Answer...")
+		print(color("Veredict:", "LIGHTYELLOW_EX") + " " + color("Wrong Answer...", "YELLOW"))
 	printWait()
 
 def RunCode(eid, hid):
@@ -619,32 +668,34 @@ def RunCode(eid, hid):
 	exeFile = "{0}/{1}/{2}/Code.exe".format(REPOSITORY_FOLDER, hid, eid)
 	code = "{0}/{1}/{2}/Code.cpp".format(REPOSITORY_FOLDER, hid, eid)
 
-	print("Running my solution:")
-	print("----------------------")
-	print("Starting compilation...")
+	selectColor("CYAN")
+	print(color("Running my solution:"))
+	print(color("----------------------"))
+	print(color("Starting compilation..."))
 	compCmd = ParseParams(COMPILER_CMD.replace("<EXE_FILE>", OSPath(exeFile)).replace("<CODE_FILE>", OSPath(code)))
-	print(run(compCmd[0],compCmd[1:]))
-	print("Compilation done.")
-	print("---")
-	print("Running executable file...")
-	print("(type the input; use {0} to indicate that there is no more input data)".format("Ctrl+D" if platform.system() != "Windows" else "Ctrl+D or Ctrl+Z"))
-	print("(type Ctrl+C to stop the execution)")
+	print(color(run(compCmd[0],compCmd[1:]), "LIGHTYELLOW_EX"))
+	print(color("Compilation done."))
+	print(color("----------------------"))
+	print(color("Running executable file..."))
+	print(color("(type the input; use ") +\
+		  color("Ctrl+D" if platform.system() != "Windows" else "Ctrl+D or Ctrl+Z", "LIGHTYELLOW_EX") +\
+		  color(" to indicate that there is no more input data)"))
+	print(color("(type ") + color("Ctrl+C", "LIGHTYELLOW_EX") + color(" to stop the execution)"))
 	output = run(exeFile)
-	#for lout in runAsync(exeFile):
-	#	print(lout)
-	print("\n---")
-	#print("Execution done.")
-	print("Execution done. Output:")
+	print()
+	print(color("----------------------"))
+	print(color("Execution done. Output:"))
 	print(output)
 	printWait()
 
 def ShowInput(eid, hid):
 	path = "{0}/{1}/{2}/Input.txt".format(REPOSITORY_FOLDER, hid, eid)
-	print("Below, you find the input data that Codev will give")
-	print("to your program during the validation process. Be aware")
-	print("that some (or even all) input data may be produced")
-	print("directly from the code. So, check the code out too.")
-	print("----------------------")
+	selectColor("CYAN")
+	print(color("Below, you find the input data that Codev will give"))
+	print(color("to your program during the validation process. Be aware"))
+	print(color("that some (or even all) input data may be produced"))
+	print(color("directly from the code. So, check the code out too."))
+	print(color("----------------------"))
 	print(readFile(path))
 	printWait()
 
@@ -723,11 +774,12 @@ def GenMenuReadHW(eid, hid):
 	hw = rep.find(hid)
 	ex = hw.find(eid)
 	Opt = []
-	Opt.append("Homework: {0}".format(hw.description))
+	selectColor("CYAN")
+	Opt.append(color("Homework: ") + color("{0}".format(hw.description), "LIGHTCYAN_EX"))
 	Opt.append(None)
-	Opt.append("Exercise  : {0}".format(ex.title))
-	Opt.append("Time Limit: {0} secs.".format(ex.timelimit))
-	Opt.append("Status    : {0}".format(ex.status))
+	Opt.append(color("Exercise  : ") + "{0}".format(ex.title))
+	Opt.append(color("Time Limit: ") + "{0} secs.".format(ex.timelimit))
+	Opt.append(color("Status    : ") + "{0}".format(ex.cstatus()))
 	Opt.append(None)
 	Opt.append(ex.description)
 	exfolder = REPOSITORY_FOLDER + "/" + hid + "/" + eid
@@ -738,24 +790,28 @@ def GenMenuReadHW(eid, hid):
 			Opt.append(["f{0}".format(i), "Show Figure {0}".format(i), ["openFig", i, eid, hid]])
 			i = i+1
 	Opt.append(None)
-	Opt.append(["1", "Edit Code", ["editCode", eid, hid]])
-	Opt.append(["2", "Run Code", ["runCode", eid, hid]])
-	Opt.append(["3", "Validate Code", ["verifyCode", eid, hid]])
+	#selectColor("CYAN")
+	selectColor("YELLOW")
+	Opt.append(["1", color("Edit Code"), ["editCode", eid, hid]])
+	Opt.append(["2", color("Run Code"), ["runCode", eid, hid]])
+	Opt.append(["3", color("Validate Code"), ["verifyCode", eid, hid]])
 	Opt.append(None)
 	hwurl = "{0}/{1}".format(SERVER_URL, hid)
 	exfolder = "{0}/{1}/{2}".format(REPOSITORY_FOLDER, hid, eid)
-	Opt.append(["i", "Show Input", ["showInput", eid, hid]])
-	Opt.append(None)
+	selectColor("LIGHTBLUE_EX")
+	Opt.append(["i", color("Show Input"), ["showInput", eid, hid]])
+	#Opt.append(None)
 	if isFile(exfolder + "/" + "Hint1.txt"):
-		Opt.append(["h1", "Get a Hint", ["seeBasicHint", eid, hid]])
+		Opt.append(["h1", color("Get a Hint"), ["seeBasicHint", eid, hid]])
 	if isFile(exfolder + "/" + "Hint2.txt"):
-		Opt.append(["h2", "Get a Spoiler Hint", ["seeSpoilerHint", eid, hid]])
+		Opt.append(["h2", color("Get a Spoiler Hint"), ["seeSpoilerHint", eid, hid]])
 	if isFile(exfolder + "/" + "KeyCode.cpp") or (checkConnection() and getURL(hwurl + "/Pass.txt") != ""):
-		Opt.append(["s", "See a Solution", ["editKeyCode", eid, hid]])
+		Opt.append(["s", color("See a Solution"), ["editKeyCode", eid, hid]])
+	selectColor("CYAN")
 	Opt.append(None)
-	Opt.append(["d", "Delete Code", ["delCode", eid, hid]])
+	Opt.append(["d", color("Delete Code"), ["delCode", eid, hid]])
 	Opt.append(None)
-	Opt.append(["b", "Go Back", ["openHW", hid]])
+	Opt.append(["b", color("Go Back"), ["openHW", hid]])
 	return Opt
 
 
@@ -765,16 +821,17 @@ def GenMenuOpenHW(hid):
 	hw = rep.find(hid)
 	i = 1
 	Opt = []
-	Opt.append("Homework: {0}".format(hw.description))
+	selectColor("CYAN")
+	Opt.append(color("Homework: ") + color("{0}".format(hw.description), "LIGHTCYAN_EX"))
 	Opt.append(None)
 	for ex in hw.exs:
-		Opt.append([str(i), ex.title + " (" + ex.status + ")", ["readHW", ex.eid, hid]])
+		Opt.append([str(i), ex.title + " (" + ex.cstatus() + ")", ["readHW", ex.eid, hid]])
 		i += 1
 	Opt.append(None)
-	Opt.append(["u", "Update Homework", ["updHW", hid]])
-	Opt.append(["d", "Delete Homework", ["delHW", hid]])
+	Opt.append(["u", color("Update Homework"), ["updHW", hid]])
+	Opt.append(["d", color("Delete Homework"), ["delHW", hid]])
 	Opt.append(None)
-	Opt.append(["b", "Go Back", ["hwList"]])
+	Opt.append(["b", color("Go Back"), ["hwList"]])
 	return Opt
 
 
@@ -787,7 +844,7 @@ def GenMenuNewHW():
 
 	Opt = []
 	i = 1
-	Opt.append("New Homeworks:")
+	Opt.append(color("New Homeworks:", "CYAN"))
 	Opt.append(None)
 	if connec and len(rep.hws) == 0:
 		Opt.append("(no new homeworks have been found)")
@@ -795,7 +852,7 @@ def GenMenuNewHW():
 		Opt.append("(connection to the server seems to be down...)")
 	else:
 		for hw in rep.hws:
-			Opt.append([str(i), hw.description + " (" + hw.status + ")", ["downloadHW", hw.hid]])
+			Opt.append([str(i), hw.description + " (" + hw.cstatus() + ")", ["downloadHW", hw.hid]])
 			i += 1
 	Opt.append(None)
 	Opt.append(["b", "Go Back", ["hwList"]])
@@ -807,9 +864,12 @@ def GenMenuDelHW(hid):
 	rep.load()
 	hw = rep.find(hid)
 	Opt = []
-	Opt.append("Homework: {0}".format(hw.description))
+	selectColor("CYAN")
+	Opt.append(color("Homework: ") + color("{0}".format(hw.description), "LIGHTCYAN_EX"))
 	Opt.append(None)
-	Opt.append("Are you sure you want to delete ALL saved data for this homework (including the code file)?")
+	selectColor("YELLOW")
+	Opt.append(color("Are you sure you want to delete ALL saved data for this homework,"))
+	Opt.append(color("including the code files?"))
 	Opt.append(None)
 	Opt.append(["yes", "Yes", ["delConfirmHW", hid]])
 	Opt.append(["n", "No", ["openHW", hid]])
@@ -821,11 +881,12 @@ def GenMenuDelCode(eid, hid):
 	hw = rep.find(hid)
 	ex = hw.find(eid)
 	Opt = []
-	Opt.append("Homework: {0}".format(hw.description))
+	selectColor("CYAN")
+	Opt.append(color("Homework:") + " " + color("{0}".format(hw.description), "LIGHTCYAN_EX"))
 	Opt.append(None)
-	Opt.append("Exercise: {0}".format(ex.title))
+	Opt.append(color("Exercise:") + " " + ex.title)
 	Opt.append(None)
-	Opt.append("Are you sure you want to delete its associated code?")
+	Opt.append(color("Are you sure you want to delete its associated code?", "YELLOW"))
 	Opt.append(None)
 	Opt.append(["yes", "Yes", ["delConfirmCode", eid, hid]])
 	Opt.append(["n", "No", ["readHW", eid, hid]])
@@ -872,22 +933,23 @@ def GenMenuHWList():
 
 	Opt = []
 	i = 1
-	Opt.append("Downloaded Homeworks:")
+	Opt.append(color("Downloaded Homeworks:", "CYAN"))
 	Opt.append(None)
 	if len(rep.hws) == 0:
 		Opt.append("(no homework has been downloaded yet)")
 	else:
 		for hw in rep.hws:
-			Opt.append([str(i), hw.description + " (" + hw.status + ")", ["openHW", hw.hid]])
+			Opt.append([str(i), hw.description + " (" + hw.cstatus() + ")", ["openHW", hw.hid]])
 			i += 1
 	Opt.append(None)
-	Opt.append(["n", "Download New Homework", ["newHW"]])
+	selectColor("CYAN")
+	Opt.append(["n", color("Download New Homework", "YELLOW"), ["newHW"]])
 	Opt.append(None)
 	if UPDATE_SOFTWARE == "1":
-		Opt.append(["u", "Update Codev Software", ["updSoft"]])
-	Opt.append(["s", "Settings", ["settings"]])
-	Opt.append(["a", "About", ["about"]])
-	Opt.append(["q", "Quit", ["quit"]])
+		Opt.append(["u", color("Update Codev Software"), ["updSoft"]])
+	Opt.append(["s", color("Settings"), ["settings"]])
+	Opt.append(["a", color("About"), ["about"]])
+	Opt.append(["q", color("Quit"), ["quit"]])
 	return Opt
 
 
@@ -895,7 +957,7 @@ def DisplayMenu(Opt):
 	while True:
 		printHeader()
 		menu = {}
-		margin = " ║ "
+		margin = color(" ║ ", "CYAN")  #LIGHTBLACK_EX
 		for item in Opt:
 			if item == None:
 				print(margin)
@@ -903,7 +965,7 @@ def DisplayMenu(Opt):
 				for txt in item.split("\n"):
 					print(margin + txt)
 			else:
-				print(margin + "[{0}] {1}".format(item[0], item[1]))
+				print(margin + color("[", "CYAN") + color(item[0], "LIGHTCYAN_EX") + color("]", "CYAN") + " " + item[1])
 				menu[item[0].upper()] = item[2]
 		print()
 		x = input("Option: ").upper()
@@ -912,8 +974,8 @@ def DisplayMenu(Opt):
 
 def GenMenuAbout():
 	Opt = []
-	Opt.append("Author: Fabiano Oliveira")
-	Opt.append("Email : fabiano.oliveira@ime.uerj.br")
+	Opt.append(color("Author:", "CYAN") + " " + color("Fabiano Oliveira", "YELLOW"))
+	Opt.append(color("Email :", "CYAN") + " " + color("fabiano.oliveira@ime.uerj.br", "YELLOW"))
 	Opt.append(None)
 	Opt.append("What do you think of this tool?")
 	Opt.append(None)
@@ -923,18 +985,19 @@ def GenMenuAbout():
 	return Opt
 
 def GenMenuSettings():
+	selectColor("YELLOW")
 	Opt = []
 	Opt.append("Settings must be adjusted in the file Settings.txt")
 	Opt.append("located in the Codev folder. Settings that can be adjusted:")
 	Opt.append(None)
-	Opt.append(r"EDITOR_CMD = <value>")
+	Opt.append(color(r"EDITOR_CMD = <value>"))
 	Opt.append(r"<value> should be a valid command line for opening")
 	Opt.append(r"the code editor; the substring of value named <CODE_FILE>")
 	Opt.append(r"will be replaced with the code filename.")
 	Opt.append(r"If a space between arguments does not work well, try replacing")
 	Opt.append(r"with a comma (,) those spaces that delimit arguments.")
 	Opt.append(None)
-	Opt.append(r"COMPILER_CMD = <value>")
+	Opt.append(color(r"COMPILER_CMD = <value>"))
 	Opt.append(r"<value> should be a valid command line for compiling")
 	Opt.append(r"the code; the substring <CODE_FILE> will be replaced with")
 	Opt.append(r"the code filename, and <EXE_FILE> with the executable file")
@@ -942,30 +1005,47 @@ def GenMenuSettings():
 	Opt.append(r"If a space between arguments does not work well, try replacing")
 	Opt.append(r"with a comma (,) those spaces that delimit arguments.")
 	Opt.append(None)
-	Opt.append(r"UPDATE_SOFTWARE = 0/1")
+	Opt.append(color(r"UPDATE_SOFTWARE = 0/1"))
 	Opt.append(r"0 for hiding the option for downloading new versions of Codev.")
 	Opt.append(None)
-	Opt.append(r"SERVER_URL = <value>")
+	Opt.append(color(r"SERVER_URL = <value>"))
 	Opt.append(r"Codev repository server URL.")
 	Opt.append(None)
-	Opt.append(r"REPOSITORY_FOLDER = <value>")
+	Opt.append(color(r"REPOSITORY_FOLDER = <value>"))
 	Opt.append(r"Codev local repository; all the files are located there.")
 	Opt.append(None)
-	Opt.append(r"DIFF_CMD = <value>")
+	Opt.append(color(r"DIFF_CMD = <value>"))
 	Opt.append(r"<value> should be a valid command line for executing a")
 	Opt.append(r"file comparison tool; the substrings <FILE1> and <FILE2>")
 	Opt.append(r"will be replaced with the two files to be compared.")
 	Opt.append(r"If a space between arguments does not work well, try replacing")
 	Opt.append(r"with a comma (,) those spaces that delimit arguments.")
+	Opt.append(r"See also DIFF_NO_TEXT.")
 	Opt.append(None)
-	Opt.append(r"PDF_READER = <value>")
+	Opt.append(color(r"DIFF_NO_TEXT = <value>"))
+	Opt.append(r"<value> is the last line that should be outputed by the DIFF_CMD")
+	Opt.append(r"so that Codev interpret as there is no differences between the")
+	Opt.append(r"compared values.")
+	Opt.append(None)
+	Opt.append(color(r"PDF_READER = <value>"))
 	Opt.append(r"<value> should be a valid command line for executing a")
 	Opt.append(r"pdf reader tool; the substrings <PDF_FILE>")
 	Opt.append(r"will be replaced with the filename to be opened.")
 	Opt.append(r"If a space between arguments does not work well, try replacing")
 	Opt.append(r"with a comma (,) those spaces that delimit arguments.")
 	Opt.append(None)
+	Opt.append(color(r"EXE_TIMELIMIT_FACTOR = <value>"))
+	Opt.append(r"During a programa validation, Codev will allow a program run longer")
+	Opt.append(r"than the time limit to assess its correctness. If this execution time")
+	Opt.append(r"reaches a threshold, Codev will interrupt the execution. The total time")
+	Opt.append(r"Codev allows is given by the exercise time limit multiplied by <value>.")
+	Opt.append(None)
+	Opt.append(color(r"MONOCHROMATIC = 0/1"))
+	Opt.append(r"Use MONOCHROMATIC = 1 to use Codev without multiple colors.")
+	Opt.append(None)
 	Opt.append(["b", "Go Back", ["hwList"]])
+
+	ShowTextFile("./Settings.txt")
 	return Opt
 
 def UpdateSoftware():
@@ -1068,6 +1148,10 @@ def GenMenu():
 			chosen = ["readHW", chosen[2], chosen[3]]
 		cmd = chosen[0]
 
+colorama_init(autoreset=True)
+colorama_colors = dict(Fore.__dict__.items())
+selectColor("WHITE")
+
 if not isFile("./Settings.txt"):
 	osstr = "Windows" if platform.system() == "Windows" else "Linux"
 	if isFile("./Settings.txt." + osstr):
@@ -1101,7 +1185,8 @@ DIFF_CMD = cfg["DIFF_CMD"]
 DIFF_NO_TEXT = cfg.get("DIFF_NO_TEXT", "")
 UPDATE_SOFTWARE = cfg.get("UPDATE_SOFTWARE", "1")
 PDF_READER = cfg.get("PDF_READER", "<PDF_FILE>")
-EXE_TIMELIMIT_FACTOR = int(cfg.get("EXE_TIMELIMIT_FACTOR", "3"))
+EXE_TIMELIMIT_FACTOR = int(cfg.get("EXE_TIMELIMIT_FACTOR", "10"))
+MONOCHROMATIC = int(cfg.get("MONOCHROMATIC", "0"))
 
 if checkConnection():
 	minver = getURL(SERVER_URL + "/" + "MinVersion.txt")
