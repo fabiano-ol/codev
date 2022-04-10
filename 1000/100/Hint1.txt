@@ -1,0 +1,4 @@
+- Faça uma varredura por cada elemento, até que o fim
+  da lista seja atingida. Ao fazê-la, conte os elementos
+  pelos quais atravessa.
+
