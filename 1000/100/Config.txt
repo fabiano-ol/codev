@@ -1,0 +1,4 @@
+Soma de 1 a n [O(n)]
+1
+Escreva um programa que peça ao usuário um número n 
+e imprima a soma dos números 1 a n. [O(n)]
