@@ -17,7 +17,7 @@ CONFIG_FILE = "Config.txt"
 VERIFIED_FILE = "Verified.txt"
 
 def getVersion():
-	return "1.2"
+	return "1.1"
 
 def isVersionAtLeast(ver):
 	def Convert(verTXT):
@@ -114,8 +114,8 @@ class repository(object):
 			loadhw = (self.target == "local") or lrep.find(hid) == None
 			if loadhw:
 				hw = homework(hid)
-				if hw.load(self.target):
-					self.hws.append(hw)
+				hw.load(self.target)
+				self.hws.append(hw)
 			hcont += 1
 
 
@@ -134,18 +134,15 @@ class homework(object):
 				return ex
 
 	def load(self, target):
-		self.exs = []
 		if target == "local":
 			hwfolder = REPOSITORY_FOLDER + "/" + self.hid + "/" + CONFIG_FILE
-			if isFile(hwfolder):
-				hwdata = readFile(hwfolder)
-			else:
-				return False
+			hwdata = readFile(hwfolder)
 		else:
 			hwfolder = SERVER_URL + "/" + self.hid + "/" + CONFIG_FILE
 			hwdata = getURL(hwfolder)
 		hwdata = split(hwdata, "\n")
 		self.description = hwdata[0]
+		self.exs = []
 		cokay = 0
 		lsteid = split(hwdata[1], " ")
 		econt = 1
@@ -153,16 +150,15 @@ class homework(object):
 			if target != "local":
 				print("Retrieving exercise data {0}/{1}...".format(econt, len(lsteid)))
 			ex = exercise(eid, self.hid)
-			if ex.load(target):
-				if ex.status == "OK":
-					cokay += 1
-				self.exs.append(ex)
+			ex.load(target)
+			if ex.status == "OK":
+				cokay += 1
+			self.exs.append(ex)
 			econt += 1
 		if target == "local":
 			self.status = "{0}/{1}".format(cokay, len(self.exs))
 		else:
 			self.status = "{0}".format(len(self.exs))
-		return True
 
 	def cstatus(self):
 		s = split(self.status, "/")
@@ -179,15 +175,10 @@ class exercise(object):
 	timelimit = None
 	description = None
 	status = None
-	language = None
 
 	def __init__(self, eid, hid):
 		self.eid = eid
 		self.hid = hid
-
-	@staticmethod
-	def getLanguage(eid):
-		return "C++" if int(eid) < 100 else "Python"
 
 	def cstatus(self):
 		if self.status == "OK":
@@ -198,10 +189,7 @@ class exercise(object):
 	def load(self, target):
 		if target == "local":
 			exfolder = REPOSITORY_FOLDER + "/" + self.hid + "/" + self.eid
-			if isFile(exfolder + "/" + CONFIG_FILE):
-				exdata = readFile(exfolder + "/" + CONFIG_FILE)
-			else:
-				return False
+			exdata = readFile(exfolder + "/" + CONFIG_FILE)
 		else:
 			exfolder = SERVER_URL + "/" + self.hid + "/" + self.eid
 			exdata = getURL(exfolder + "/" + CONFIG_FILE)
@@ -214,10 +202,9 @@ class exercise(object):
 				desc += "\n"
 			desc += t
 		self.description = desc
-		self.language = exercise.getLanguage(self.eid)
 		if target == "local":
 			self.status = "OK" if isFile(exfolder + "/" + VERIFIED_FILE) else "Pending"
-		return True
+
 
 def split(txt, sep):
 	r = []
@@ -319,7 +306,7 @@ def checkConnection(printWarning=False):
 		return getURL(servurl) != ""
 	except:
 		if printWarning:
-			print("Connection to the server could not be established...")
+			print("Connection to the server seems to be down...")
 			printWait()
 		return False
 
@@ -468,6 +455,7 @@ def run(cmd, params=None, inputfile="", timelimit=None):
 		r += "\n---\nTime limit has been reached. Codev has forced the process to stop.".format(timelimit)
 	return r
 
+
 def output_reader(outpipe, errpipe, queue):
 	try:
 		for lout in outpipe:
@@ -552,16 +540,8 @@ def runAsync(cmd, params=None, inputfile="", outputfile="", timelimit=None):
 		elapsed = realelapsedtime if userealtime else elapsedtime
 		return elapsed, outputs
 
-def removeCodev(language, text):
-
-	ctag = r"//" if language == "C++" else r"#"
-
-	if language == "C++":
-		insertCode = r"/* insert your code here */"
-	else:
-		insertCode = r"# insert your code here"
-
-	token = ctag + " codevremove"
+def removeCodev(text):
+	token = r"// codevremove"
 	i = text.find(token)
 	while i >= 0:
 		j = text.find(token, i+1)
@@ -569,27 +549,21 @@ def removeCodev(language, text):
 		ei = text[:i].rfind("\n")
 		text = text[:ei+1] + text[ej+1:]
 		i = text.find(token)
-	token = ctag + " codev"
+	token = r"// codev"
 	i = text.find(token)
 	while i >= 0:
 		j = text.find(token, i+1)
 		ej = text.find("\n", j)
-		if ej == -1:
-			ej = len(text)
-		text = text[:i] + insertCode + text[ej:]
+		text = text[:i] + r"/* insert your code here */" + text[ej:]
 		i = text.find(token)
 	return text
 
-def removeCodevComments(language, text):
-	ctag = r"//" if language == "C++" else r"#"
-
-	tokens = [ctag + " codevremove", ctag + " codev"]
+def removeCodevComments(text):
+	tokens = [r"// codevremove", r"// codev"]
 	for token in tokens:
 		i = text.find(token)
 		while i >= 0:
 			ej = text.find("\n", i)
-			if ej==-1:
-				ej = len(text)
 			ei = text[:i].rfind("\n")
 			text = text[:ei+1] + text[ej+1:]
 			i = text.find(token)
@@ -599,21 +573,15 @@ def ParseParams(text):
 	return SplitEscaped(text, ",")
 
 def EditCode(eid, hid):
-	rep = repository("local")
-	rep.load()
-	hw = rep.find(hid)
-	ex = hw.find(eid)
-
-	codeExt = "cpp" if ex.language == "C++" else "py"
-	code = "{0}/{1}/{2}/Code.{3}".format(REPOSITORY_FOLDER, hid, eid, codeExt)
-	path = OSPath(code)
-	cmd = ParseParams(getLanguageSetting(ex.language, "EDITOR_CMD").replace("<CODE_FILE>", path))
+	path = "{0}/{1}/{2}/Code.cpp".format(REPOSITORY_FOLDER, hid, eid)
+	path = OSPath(path)
+	cmd = ParseParams(EDITOR_CMD.replace("<CODE_FILE>", path))
 	run(cmd[0], cmd[1:])
 
 def ShowTextFile(filename):
 	path = filename
 	path = OSPath(path)
-	cmd = ParseParams(getLanguageSetting("TEXT", "EDITOR_CMD").replace("<CODE_FILE>", path))
+	cmd = ParseParams(EDITOR_CMD.replace("<CODE_FILE>", path))
 	run(cmd[0], cmd[1:])
 
 def OpenFigure(fig, eid, hid):
@@ -628,21 +596,15 @@ def VerifyCode(eid, hid):
 	hw = rep.find(hid)
 	ex = hw.find(eid)
 
-	codeExt = "cpp" if ex.language == "C++" else "py"
-	exeExt = "exe" if ex.language == "C++" else "py"
-
-	code = "{0}/{1}/{2}/Code.{3}".format(REPOSITORY_FOLDER, hid, eid, codeExt)
-	exeFile = "{0}/{1}/{2}/Code.{3}".format(REPOSITORY_FOLDER, hid, eid, exeExt)
-
+	exeFile = "{0}/{1}/{2}/Code.exe".format(REPOSITORY_FOLDER, hid, eid)
+	code = "{0}/{1}/{2}/Code.cpp".format(REPOSITORY_FOLDER, hid, eid)
 	solutionTXT = "{0}/{1}/{2}/Solution.txt".format(REPOSITORY_FOLDER, hid, eid)
 	inputTXT = "{0}/{1}/{2}/Input.txt".format(REPOSITORY_FOLDER, hid, eid)
 	outputTXT = "{0}/{1}/{2}/Output.txt".format(REPOSITORY_FOLDER, hid, eid)
 	diffTXT = "{0}/{1}/{2}/Diff.txt".format(REPOSITORY_FOLDER, hid, eid)
 	verifiedTXT = "{0}/{1}/{2}/{3}".format(REPOSITORY_FOLDER, hid, eid, VERIFIED_FILE)
 
-	if exeFile != code:
-		rm(exeFile)
-
+	rm(exeFile)
 	rm(verifiedTXT)
 	rm(outputTXT)
 	rm(diffTXT)
@@ -650,20 +612,17 @@ def VerifyCode(eid, hid):
 	selectColor("CYAN")
 	print(color("Running my solution:"))
 	print(color("----------------------"))
-	if exeFile != code:
-		print(color("Starting compilation..."))
-		compCmd = ParseParams(getLanguageSetting(ex.language, "COMPILER_CMD").replace("<EXE_FILE>", OSPath(exeFile)).replace("<CODE_FILE>", OSPath(code)))
-		print(color(run(compCmd[0],compCmd[1:]), "LIGHTYELLOW_EX"))
-		print(color("Compilation done."))
-		print(color("----------------------"))
+	print(color("Starting compilation..."))
+	compCmd = ParseParams(COMPILER_CMD.replace("<EXE_FILE>", OSPath(exeFile)).replace("<CODE_FILE>", OSPath(code)))
+	print(color(run(compCmd[0],compCmd[1:]), "LIGHTYELLOW_EX"))
+	print(color("Compilation done."))
+	print(color("----------------------"))
 	if isFile(exeFile):
 		print(color("Running executable file... (type ") + color("Ctrl+C", "LIGHTYELLOW_EX") + color(" to stop the execution)"))
-		if exeFile != code:
-			exeCmd = [exeFile]
-		else:
-			exeCmd = ParseParams(getLanguageSetting(ex.language, "COMPILER_CMD").replace("<CODE_FILE>", OSPath(code)))
 		starttime = time.time()
-		(algElapsedTime, outputs) = runAsync(exeCmd[0], params=exeCmd[1:], inputfile=inputTXT, outputfile=outputTXT, timelimit=(EXE_TIMELIMIT_FACTOR * ex.timelimit))
+		#output = run(exeFile, inputfile=inputTXT, timelimit=(EXE_TIMELIMIT_FACTOR * ex.timelimit))
+		#print(output)
+		(algElapsedTime, outputs) = runAsync(exeFile, inputfile=inputTXT, outputfile=outputTXT, timelimit=(EXE_TIMELIMIT_FACTOR * ex.timelimit))
 		realElapsedTime = time.time() - starttime
 		print(color("Execution done in ") +\
 			  color("{:.1f} sec.".format(algElapsedTime), "LIGHTYELLOW_EX") +\
@@ -705,45 +664,28 @@ def VerifyCode(eid, hid):
 	printWait()
 
 def RunCode(eid, hid):
-	rep = repository("local")
-	rep.load()
-	hw = rep.find(hid)
-	ex = hw.find(eid)
 
-	exeExt = "exe" if ex.language == "C++" else "py"
-	codeExt = "cpp" if ex.language == "C++" else "py"
-
-	exeFile = "{0}/{1}/{2}/Code.{3}".format(REPOSITORY_FOLDER, hid, eid, exeExt)
-	code = "{0}/{1}/{2}/Code.{3}".format(REPOSITORY_FOLDER, hid, eid, codeExt)
-
-	if exeFile != code:
-		rm(exeFile)
+	exeFile = "{0}/{1}/{2}/Code.exe".format(REPOSITORY_FOLDER, hid, eid)
+	code = "{0}/{1}/{2}/Code.cpp".format(REPOSITORY_FOLDER, hid, eid)
 
 	selectColor("CYAN")
 	print(color("Running my solution:"))
 	print(color("----------------------"))
-	if exeFile != code:
-		print(color("Starting compilation..."))
-		compCmd = ParseParams(getLanguageSetting(ex.language, "COMPILER_CMD").replace("<EXE_FILE>", OSPath(exeFile)).replace("<CODE_FILE>", OSPath(code)))
-		print(color(run(compCmd[0],compCmd[1:]), "LIGHTYELLOW_EX"))
-		print(color("Compilation done."))
-		print(color("----------------------"))
-	if isFile(exeFile):
-		print(color("Running the program..."))
-		print(color("(type the input; use ") +\
-			  color("Ctrl+D" if platform.system() != "Windows" else "Ctrl+D or Ctrl+Z", "LIGHTYELLOW_EX") +\
-			  color(" to indicate that there is no more input data)"))
-		print(color("(type ") + color("Ctrl+C", "LIGHTYELLOW_EX") + color(" to stop the execution)"))
-		if exeFile != code:
-			exeCmd = [exeFile]
-		else:
-			exeCmd = ParseParams(getLanguageSetting(ex.language, "COMPILER_CMD").replace("<CODE_FILE>", OSPath(code)))
-		output = run(exeCmd[0], exeCmd[1:])
-		print()
-		print(color("----------------------"))
-		print(color("Execution done. Output:"))
-		print(output)
-
+	print(color("Starting compilation..."))
+	compCmd = ParseParams(COMPILER_CMD.replace("<EXE_FILE>", OSPath(exeFile)).replace("<CODE_FILE>", OSPath(code)))
+	print(color(run(compCmd[0],compCmd[1:]), "LIGHTYELLOW_EX"))
+	print(color("Compilation done."))
+	print(color("----------------------"))
+	print(color("Running executable file..."))
+	print(color("(type the input; use ") +\
+		  color("Ctrl+D" if platform.system() != "Windows" else "Ctrl+D or Ctrl+Z", "LIGHTYELLOW_EX") +\
+		  color(" to indicate that there is no more input data)"))
+	print(color("(type ") + color("Ctrl+C", "LIGHTYELLOW_EX") + color(" to stop the execution)"))
+	output = run(exeFile)
+	print()
+	print(color("----------------------"))
+	print(color("Execution done. Output:"))
+	print(output)
 	printWait()
 
 def ShowInput(eid, hid):
@@ -763,18 +705,12 @@ def DelConfirmHW(hid):
 	repository.remove(hid)
 
 def DelConfirmCode(eid, hid):
-	rep = repository("local")
-	rep.load()
-	hw = rep.find(hid)
-	ex = hw.find(eid)
+	path = "{0}/{1}/{2}/Code.cpp".format(REPOSITORY_FOLDER, hid, eid)
+	rm(path)
+	path = "{0}/{1}/{2}/KeyCode.cpp".format(REPOSITORY_FOLDER, hid, eid)
+	rm(path)
 
-	codeExt = "cpp" if ex.language == "C++" else "py"
-	code = "{0}/{1}/{2}/Code.{3}".format(REPOSITORY_FOLDER, hid, eid, codeExt)
-	rm(code)
-	code = "{0}/{1}/{2}/KeyCode.{3}".format(REPOSITORY_FOLDER, hid, eid, codeExt)
-	rm(code)
-
-def DownloadHW(hid, creating, onlyNew):
+def DownloadHW(hid, creating):
 	if not checkConnection(True):
 		return
 	hwurl = "{0}/{1}".format(SERVER_URL, hid)
@@ -789,11 +725,15 @@ def DownloadHW(hid, creating, onlyNew):
 	exLst = split(split(c, "\n")[1], " ")
 	econt = 1
 	for eid in exLst:
-		language = exercise.getLanguage(eid)
 		print("Retrieving exercise data {0}/{1}...".format(econt, len(exLst)))
 		exurl = hwurl + "/" + eid
 		exfolder = hwfolder + "/" + eid
 		createEx = not isDir(exfolder)
+		if createEx:
+			mkdir(exfolder)
+		filesOverwrite = [CONFIG_FILE, "Solution.txt", "Input.txt"]
+		filesKeepOriginal = ["Code.cpp"]
+		filesRem = [VERIFIED_FILE]
 
 		def DownloadSeqFiles(basename, extension):
 			i = 1
@@ -808,35 +748,25 @@ def DownloadHW(hid, creating, onlyNew):
 				i = i + 1
 				f = "{0}{1}.{2}".format(basename, i, extension)
 
-		if not onlyNew or createEx:
-			if createEx:
-				mkdir(exfolder)
-			filesOverwrite = [CONFIG_FILE, "Solution.txt", "Input.txt"]
-			if language == "C++":
-				filesKeepOriginal = ["Code.cpp"]
-			else:
-				filesKeepOriginal = ["Code.py"]
-			filesRem = [VERIFIED_FILE]
-
-			for f in filesOverwrite:
-				writeFile(exfolder + "/" + f, getURL(exurl + "/" + f))
-			for f in filesKeepOriginal:
-				fn = exfolder + "/" + f
-				if not isFile(fn):
-					writeFile(fn, removeCodev(language, clear(getURL(exurl + "/" + f))))
-			for f in filesRem:
-				rm(exfolder + "/" + f)
-			DownloadSeqFiles('Figure', 'pdf')
-			if language == "C++":
-				DownloadSeqFiles('Bib', 'h')
-			else:
-				DownloadSeqFiles('Bib', 'py')
-			DownloadSeqFiles('Hint', 'txt')
+		for f in filesOverwrite:
+			writeFile(exfolder + "/" + f, getURL(exurl + "/" + f))
+		for f in filesKeepOriginal:
+			fn = exfolder + "/" + f
+			if not isFile(fn):
+				writeFile(fn, removeCodev(clear(getURL(exurl + "/" + f))))
+		for f in filesRem:
+			rm(exfolder + "/" + f)
+		DownloadSeqFiles('Figure', 'pdf')
+		DownloadSeqFiles('Bib', 'h')
+		DownloadSeqFiles('Hint', 'txt')
 
 		econt += 1
 
 	if creating:
 		repository.add(hid)
+
+def UpdateHW(hid):
+	DownloadHW(hid, False)
 
 def GenMenuReadHW(eid, hid):
 	rep = repository("local")
@@ -850,7 +780,6 @@ def GenMenuReadHW(eid, hid):
 	Opt.append(color("Exercise  : ") + "{0}".format(ex.title))
 	Opt.append(color("Time Limit: ") + "{0} secs.".format(ex.timelimit))
 	Opt.append(color("Status    : ") + "{0}".format(ex.cstatus()))
-	Opt.append(color("Language  : ") + "{0}".format(ex.language))
 	Opt.append(None)
 	Opt.append(ex.description)
 	exfolder = REPOSITORY_FOLDER + "/" + hid + "/" + eid
@@ -899,8 +828,6 @@ def GenMenuOpenHW(hid):
 		Opt.append([str(i), ex.title + " (" + ex.cstatus() + ")", ["readHW", ex.eid, hid]])
 		i += 1
 	Opt.append(None)
-	downcolor = "YELLOW" if isThereNewEx(hid) else "CYAN"
-	Opt.append(["n", color("Download New Exercises", downcolor), ["addnewHW", hid]])
 	Opt.append(["u", color("Update Homework"), ["updHW", hid]])
 	Opt.append(["d", color("Delete Homework"), ["delHW", hid]])
 	Opt.append(None)
@@ -981,15 +908,9 @@ def SeeSpoilerHint(eid, hid):
 		printWait()
 
 def EditKeyCode(eid, hid):
-	rep = repository("local")
-	rep.load()
-	hw = rep.find(hid)
-	ex = hw.find(eid)
+	path = "{0}/{1}/{2}/KeyCode.cpp".format(REPOSITORY_FOLDER, hid, eid)
 
-	codeExt = "cpp" if ex.language == "C++" else "py"
-	keycode = "{0}/{1}/{2}/KeyCode.{3}".format(REPOSITORY_FOLDER, hid, eid, codeExt)
-
-	if not isFile(keycode):
+	if not isFile(path):
 		Pwd = input("Please, enter the password: ")
 		hwurl = "{0}/{1}".format(SERVER_URL, hid)
 		sPwd = clear(getURL(hwurl + "/" + "Pass.txt"))
@@ -998,41 +919,13 @@ def EditKeyCode(eid, hid):
 			printWait()
 		else:
 			exurl = hwurl + "/" + eid
-			f = "Code." + codeExt
-			writeFile(keycode, removeCodevComments(ex.language, clear(getURL(exurl + "/" + f))))
+			f = "Code.cpp"
+			writeFile(path, removeCodevComments(clear(getURL(exurl + "/" + f))))
 
-	if isFile(keycode):
-		path = OSPath(keycode)
-		cmd = ParseParams(getLanguageSetting(ex.language, "EDITOR_CMD").replace("<CODE_FILE>", path))
+	if isFile(path):
+		path = OSPath(path)
+		cmd = ParseParams(EDITOR_CMD.replace("<CODE_FILE>", path))
 		run(cmd[0], cmd[1:])
-
-def isThereNewHW():
-	if checkConnection():
-		hwurl = "{0}".format(SERVER_URL)
-		hwfolder = "{0}".format(REPOSITORY_FOLDER)
-		f = CONFIG_FILE
-		cr = getURL(hwurl + "/" + f); lr = split(cr, " ")
-		cl = readFile(hwfolder + "/" + f); ll = split(cl, " ")
-		for hid in lr:
-			if not hid in ll:
-				return True
-		return False
-	return False
-
-def isThereNewEx(hid):
-	if checkConnection():
-		hwurl = "{0}/{1}".format(SERVER_URL, hid)
-		hwfolder = "{0}/{1}".format(REPOSITORY_FOLDER, hid)
-		f = CONFIG_FILE
-		cr = getURL(hwurl + "/" + f)
-		cl = readFile(hwfolder + "/" + f)
-		lr = split(split(cr, "\n")[1], " ")
-		ll = split(split(cl, "\n")[1], " ")
-		for eid in lr:
-			if not eid in ll:
-				return True
-		return False
-	return False
 
 def GenMenuHWList():
 	rep = repository("local")
@@ -1050,8 +943,7 @@ def GenMenuHWList():
 			i += 1
 	Opt.append(None)
 	selectColor("CYAN")
-	downcolor = "YELLOW" if isThereNewHW() else "CYAN"
-	Opt.append(["n", color("Download New Homework", downcolor), ["newHW"]])
+	Opt.append(["n", color("Download New Homework", "YELLOW"), ["newHW"]])
 	Opt.append(None)
 	if UPDATE_SOFTWARE == "1":
 		Opt.append(["u", color("Update Codev Software"), ["updSoft"]])
@@ -1099,21 +991,17 @@ def GenMenuSettings():
 	Opt.append("located in the Codev folder. Settings that can be adjusted:")
 	Opt.append(None)
 	Opt.append(color(r"EDITOR_CMD = <value>"))
-	Opt.append(color(r"EDITOR_CMD_<LANGUAGE> = <value>"))
 	Opt.append(r"<value> should be a valid command line for opening")
 	Opt.append(r"the code editor; the substring of value named <CODE_FILE>")
 	Opt.append(r"will be replaced with the code filename.")
-	Opt.append(r"This parameter can be personalized to each <LANGUAGE> (C++/PYTHON/TEXT).")
 	Opt.append(r"If a space between arguments does not work well, try replacing")
 	Opt.append(r"with a comma (,) those spaces that delimit arguments.")
 	Opt.append(None)
 	Opt.append(color(r"COMPILER_CMD = <value>"))
-	Opt.append(color(r"COMPILER_CMD_<LANGUAGE> = <value>"))
 	Opt.append(r"<value> should be a valid command line for compiling")
 	Opt.append(r"the code; the substring <CODE_FILE> will be replaced with")
 	Opt.append(r"the code filename, and <EXE_FILE> with the executable file")
 	Opt.append(r"to be created.")
-	Opt.append(r"This parameter can be personalized to each <LANGUAGE> (C++/PYTHON).")
 	Opt.append(r"If a space between arguments does not work well, try replacing")
 	Opt.append(r"with a comma (,) those spaces that delimit arguments.")
 	Opt.append(None)
@@ -1208,7 +1096,7 @@ def GenMenu():
 		elif cmd == "newHW":
 			chosen = DisplayMenu(GenMenuNewHW())
 		elif cmd == "downloadHW":
-			DownloadHW(chosen[1], True, True)
+			DownloadHW(chosen[1], True)
 			chosen = ["hwList"]
 		elif cmd == "openHW":
 			chosen = DisplayMenu(GenMenuOpenHW(chosen[1]))
@@ -1217,10 +1105,7 @@ def GenMenu():
 		elif cmd == "delHW":
 			chosen = DisplayMenu(GenMenuDelHW(chosen[1]))
 		elif cmd == "updHW":
-			DownloadHW(chosen[1], False, False)
-			chosen = ["openHW", chosen[1]]
-		elif cmd == "addnewHW":
-			DownloadHW(chosen[1], False, True)
+			DownloadHW(chosen[1], False)
 			chosen = ["openHW", chosen[1]]
 		elif cmd == "delConfirmHW":
 			DelConfirmHW(chosen[1])
@@ -1265,8 +1150,7 @@ def GenMenu():
 
 colorama_init(autoreset=True)
 colorama_colors = dict(Fore.__dict__.items())
-SELECTED_COLOR = "WHITE"
-selectColor(SELECTED_COLOR)
+selectColor("WHITE")
 
 if not isFile("./Settings.txt"):
 	osstr = "Windows" if platform.system() == "Windows" else "Linux"
@@ -1294,14 +1178,9 @@ if OSPath(REPOSITORY_FOLDER).find(" ") >= 0:
 if not isDir(REPOSITORY_FOLDER):
 	mkdir(REPOSITORY_FOLDER)
 
-def getLanguageSetting(language, key):
-	lkey = key + "_" + language.upper()
-	if  lkey in cfg:
-		return cfg[lkey]
-	else:
-		return cfg[key]
-
 SERVER_URL = cfg["SERVER_URL"]
+EDITOR_CMD = cfg["EDITOR_CMD"]
+COMPILER_CMD = cfg["COMPILER_CMD"]
 DIFF_CMD = cfg["DIFF_CMD"]
 DIFF_NO_TEXT = cfg.get("DIFF_NO_TEXT", "")
 UPDATE_SOFTWARE = cfg.get("UPDATE_SOFTWARE", "1")
@@ -1319,20 +1198,17 @@ if checkConnection():
 
 if len(sys.argv) > 1:
 		if sys.argv[1] == "upload":
-			rf = sys.argv[2]; hid = sys.argv[3]; eid = sys.argv[4]
-			exfolder = "{0}/{1}/{2}".format(rf, hid, eid)
-			files = ["Hint2.txt"]
-			language = exercise.getLanguage(eid)
-			files.append("Code.cpp" if language == "C++" else "Code.py")
-			for f in files:
+			hid = sys.argv[2]; eid = sys.argv[3]
+			exfolder = "{0}/{1}/{2}".format(REPOSITORY_FOLDER, hid, eid)
+			for f in ["Code.cpp","Hint2.txt"]:
 				keyf = "Key" + f
 				if isFile(exfolder + "/" + keyf):
 					writeFile(exfolder + "/" + f, obscure(readFile(exfolder + "/" + keyf)))
 				else:
 					print(keyf + " not found.")
 		elif sys.argv[1] == "pass":
-			rf = sys.argv[2]; hid = sys.argv[3]
-			hwfolder = "{0}/{1}".format(rf, hid)
+			hid = sys.argv[2]
+			hwfolder = "{0}/{1}".format(REPOSITORY_FOLDER, hid)
 			if isFile(hwfolder + "/KeyPass.txt"):
 				writeFile(hwfolder + "/Pass.txt", obscure(readFile(hwfolder + "/KeyPass.txt")))
 			else:
