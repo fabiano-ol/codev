@@ -17,7 +17,7 @@ CONFIG_FILE = "Config.txt"
 VERIFIED_FILE = "Verified.txt"
 
 def getVersion():
-	return "1.2"
+	return "1.2.1"
 
 def isVersionAtLeast(ver):
 	def Convert(verTXT):
@@ -848,6 +848,7 @@ def GenMenuReadHW(eid, hid):
 	Opt.append(color("Homework: ") + color("{0}".format(hw.description), "LIGHTCYAN_EX"))
 	Opt.append(None)
 	Opt.append(color("Exercise  : ") + "{0}".format(ex.title))
+	Opt.append(color("ID        : ") + "{0}".format(ex.eid))
 	Opt.append(color("Time Limit: ") + "{0} secs.".format(ex.timelimit))
 	Opt.append(color("Status    : ") + "{0}".format(ex.cstatus()))
 	Opt.append(color("Language  : ") + "{0}".format(ex.language))
