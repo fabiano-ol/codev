@@ -12,12 +12,13 @@ import threading
 import psutil
 from colorama import Fore, Style
 from colorama import init as colorama_init
+from progress.bar import FillingSquaresBar
 
 CONFIG_FILE = "Config.txt"
 VERIFIED_FILE = "Verified.txt"
 
 def getVersion():
-	return "1.2.1"
+	return "1.2.2"
 
 def isVersionAtLeast(ver):
 	def Convert(verTXT):
@@ -149,15 +150,21 @@ class homework(object):
 		cokay = 0
 		lsteid = split(hwdata[1], " ")
 		econt = 1
+		b = None
+		if target != "local":
+			b = getProgressBar("Retrieving exercise data... ", len(lsteid))
 		for eid in lsteid:
-			if target != "local":
-				print("Retrieving exercise data {0}/{1}...".format(econt, len(lsteid)))
+			if b != None:
+				b.next()
 			ex = exercise(eid, self.hid)
 			if ex.load(target):
 				if ex.status == "OK":
 					cokay += 1
 				self.exs.append(ex)
 			econt += 1
+		if b != None:
+			b.finish()
+
 		if target == "local":
 			self.status = "{0}/{1}".format(cokay, len(self.exs))
 		else:
@@ -774,6 +781,10 @@ def DelConfirmCode(eid, hid):
 	code = "{0}/{1}/{2}/KeyCode.{3}".format(REPOSITORY_FOLDER, hid, eid, codeExt)
 	rm(code)
 
+def getProgressBar(text, count):
+	b = FillingSquaresBar(text + ' ', fill='█', suffix='%(percent).0f%% (%(eta)ds)', max=count)
+	return b
+
 def DownloadHW(hid, creating, onlyNew):
 	if not checkConnection(True):
 		return
@@ -788,9 +799,10 @@ def DownloadHW(hid, creating, onlyNew):
 	writeFile(hwfolder + "/" + f, c)
 	exLst = split(split(c, "\n")[1], " ")
 	econt = 1
+	b = getProgressBar("Retrieving exercise data... ", len(exLst))
 	for eid in exLst:
 		language = exercise.getLanguage(eid)
-		print("Retrieving exercise data {0}/{1}...".format(econt, len(exLst)))
+
 		exurl = hwurl + "/" + eid
 		exfolder = hwfolder + "/" + eid
 		createEx = not isDir(exfolder)
@@ -834,6 +846,8 @@ def DownloadHW(hid, creating, onlyNew):
 			DownloadSeqFiles('Hint', 'txt')
 
 		econt += 1
+		b.next()
+	b.finish()
 
 	if creating:
 		repository.add(hid)
@@ -1012,12 +1026,14 @@ def isThereNewHW():
 		hwurl = "{0}".format(SERVER_URL)
 		hwfolder = "{0}".format(REPOSITORY_FOLDER)
 		f = CONFIG_FILE
-		cr = getURL(hwurl + "/" + f); lr = split(cr, " ")
-		cl = readFile(hwfolder + "/" + f); ll = split(cl, " ")
-		for hid in lr:
-			if not hid in ll:
-				return True
-		return False
+		if isFile(hwfolder + "/" + f):
+			cr = getURL(hwurl + "/" + f); lr = split(cr, " ")
+			cl = readFile(hwfolder + "/" + f); ll = split(cl, " ")
+			for hid in lr:
+				if not hid in ll:
+					return True
+		else:
+			return True
 	return False
 
 def isThereNewEx(hid):
