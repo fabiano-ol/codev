@@ -1264,6 +1264,14 @@ def GenMenu():
 			chosen = ["readHW", chosen[2], chosen[3]]
 		cmd = chosen[0]
 
+def getLanguageSetting(language, key):
+	lkey = key + "_" + language.upper()
+	if  lkey in cfg:
+		return cfg[lkey]
+	else:
+		return cfg[key]
+
+
 colorama_init(autoreset=True)
 colorama_colors = dict(Fore.__dict__.items())
 SELECTED_COLOR = "WHITE"
@@ -1278,8 +1286,15 @@ if not isFile("./Settings.txt"):
 		exit(0)
 
 cfg = readConfigFile("./Settings.txt")
-
 REPOSITORY_FOLDER = cfg.get("REPOSITORY_FOLDER", "./repository")
+SERVER_URL = cfg["SERVER_URL"]
+DIFF_CMD = cfg["DIFF_CMD"]
+DIFF_NO_TEXT = cfg.get("DIFF_NO_TEXT", "")
+UPDATE_SOFTWARE = cfg.get("UPDATE_SOFTWARE", "1")
+PDF_READER = cfg.get("PDF_READER", "<PDF_FILE>")
+EXE_TIMELIMIT_FACTOR = int(cfg.get("EXE_TIMELIMIT_FACTOR", "10"))
+MONOCHROMATIC = int(cfg.get("MONOCHROMATIC", "0"))
+
 if OSPath(REPOSITORY_FOLDER).find(" ") >= 0:
 	print("ATTENTION: The path of the repository folder has")
 	print("blank spaces: '{0}'".format(OSPath(REPOSITORY_FOLDER)))
@@ -1294,21 +1309,6 @@ if OSPath(REPOSITORY_FOLDER).find(" ") >= 0:
 
 if not isDir(REPOSITORY_FOLDER):
 	mkdir(REPOSITORY_FOLDER)
-
-def getLanguageSetting(language, key):
-	lkey = key + "_" + language.upper()
-	if  lkey in cfg:
-		return cfg[lkey]
-	else:
-		return cfg[key]
-
-SERVER_URL = cfg["SERVER_URL"]
-DIFF_CMD = cfg["DIFF_CMD"]
-DIFF_NO_TEXT = cfg.get("DIFF_NO_TEXT", "")
-UPDATE_SOFTWARE = cfg.get("UPDATE_SOFTWARE", "1")
-PDF_READER = cfg.get("PDF_READER", "<PDF_FILE>")
-EXE_TIMELIMIT_FACTOR = int(cfg.get("EXE_TIMELIMIT_FACTOR", "10"))
-MONOCHROMATIC = int(cfg.get("MONOCHROMATIC", "0"))
 
 if checkConnection():
 	minver = getURL(SERVER_URL + "/" + "MinVersion.txt")
