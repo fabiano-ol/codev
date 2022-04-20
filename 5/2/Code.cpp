@@ -41,14 +41,25 @@ E
 	E
 E
 
->71,Hx:--6+0-Pv7HRHN|TH16<H0QHC
+>71,Hx:--6+0-k0-1)Pv7HRHN|TH16<H0QHC
 	1.HP0eeXQHC
 		|HeHv}ttc
 	EH-4;-HC
 		|HeHPv7HRQH5)447+P;1B-7.Pv7QQc
-		|UfmHeH0cH
-		x:--6+0-P|Ufm;9TH0UYQc
-		x:--6+0-P|Ufl1:TH0UYQc
+		|UfmHeH0c
+		x:--6+0-k0-1)P|Ufm;9TH0UYQc
+		x:--6+0-k0-1)P|Ufl1:TH0UYQc
+	E
+E
+
+>71,Hx:--6+0-"1/")/Pv7HRHN|TH16<H0QHC
+	1.HP0eeXQHC
+		|HeHv}ttc
+	EH-4;-HC
+		|HeHPv7HRQH5)447+P;1B-7.Pv7QQc
+		|UfmHeH0c
+		x:--6+0-"1/")/P|Ufm;9TH0UYQc
+		|Ufl1:HeHv}ttc
 	E
 E
 
@@ -70,7 +81,10 @@ E
 			6eXc
 		EH-4;-HC
 			WRH<-;<-H)=<75á<1+7HRW
-			x:--6+0-P|THYaQc
+			x:--6+0-k0-1)P|THYaQc
+			8:16<.PJM,$6JTH{75)n740);P|QQc
+			l-;<:71P|Qc
+			x:--6+0-"1/")/P|TH]XXXXQc
 			8:16<.PJM,$6JTH{75)n740);P|QQc
 			l-;<:71P|Qc
 		E

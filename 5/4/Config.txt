@@ -2,5 +2,5 @@ Lista encadeada de nós internos
 1
 Dada uma árvore T de inteiros, elabore um algoritmo que 
 retorne uma lista encadeada com os nós internos de T, 
-isto é, aqueles que não são folhas.
+isto é, aqueles que não são folhas. [O(n)]
 

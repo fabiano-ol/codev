@@ -58,13 +58,25 @@ E
 	E
 E
 
->71,Hx:--6+0-Pv7HRHN|TH16<H0TH16<HN1QHC
+>71,Hx:--6+0-k0-1)Pv7HRHN|TH16<H0TH16<HN1QHC
 	1.HP0eeXQHC
 		|HeHv}ttc
 	EH-4;-HC
 		|HeHPv7HRQH5)447+P;1B-7.Pv7QQc
 		|UfmHeH1cH1SSc
-		x:--6+0-P|Ufm;9TH0UYTH1QcHx:--6+0-P|Ufl1:TH0UYTH1Qc
+		x:--6+0-k0-1)P|Ufm;9TH0UYTH1Qc
+		x:--6+0-k0-1)P|Ufl1:TH0UYTH1Qc
+	E
+E
+
+>71,Hx:--6+0-"1/")/Pv7HRHN|TH16<H0TH16<HN1QHC
+	1.HP0eeXQHC
+		|HeHv}ttc
+	EH-4;-HC
+		|HeHPv7HRQH5)447+P;1B-7.Pv7QQc
+		|UfmHeH1cH1SSc
+		x:--6+0-"1/")/P|Ufm;9TH0UYTH1Qc
+		|Ufl1:HeHv}ttc
 	E
 E
 
@@ -90,13 +102,13 @@ E
 				;+)6.PJM,JTHN-#6%Qc
 			E
 			16<H1eXc
-			q6;-:-P|T-T1Qc
+			q6;-:-P|T-T1QcHk'i<=)41B)i4<=:)P|QcHm;+:->-P|QcH8:16<.PJ$6JQcHl-;<:71P|Qc
 		EH-4;-HC
 			WRH<-;<-H)=<75á<1+7HRW
-			16<H1eYc
-			x:--6+0-P|THYaTH1Qc
+			16<H1c
+			1eYcHx:--6+0-k0-1)P|THYaTH1QcHk'i<=)41B)i4<=:)P|QcHm;+:->-P|QcH8:16<.PJ$6JQcHl-;<:71P|Qc
+			1eYcHx:--6+0-"1/")/P|TH]XXXXTH1QcHk'i<=)41B)i4<=:)P|QcHm;+:->-P|QcH8:16<.PJ$6JQcHl-;<:71P|Qc
 		E
-		k'i<=)41B)i4<=:)P|QcHm;+:->-P|QcH8:16<.PJ$6JQcHl-;<:71P|Qc
 		6eXc
 	E
 	.:--P-Qc

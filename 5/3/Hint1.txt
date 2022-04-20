@@ -7,3 +7,26 @@
 - Como obter a maior soma de subárvores contidas em T, em função
   de me, md e s?
   
+- Para evitar o uso de uma função auxiliar, o que acarreteria em
+  um algoritmo de tempo Omega(n^2), pode-se considerar a seguinte
+  versão mais geral do problema:
+  
+  Dada uma árvore T de inteiros (positivos ou negativos), elabore 
+  um algoritmo para determinar: (i) a maior soma sobre todas as 
+  subárvores de T; (ii) a soma de todos os elementos de T.
+
+  Assim, considerando ambas as chamadas recursivas nas subárvores
+  à esquerda e à direita, teremos após tais chamadas:
+  
+  - maior soma me de subárvores contidas na subárvore esquerda;
+  - a soma se dos elementos da subárvore esquerda;
+  - maior soma md de subárvores contidas na subárvore direita;
+  - a soma sd dos elementos da subárvore direita;
+  
+- Como obter a soma s de todos os elementos de T, em função de 
+  se e sd?
+
+- Como obter a maior soma de subárvores contidas em T, em função
+  de me, md e s?
+  
+

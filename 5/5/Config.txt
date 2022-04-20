@@ -2,4 +2,4 @@ Preenchendo a altura dos nós
 1
 Dada uma árvore T de inteiros, elabore um algoritmo que 
 atualize um campo chamado h, presente em cada nó da árvore,
-com a respectiva altura desse nó.
+com a respectiva altura desse nó. [O(n)]
