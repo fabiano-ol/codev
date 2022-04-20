@@ -1,0 +1,5 @@
+Soma das folhas
+1
+Dada uma árvore T de inteiros positivos, elabore um
+algoritmo para determinar a soma das folhas de T. [O(n)]
+

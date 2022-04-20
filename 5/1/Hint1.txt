@@ -1,0 +1,8 @@
+- Considere obter o maior elemento m1 pertecente à 
+  árvore T->Esq, e o maior elemento m2 pertecente à 
+  árvore T->Dir. A recursão pode lhe ajudar a obter tais
+  valores.
+  
+  O maior elemento de T pode ser m1? e m2? 
+  Há algum outro elemento que pode ser o maior?
+  Como distinguir o maior da árvore, entre tais candidatos?

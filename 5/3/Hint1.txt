@@ -1,0 +1,9 @@
+- Considere obter a maior soma me de subárvores contidas na
+  subárvore esquerda de T e a maior soma md de subárvores contidas
+  da subárvore direita de T. A recursão pode lhe ajudar a obter 
+  tais valores. Além disso, considere uma função auxiliar que
+  retorne a soma s de todos os elementos de T.
+  
+- Como obter a maior soma de subárvores contidas em T, em função
+  de me, md e s?
+  

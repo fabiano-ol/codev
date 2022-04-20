@@ -1,0 +1,22 @@
+- Note que, ao invocar, digamos,
+
+    AtualizaNivel(T->Esq)
+  
+  o nó de segundo nível da árvore T que é raiz da subárvore 
+  da esquerda, é um nó de primeiro nível na chamada recursiva
+  acima! Logo, a expectativa é que o seu nível seja atribuído 
+  a 1, e não 2, como seria o correto.
+    
+  Assim, considere a seguinte versão do problema: 
+  
+  Dada uma árvore T de inteiros e um valor k, elabore um 
+  algoritmo que atualize um campo chamado niv, presente 
+  em cada nó da árvore, com o respectivo nível desse nó
+  acrescido de k unidades.
+  
+- Como empregar esse novo parâmetro (incremento a ser dado em
+  cada nível) para que a chamada recursiva atribua o nível de 
+  todos os nós filhos da raiz para os valores corretos?
+
+- Como converter uma chamada original do problema em uma chamada
+  desse problema mais geral proposto?

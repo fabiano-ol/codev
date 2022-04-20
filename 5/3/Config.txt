@@ -1,0 +1,22 @@
+Maior subárvore
+1
+Dada uma árvore T de inteiros (positivos ou negativos), 
+seja T_v a subárvore de T enraizada no nó v de T. Denote
+por Soma(T) a soma de todos os elementos de T. Elabore um 
+algoritmo para determinar a maior soma sobre todas as 
+subárvores de T [O(n^2)], isto é, determine
+
+    máx { Soma(T_v) | v é um nó de T }
+
+Exemplo: Se T é a árvore abaixo, então:
+
+                      Soma(T_5)  = 3
+         5            Soma(T_-3) = -6
+       /   \          Soma(T_10) = 4
+     -3    10         Soma(T_1)  = 1
+     / \  /  \        Soma(T_-4) = -4
+    1 -4 -1  -5       Soma(T_-1) = -1
+                      Soma(T_-5) = -5
+   
+e a resposta deve ser 4.
+ 

@@ -1,0 +1,5 @@
+Preenchendo o nível dos nós
+1
+Dada uma árvore T de inteiros, elabore um algoritmo que 
+atualize um campo chamado niv, presente em cada nó da árvore,
+com o respectivo nível desse nó.

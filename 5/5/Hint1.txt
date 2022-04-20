@@ -1,0 +1,6 @@
+- A recursão pode ajudar a atualizar as alturas dos nós da 
+  subárvores esquerda e direita de T. 
+  
+- Após isso, como é possível atualizar a altura do nó raiz
+  em tempo constante?
+  

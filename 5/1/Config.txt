@@ -1,0 +1,5 @@
+Maior elemento
+1
+Dada uma árvore T não vazia de inteiros positivos, elabore um
+algoritmo para determinar o maior elemento de T. [O(n)]
+
