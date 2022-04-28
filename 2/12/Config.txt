@@ -1,4 +1,4 @@
 Remoção de nó de lista duplamente encadeada
-1
+2
 Dados uma lista duplamente encadeada L e um ponteiro p para 
 um nó de L, remover o nó p. [O(1)]
