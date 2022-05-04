@@ -1,5 +1,5 @@
 Alternando positivos e negativos
-3
+10
 Elabore um algoritmo que leia n inteiros e imprima-os alternando números 
 positivos com negativos, sendo que tanto a ordem de impressão entre os 
 números positivos quanto aquela entre os números negativos devem ser a 
