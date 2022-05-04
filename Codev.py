@@ -18,7 +18,7 @@ CONFIG_FILE = "Config.txt"
 VERIFIED_FILE = "Verified.txt"
 
 def getVersion():
-	return "1.2.2"
+	return "1.3"
 
 def isVersionAtLeast(ver):
 	def Convert(verTXT):
@@ -367,7 +367,7 @@ def getRandomWord():
 		p = ''
 		for _ in range(ncon):
 			p += c[random.randint(0,len(c)-1)]
-		return  p + v[random.randint(0,len(v)-1)]
+		return p + v[random.randint(0,len(v)-1)]
 	w = getPart(1) + getPart(2) + getPart(2)
 	while random.randint(1,100) <= p:
 		w += getPart(2)
@@ -487,25 +487,56 @@ def output_reader(outpipe, errpipe, queue):
 	except:
 		queue.put(None)
 
-def runAsync(cmd, params=None, inputfile="", outputfile="", timelimit=None):
+def runAsync(cmd, params=None, inputfile="", outputfile="", solutionfile="", debugfile="", mapinoutfile="", timelimit=None):
 	if params==None:
 		params = []
 	cmd = OSPath(cmd)
 	fullcmd = [cmd] + params
 	if inputfile == "":
-		fin = None
+		fin = None; inputs = None
 	else:
 		fin = open(OSPath(inputfile), "r", encoding="utf-8")
+		inputs = readFile(inputfile).split("\n\n")
 
 	outputs = []
-	def addOutput(line):
-		print(line)
+	solutions = None; b = None
+	errors = []  #[(input, output, solution),...]
+
+	if solutionfile != "":
+		solutions = readFile(solutionfile).split("\n")
+		b = getProgressBar("Validating: ", len(solutions))
+
+	def addOutput(line, isSolution=True):
+		if not isSolution or b == None:
+			print(color("[{0}]".format(line), "LIGHTYELLOW_EX"))
+		else:
+			r = b.index < len(solutions) and line == solutions[b.index]
+			if not r:
+				if b.index < len(inputs):
+					if mapinoutfile == "" or not isFile(mapinoutfile):
+						inputinfo = inputs[b.index]
+					else:
+						inputinfo = '\n'.join(inputs[:b.index+1])
+				else:
+					inputinfo = ""
+				if b.index >= len(solutions):
+					solutioninfo = ""
+				else:
+					solutioninfo = solutions[b.index]
+				errors.append((inputinfo, line, solutioninfo))
+
+			if not r and debugfile != "" and not isFile(debugfile):
+				writeFile(debugfile + "Input.txt", errors[0][0])
+				writeFile(debugfile + "Solution.txt", errors[0][2])
+			b.next()
 		outputs.append(line)
 
 	elapsedtime = 0
 	realelapsedtime = 0
 	userealtime = True
 	try:
+		if platform.system() != "Windows":
+			fullcmd = ' '.join(fullcmd)
 		p = subprocess.Popen(fullcmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=fin, bufsize=0,
 							 universal_newlines=True)
 		q = queue.Queue()
@@ -515,10 +546,11 @@ def runAsync(cmd, params=None, inputfile="", outputfile="", timelimit=None):
 		starttime = time.time()
 		realstarttime = starttime
 		countingtime = False
+		printingDebug = False
 		while True:
 			elapsed = realelapsedtime if userealtime else elapsedtime
 			if timelimit != None and (elapsed > timelimit):
-				addOutput("Time limit has been reached. Codev has forced the process to stop.")
+				addOutput("Time limit has been reached. Codev has forced the process to stop.", False)
 				kill(p.pid)
 				break
 			else:
@@ -543,21 +575,29 @@ def runAsync(cmd, params=None, inputfile="", outputfile="", timelimit=None):
 							countingtime = False
 							elapsedtime += (time.time() - starttime)
 							starttime = time.time()
+						elif lout == "CODEV_DEBUG":
+							printingDebug = not printingDebug
 						else:
-							addOutput(lout)
+							addOutput(lout, not printingDebug)
+
 				except queue.Empty:
 					continue
 				except:
 					break
 
 	except KeyboardInterrupt:
-		addOutput("Codev has forced the process to stop.")
+		addOutput("Codev has forced the process to stop.", False)
 
 	finally:
 		if outputfile != "":
 			writeFile(outputfile, '\n'.join(outputs))
 		elapsed = realelapsedtime if userealtime else elapsedtime
-		return elapsed, outputs
+		if b != None:
+			for i in range(b.index, b.max):
+				addOutput("")
+			b.finish()
+
+		return elapsed, outputs, errors
 
 def removeCodev(language, text):
 
@@ -629,6 +669,44 @@ def OpenFigure(fig, eid, hid):
 	cmd = ParseParams(PDF_READER.replace("<PDF_FILE>", path))
 	run(cmd[0],cmd[1:])
 
+def LineDiff(text, compareTo, maxwidth=30):
+	i = 0
+	while i < len(compareTo) and i < len(text) and text[i] == compareTo[i]:
+		i += 1
+	if i == len(text) and i == len(compareTo):
+		i = 0
+	i = max(0, min(i + 4, len(text) - 1) - maxwidth + 1)
+	f1 = min(i + maxwidth - 1, len(text) - 1)
+	f2 = min(i + maxwidth - 1, len(compareTo) - 1)
+
+	cs1 = ''; cs2 = ''
+	if i > 0:
+		cs1 += '(+{0}) ...'.format(i)
+		cs2 += '(+{0}) ...'.format(i)
+	j = i
+	while j - i + 1 <= maxwidth and j <= f1 and j <= f2:
+		if text[j] == compareTo[j]:
+			cs1 += text[j]
+			cs2 += compareTo[j]
+		else:
+			cs1 += color(text[j], "YELLOW")
+			cs2 += color(compareTo[j], "YELLOW")
+		j += 1
+	e1 = j
+	while e1 <= f1:
+		cs1 += color(text[e1], "YELLOW")
+		e1 += 1
+	if e1 < len(text):
+		cs1 += '... (+{0})'.format(len(text) - e1)
+	e2 = j
+	while e2 <= f2:
+		cs2 += color(compareTo[e2], "YELLOW")
+		e2 += 1
+	if e2 < len(compareTo):
+		cs2 += '... (+{0})'.format(len(compareTo) - e2)
+
+	return cs1, cs2
+
 def VerifyCode(eid, hid):
 	rep = repository("local")
 	rep.load()
@@ -644,15 +722,17 @@ def VerifyCode(eid, hid):
 	solutionTXT = "{0}/{1}/{2}/Solution.txt".format(REPOSITORY_FOLDER, hid, eid)
 	inputTXT = "{0}/{1}/{2}/Input.txt".format(REPOSITORY_FOLDER, hid, eid)
 	outputTXT = "{0}/{1}/{2}/Output.txt".format(REPOSITORY_FOLDER, hid, eid)
-	diffTXT = "{0}/{1}/{2}/Diff.txt".format(REPOSITORY_FOLDER, hid, eid)
 	verifiedTXT = "{0}/{1}/{2}/{3}".format(REPOSITORY_FOLDER, hid, eid, VERIFIED_FILE)
+	mapinoutTXT = "{0}/{1}/{2}/{3}".format(REPOSITORY_FOLDER, hid, eid, "MapInOut.txt")
+	debugTXT = "{0}/{1}/{2}/{3}".format(REPOSITORY_FOLDER, hid, eid, "Debug")
 
 	if exeFile != code:
 		rm(exeFile)
 
 	rm(verifiedTXT)
 	rm(outputTXT)
-	rm(diffTXT)
+	rm(debugTXT + "Input.txt")
+	rm(debugTXT + "Solution.txt")
 
 	selectColor("CYAN")
 	print(color("Running my solution:"))
@@ -670,31 +750,36 @@ def VerifyCode(eid, hid):
 		else:
 			exeCmd = ParseParams(getLanguageSetting(ex.language, "COMPILER_CMD").replace("<CODE_FILE>", OSPath(code)))
 		starttime = time.time()
-		(algElapsedTime, outputs) = runAsync(exeCmd[0], params=exeCmd[1:], inputfile=inputTXT, outputfile=outputTXT, timelimit=(EXE_TIMELIMIT_FACTOR * ex.timelimit))
+		(algElapsedTime, outputs, errors) = runAsync(exeCmd[0], params=exeCmd[1:], inputfile=inputTXT, outputfile=outputTXT, solutionfile=solutionTXT, debugfile=debugTXT, mapinoutfile=mapinoutTXT, timelimit=(EXE_TIMELIMIT_FACTOR * ex.timelimit))
 		realElapsedTime = time.time() - starttime
 		print(color("Execution done in ") +\
 			  color("{:.1f} sec.".format(algElapsedTime), "LIGHTYELLOW_EX") +\
 			  color(" (Total time: {:.1f} sec)".format(realElapsedTime)))
 		print(color("----------------------"))
-		difflastline = ""
-		if len(outputs)>0:
-			print(color("Comparing results:"))
+
+		if len(errors)>0:
+			print(color("The following differences have been found:"))
 			print(color("----------------------"))
-			diffCmd = ParseParams(DIFF_CMD.replace("<FILE1>", OSPath(outputTXT)).replace("<FILE2>", OSPath(solutionTXT)))
-			diffout = run(diffCmd[0], diffCmd[1:])
-			diffout = diffout.strip().strip('\n')
-			difflastline = diffout.split('\n')[-1]
-			if diffout == "":
-				print("There are no differences between output and solution.")
-			else:
-				print(diffout)
-			writeFile(diffTXT, diffout)
+			for (inputinfo, outputinfo, solutioninfo) in errors:
+				(outdiff, soldiff) = LineDiff(outputinfo, solutioninfo)
+				(inputinfo, inputinfo) = LineDiff(inputinfo, inputinfo)
+				print(color("Input:"))
+				print(inputinfo)
+				print(color("Output:"))
+				print(outdiff)
+				print(color("Solution:"))
+				print(soldiff)
+				print(color("----------------------"))
+
+		else:
+			print(color("No differences have been found."))
 			print(color("----------------------"))
 	else:
-		outputs = []; difflastline = ""; algElapsedTime = 0
+		outputs = []; algElapsedTime = 0
+		errors = ["Compilation error."]
 
 	verOkay = True
-	if len(outputs)>0 and difflastline == DIFF_NO_TEXT:
+	if len(outputs)>0 and len(errors) == 0:
 		print(color("Correctness:") + " " + color("Checked!", "GREEN"))
 	else:
 		print(color("Correctness:") + " " + color("Failed...", "YELLOW"))
@@ -709,6 +794,67 @@ def VerifyCode(eid, hid):
 		print(color("Veredict:", "LIGHTYELLOW_EX") + " " + color("Correct!", "GREEN"))
 	else:
 		print(color("Veredict:", "LIGHTYELLOW_EX") + " " + color("Wrong Answer...", "YELLOW"))
+	printWait()
+
+def DebugCode(eid, hid):
+	rep = repository("local")
+	rep.load()
+	hw = rep.find(hid)
+	ex = hw.find(eid)
+
+	codeExt = "cpp" if ex.language == "C++" else "py"
+	exeExt = "exe" if ex.language == "C++" else "py"
+
+	code = "{0}/{1}/{2}/Code.{3}".format(REPOSITORY_FOLDER, hid, eid, codeExt)
+	exeFile = "{0}/{1}/{2}/Code.{3}".format(REPOSITORY_FOLDER, hid, eid, exeExt)
+
+	debugTXT = "{0}/{1}/{2}/{3}".format(REPOSITORY_FOLDER, hid, eid, "Debug")
+
+	if exeFile != code:
+		rm(exeFile)
+
+	selectColor("CYAN")
+	print(color("Running my solution") + " " + color("(using the first wrong answer as input, in DEBUG mode)", "LIGHTYELLOW_EX") + color(":"))
+	print(color("----------------------"))
+	if exeFile != code:
+		print(color("Starting compilation..."))
+		compCmd = ParseParams(getLanguageSetting(ex.language, "COMPILER_CMD").replace("<EXE_FILE>", OSPath(exeFile)).replace("<CODE_FILE>", OSPath(code)))
+		print(color(run(compCmd[0],compCmd[1:]), "LIGHTYELLOW_EX"))
+		print(color("Compilation done."))
+		print(color("----------------------"))
+	if isFile(exeFile):
+		print(color("Running executable file... (type ") + color("Ctrl+C", "LIGHTYELLOW_EX") + color(" to stop the execution)"))
+		if exeFile != code:
+			exeCmd = [exeFile]
+		else:
+			exeCmd = ParseParams(getLanguageSetting(ex.language, "COMPILER_CMD").replace("<CODE_FILE>", OSPath(code)))
+		exeCmd.append("DEBUG")
+		starttime = time.time()
+		(algElapsedTime, outputs, errors) = runAsync(exeCmd[0], params=exeCmd[1:], inputfile=debugTXT+"Input.txt", solutionfile=debugTXT+"Solution.txt", timelimit=(EXE_TIMELIMIT_FACTOR * ex.timelimit))
+		realElapsedTime = time.time() - starttime
+		print(color("Execution done in ") +\
+			  color("{:.1f} sec.".format(algElapsedTime), "LIGHTYELLOW_EX") +\
+			  color(" (Total time: {:.1f} sec)".format(realElapsedTime)))
+		print(color("----------------------"))
+
+		if len(errors)>0:
+			print(color("The following differences have been found:"))
+			print(color("----------------------"))
+			for (inputinfo, outputinfo, solutioninfo) in errors:
+				(outdiff, soldiff) = LineDiff(outputinfo, solutioninfo)
+				(inputinfo, inputinfo) = LineDiff(inputinfo, inputinfo)
+				print(color("Input:"))
+				print(inputinfo)
+				print(color("Output:"))
+				print(outdiff)
+				print(color("Solution:"))
+				print(soldiff)
+				print(color("----------------------"))
+
+		else:
+			print(color("No differences have been found."))
+			print(color("----------------------"))
+
 	printWait()
 
 def RunCode(eid, hid):
@@ -823,7 +969,7 @@ def DownloadHW(hid, creating, onlyNew):
 		if not onlyNew or createEx:
 			if createEx:
 				mkdir(exfolder)
-			filesOverwrite = [CONFIG_FILE, "Solution.txt", "Input.txt"]
+			filesOverwrite = [CONFIG_FILE, "Solution.txt", "Input.txt", "MapInOut.txt"]
 			if language == "C++":
 				filesKeepOriginal = ["Code.cpp"]
 			else:
@@ -831,7 +977,10 @@ def DownloadHW(hid, creating, onlyNew):
 			filesRem = [VERIFIED_FILE]
 
 			for f in filesOverwrite:
-				writeFile(exfolder + "/" + f, getURL(exurl + "/" + f))
+				rm(exfolder + "/" + f)
+				c = getURL(exurl + "/" + f)
+				if c != "":
+					writeFile(exfolder + "/" + f, c)
 			for f in filesKeepOriginal:
 				fn = exfolder + "/" + f
 				if not isFile(fn):
@@ -876,17 +1025,17 @@ def GenMenuReadHW(eid, hid):
 			Opt.append(["f{0}".format(i), "Show Figure {0}".format(i), ["openFig", i, eid, hid]])
 			i = i+1
 	Opt.append(None)
-	#selectColor("CYAN")
 	selectColor("YELLOW")
 	Opt.append(["1", color("Edit Code"), ["editCode", eid, hid]])
 	Opt.append(["2", color("Run Code"), ["runCode", eid, hid]])
 	Opt.append(["3", color("Validate Code"), ["verifyCode", eid, hid]])
+	if isFile(exfolder + "/" + "DebugInput.txt"):
+		Opt.append(["4", color("Debug Code"), ["debugCode", eid, hid]])
 	Opt.append(None)
 	hwurl = "{0}/{1}".format(SERVER_URL, hid)
 	exfolder = "{0}/{1}/{2}".format(REPOSITORY_FOLDER, hid, eid)
 	selectColor("LIGHTBLUE_EX")
 	Opt.append(["i", color("Show Input"), ["showInput", eid, hid]])
-	#Opt.append(None)
 	if isFile(exfolder + "/" + "Hint1.txt"):
 		Opt.append(["h1", color("Get a Hint"), ["seeBasicHint", eid, hid]])
 	if isFile(exfolder + "/" + "Hint2.txt"):
@@ -1143,19 +1292,6 @@ def GenMenuSettings():
 	Opt.append(color(r"REPOSITORY_FOLDER = <value>"))
 	Opt.append(r"Codev local repository; all the files are located there.")
 	Opt.append(None)
-	Opt.append(color(r"DIFF_CMD = <value>"))
-	Opt.append(r"<value> should be a valid command line for executing a")
-	Opt.append(r"file comparison tool; the substrings <FILE1> and <FILE2>")
-	Opt.append(r"will be replaced with the two files to be compared.")
-	Opt.append(r"If a space between arguments does not work well, try replacing")
-	Opt.append(r"with a comma (,) those spaces that delimit arguments.")
-	Opt.append(r"See also DIFF_NO_TEXT.")
-	Opt.append(None)
-	Opt.append(color(r"DIFF_NO_TEXT = <value>"))
-	Opt.append(r"<value> is the last line that should be outputed by the DIFF_CMD")
-	Opt.append(r"so that Codev interpret as there is no differences between the")
-	Opt.append(r"compared values.")
-	Opt.append(None)
 	Opt.append(color(r"PDF_READER = <value>"))
 	Opt.append(r"<value> should be a valid command line for executing a")
 	Opt.append(r"pdf reader tool; the substrings <PDF_FILE>")
@@ -1251,6 +1387,9 @@ def GenMenu():
 		elif cmd == "verifyCode":
 			VerifyCode(chosen[1], chosen[2])
 			chosen = ["readHW", chosen[1], chosen[2]]
+		elif cmd == "debugCode":
+			DebugCode(chosen[1], chosen[2])
+			chosen = ["readHW", chosen[1], chosen[2]]
 		elif cmd == "showInput":
 			ShowInput(chosen[1], chosen[2])
 			chosen = ["readHW", chosen[1], chosen[2]]
@@ -1266,8 +1405,8 @@ def GenMenu():
 			SeeSpoilerHint(chosen[1], chosen[2])
 			chosen = ["readHW", chosen[1], chosen[2]]
 		elif cmd == "delConfirmCode":
-				DelConfirmCode(chosen[1], chosen[2])
-				chosen = ["readHW", chosen[1], chosen[2]]
+			DelConfirmCode(chosen[1], chosen[2])
+			chosen = ["readHW", chosen[1], chosen[2]]
 		elif cmd == "about":
 			chosen = DisplayMenu(GenMenuAbout())
 		elif cmd == "updSoft":
@@ -1282,7 +1421,7 @@ def GenMenu():
 
 def getLanguageSetting(language, key):
 	lkey = key + "_" + language.upper()
-	if  lkey in cfg:
+	if lkey in cfg:
 		return cfg[lkey]
 	else:
 		return cfg[key]
@@ -1304,8 +1443,6 @@ if not isFile("./Settings.txt"):
 cfg = readConfigFile("./Settings.txt")
 REPOSITORY_FOLDER = cfg.get("REPOSITORY_FOLDER", "./repository")
 SERVER_URL = cfg["SERVER_URL"]
-DIFF_CMD = cfg["DIFF_CMD"]
-DIFF_NO_TEXT = cfg.get("DIFF_NO_TEXT", "")
 UPDATE_SOFTWARE = cfg.get("UPDATE_SOFTWARE", "1")
 PDF_READER = cfg.get("PDF_READER", "<PDF_FILE>")
 EXE_TIMELIMIT_FACTOR = int(cfg.get("EXE_TIMELIMIT_FACTOR", "10"))
@@ -1335,27 +1472,27 @@ if checkConnection():
 		printWait()
 
 if len(sys.argv) > 1:
-		if sys.argv[1] == "upload":
-			rf = sys.argv[2]; hid = sys.argv[3]; eid = sys.argv[4]
-			exfolder = "{0}/{1}/{2}".format(rf, hid, eid)
-			files = ["Hint2.txt"]
-			language = exercise.getLanguage(eid)
-			files.append("Code.cpp" if language == "C++" else "Code.py")
-			for f in files:
-				keyf = "Key" + f
-				if isFile(exfolder + "/" + keyf):
-					writeFile(exfolder + "/" + f, obscure(readFile(exfolder + "/" + keyf)))
-				else:
-					print(keyf + " not found.")
-		elif sys.argv[1] == "pass":
-			rf = sys.argv[2]; hid = sys.argv[3]
-			hwfolder = "{0}/{1}".format(rf, hid)
-			if isFile(hwfolder + "/KeyPass.txt"):
-				writeFile(hwfolder + "/Pass.txt", obscure(readFile(hwfolder + "/KeyPass.txt")))
+	if sys.argv[1] == "upload":
+		rf = sys.argv[2]; hid = sys.argv[3]; eid = sys.argv[4]
+		exfolder = "{0}/{1}/{2}".format(rf, hid, eid)
+		files = ["Hint2.txt"]
+		language = exercise.getLanguage(eid)
+		files.append("Code.cpp" if language == "C++" else "Code.py")
+		for f in files:
+			keyf = "Key" + f
+			if isFile(exfolder + "/" + keyf):
+				writeFile(exfolder + "/" + f, obscure(readFile(exfolder + "/" + keyf)))
 			else:
-				print("KeyPass.txt not found.")
+				print(keyf + " not found.")
+	elif sys.argv[1] == "pass":
+		rf = sys.argv[2]; hid = sys.argv[3]
+		hwfolder = "{0}/{1}".format(rf, hid)
+		if isFile(hwfolder + "/KeyPass.txt"):
+			writeFile(hwfolder + "/Pass.txt", obscure(readFile(hwfolder + "/KeyPass.txt")))
 		else:
-			print("Codev could not recognize the given parameters.")
+			print("KeyPass.txt not found.")
+	else:
+		print("Codev could not recognize the given parameters.")
 else:
 
 	GenMenu()
