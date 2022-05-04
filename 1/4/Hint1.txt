@@ -1,0 +1,13 @@
+- Deve-se varrer todo número i=2,...,n, contando-se quantos
+  são primos.
+
+- Um número é primo se é maior que 1 e divisível somente 
+  por 1 e por ele mesmo. Pela definição, segue que pode-se
+  determinar se um número i>=2 é primo verificando-se a 
+  divisibilidade de i por algum número j=2,3,...,n-1.
+  No entanto, note que não é necessário verificar a 
+  divisibilidade de i até j=n-1. O último número j a ser
+  testado pode ser bem menor. Que limite é esse?
+  
+- Observe que se i é divisível por j, então i é divisível
+  também por (i/j), e vice-versa.

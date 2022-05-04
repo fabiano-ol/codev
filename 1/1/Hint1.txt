@@ -1,0 +1,17 @@
+- Note que é necessário fazer a soma s = 1+2+3+...+n. Essa
+  soma não pode ser escrita com um único comando por envolver
+  um número variável de parcelas, que depende do valor n. 
+  Contudo, pode ser escrita como:
+  
+  s = 0
+  s = s + 1
+  s = s + 2
+  s = s + 3
+  ...
+  s = s + n
+
+  A soma envolvida em cada comando agora possui um número 
+  constante de parcelas, mas o problema é que o número de
+  comandos é que se torna variável com o valor de n. 
+  
+  Como resolver?

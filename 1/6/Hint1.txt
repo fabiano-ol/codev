@@ -1,0 +1,5 @@
+- Pode-se supor inicialmente o maior número igual ao primeiro
+  elemento, e colocá-lo na variável "maior". Em seguida, varre-se 
+  os demais elementos entre os n primeiros de A, e ao encontrar um 
+  elemento maior que aquele em "maior", atualiza-se essa variável
+  com esse elemento.

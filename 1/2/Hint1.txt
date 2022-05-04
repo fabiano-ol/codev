@@ -1,0 +1,9 @@
+- Note que é necessário fazer a soma s = 1+2+3+...+n. 
+  Tente encontrar a fórmula fechada para s, isto é,
+  uma expressão f(n) que seja equivalente a 
+  1+2+3+...+n mas que possua um número constante de
+  termos. 
+  
+- Observe que f(n) representa a soma dos n primeiros 
+  termos de uma P.A. (progressão aritmética) com 
+  primeiro termo 1 e razão 1.

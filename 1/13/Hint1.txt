@@ -1,0 +1,13 @@
+- Observe a figura e lembre-se das convenções gráficas empregadas na
+  visualização do estado de memória de um algoritmo. Como determinar,
+  pelo desenho, se uma variável é do tipo escalar, ponteiro, 
+  matriz/Vetor ou estrutura?
+
+- Nesse exercício, há duas estruturas necessárias, já nomeadas como
+  E1 e E2. Identifique as mesmas pelo desenho e pelo algoritmo de 
+  entrada e saída e complete seus campos.
+  
+- Nesse exercício, há duas variáveis necessárias. Declare-as 
+  globalmente no algoritmo, na área indicada. 
+                 
+

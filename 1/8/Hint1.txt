@@ -1,0 +1,17 @@
+- Começando da primeira posição j=0 do vetor,
+  seja c o caractere A[j]. Copie c para A[j+k], 
+  tomando o cuidado que j+k pode ultrapassar o 
+  tamanho n de A, e portanto essa soma deve ser 
+  tomada em módulo n). Seja c o caractere de 
+  A[j+k] que foi substituído e seja j a posição
+  (j+k)%n. Agora, basta repetir o processo, 
+  colocando esse caractere na posição j+k de igual
+  maneira. Esse processo deve se repetir exatamente 
+  n vezes, pois cada caractere deve ser movido 
+  exatamente uma vez.
+  
+- Atente que pode ser que ao executar esse processo,
+  pode-se retornar a posição inicial, antes de se
+  visitar todas as posições. (Pense em um exemplo
+  onde isso ocorre.) O que fazer nesse caso?
+  

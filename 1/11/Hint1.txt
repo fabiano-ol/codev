@@ -1,0 +1,14 @@
+- Implemente o algoritmo tradicional de soma à mão:
+  somam-se as unidades, dezenas, centenas, etc., eventualmente
+  considerando-se o "vai um" (se a soma das unidades ultrapassam
+  10, deve-se acrescentar uma dezena na soma das dezenas e debitar
+  10 unidades; o mesmo ocorrendo analogamente para os demais 
+  algarismos).
+  
+- Talvez você ache que trabalhar com os elementos do vetor em ordem
+  reversa é melhor. Nesse caso, faça um procedimento auxiliar que 
+  inverta os elementos de um vetor, use-o para inverter tanto A[0..n-1]
+  quanto B[0..m-1], execute a operação de soma produzindo R[0..k-1], e 
+  depois inverta novamente A[0..n-1], B[0..n-1] para retorná-los ao
+  estado original, além de inverter R[0..k-1] para colocar a resposta
+  no formato adequado ao problema.

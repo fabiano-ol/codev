@@ -1,0 +1,11 @@
+- Dado um número n, note que o algarismo das unidades de n
+  corresponde ao resto da divisão de n por 10. O número n' 
+  que representa os demais algarismos (isto é, o número obtido
+  da representação decimal de n pela remoção do algarismo das
+  unidades) é determinado pela divisão inteira de n por 10. 
+  
+- Como obter agora o algarismo das dezenas de n, sabendo-se o
+  valor de n'?
+  
+- Como generalizar o raciocínio anterior para obter os demais 
+  algarismos (centena, unidade de milhar, etc.)?

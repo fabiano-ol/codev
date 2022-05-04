@@ -1,0 +1,11 @@
+- Pode-se varrer i=1,2,...,n e, para cada i,
+  determinar o valor do i-ésimo Fibonacci. Dessa forma,
+  ao final do processo, o n-ésimo Fibonacci estaria
+  computado e poderia ser retornado.
+  
+- Para computar o valor do i-ésimo Fibonacci f, é necessário
+  guardar certas informações de iterações passadas. Quais
+  são elas?
+
+  
+  

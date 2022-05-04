@@ -1,0 +1,6 @@
+- Começando com s=0, pode-se varrer os números i=1,2,...,n, e 
+  verificar se i deve ou não ser considerado no somatório. Se 
+  sim, faz-se s = s+i.
+  
+- Para que determinado i seja considerado no somatório, ele deve
+  ser múltiplo de algum elemento de m[1..k]. Como fazer?
