@@ -1,5 +1,5 @@
 Lista sequencial: maior elemento
 3
-Dados um natural n e vetor de naturais A, determinar o maior natural
-em A[0..n-1]. [O(n)]
+Dados um natural n e vetor de naturais L, determinar o maior natural
+em L[0..n-1]. [O(n)]
 
