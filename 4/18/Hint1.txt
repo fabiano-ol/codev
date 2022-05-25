@@ -1,0 +1,5 @@
+- Seja m o maior elemento de L[0..n-2].  
+  Note que o valor de m pode ser obtido por recursão.
+  
+- Como o valor de m pode ser empregado para obter
+  o maior elemento de L[0..n-1]?

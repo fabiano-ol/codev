@@ -1,0 +1,5 @@
+Lista sequencial: remoção de elementos maiores que k
+3
+Dados uma lista linear L sequencial e um inteiro k, 
+elabore uma função recursiva que remova todos os 
+elementos maiores que k de L. [O(n)]

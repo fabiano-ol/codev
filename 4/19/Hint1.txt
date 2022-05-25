@@ -1,0 +1,13 @@
+- Considere remover todos os elementos maiores do que k
+  que estão na lista L em seus primeiros n-1 elementos. 
+  A recursão pode realizar essa tarefa, da seguinte forma:
+  - seja n' = n-1
+  - a chamada recursiva pode remover todos os elementos
+    maiores do que k em L[0..n'-1], e atualizar n' com o
+    novo tamanho dessa (sub)lista.
+  
+- Após isso, note que o elemento L[n-1] ficou de fora
+  da recursão. O que fazer com ele? (Note que ele pode ter
+  que ser removido ou não.)
+  
+- O caso de L ser nulo deve ser tratado a parte.

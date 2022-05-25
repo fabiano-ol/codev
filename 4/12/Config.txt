@@ -1,4 +1,4 @@
-lista encadeada: k-último elemento [O(n)]
+Lista encadeada: k-último elemento [O(n)]
 1
 Dada uma lista linear encadeada de inteiros e um inteiro k, 
 elabore uma função recursiva que compute o k-último elemento,

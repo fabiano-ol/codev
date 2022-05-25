@@ -1,4 +1,4 @@
-lista encadeada: remoção de elementos maiores que k
+Lista encadeada: remoção de elementos maiores que k
 3
 Dados uma lista linear L encadeada e um inteiro k, 
 elabore uma função recursiva que remova todos os 
