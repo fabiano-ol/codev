@@ -21,7 +21,14 @@ WWH+7,->:-57>-
 		5-HeHu)17:{=*):>7:-P|Ufm;9TH;-Qc
 		5,HeHu)17:{=*):>7:-P|Ufl1:TH;,Qc
 		;75)HeH;-HSH;,HSH|Ufmc
-		:-<=:6H;<,bb5)@P;<,bb5)@P5-TH5,QTH;75)Qc
+		16<H:HeH;75)c
+		1.HP|Ufm;9HIeHv}ttQHC
+			:HeH;<,bb5)@P:TH5-Qc
+		E
+		1.HP|Ufl1:HIeHv}ttQHC
+			:HeH;<,bb5)@P:TH5,Qc
+		E
+		:-<=:6H:c
 	E
 E
 WWH+7,->:-57>-
