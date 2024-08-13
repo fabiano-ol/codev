@@ -1080,6 +1080,7 @@ def GenMenuNewHW():
 		rep.load()
 
 	Opt = []
+	ids = []
 	i = 1
 	Opt.append(color("New Homeworks:", "CYAN"))
 	Opt.append(None)
@@ -1089,9 +1090,11 @@ def GenMenuNewHW():
 		Opt.append("(connection to the server seems to be down...)")
 	else:
 		for hw in rep.hws:
+			ids.append(hw.hid)
 			Opt.append([str(i), hw.description + " (" + hw.cstatus() + ")", ["downloadHW", hw.hid]])
 			i += 1
 	Opt.append(None)
+	Opt.append(["*", "Baixar todos", ["downloadHWAll", ids]])
 	Opt.append(["b", "Go Back", ["hwList"]])
 	return Opt
 
@@ -1417,6 +1420,11 @@ def GenMenu():
 		elif cmd == "openFig":
 			OpenFigure(chosen[1], chosen[2], chosen[3])
 			chosen = ["readHW", chosen[2], chosen[3]]
+		elif cmd == "downloadHWAll":
+			for i in chosen[1]:
+				DownloadHW(i, True, True)
+			# DownloadHW(chosen[1], True, True)
+			chosen = ["hwList"]
 		cmd = chosen[0]
 
 def getLanguageSetting(language, key):
