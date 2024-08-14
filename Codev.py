@@ -1094,7 +1094,8 @@ def GenMenuNewHW():
 			Opt.append([str(i), hw.description + " (" + hw.cstatus() + ")", ["downloadHW", hw.hid]])
 			i += 1
 	Opt.append(None)
-	Opt.append(["*", "Baixar todos", ["downloadHWAll", ids]])
+	if(len(ids)>0):
+		Opt.append(["*", "Baixar todos", ["downloadHWAll", ids]])
 	Opt.append(["b", "Go Back", ["hwList"]])
 	return Opt
 
