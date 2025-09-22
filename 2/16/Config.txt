@@ -1,0 +1,15 @@
+Consulta de elementos em lote [O(n^2 log n)]
+3
+Dada uma lista linear sequencial LS com N inteiros, 
+e uma lista linear encadeada LE com N^2 inteiros, compute
+a quantidade de elementos de LE que também estão em LS.
+
+Ex:
+
+Entrada:
+LS = [3, 6, 2]; N = 3; 
+LE -> 1 -> 3 -> 4 -> 2 -> 2 -> 4 -> 6 -> 1 -> 7
+
+Saída:  
+4
+

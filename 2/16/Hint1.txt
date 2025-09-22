@@ -1,0 +1,12 @@
+- A tentativa de percorrer cada um dos N^2 elementos de LE e, para cada um,
+  percorrer LS procurando tal elemento, conduzirá a um algoritmo de tempo
+  O(N^3).
+  
+  Para conseguir fazer na complexidade solicitada de O(N^2 log N), crie 
+  uma lista sequencial ordenada LSO inicialmente vazia. Insira cada elemento
+  de LS em LSO, o que resulta tempo O(N^2).
+  
+  Agora, percorra cada um dos N^2 elementos de LE e, para cada um, faça uma busca do elemento
+  em LSO em tempo O(log N), resultando em tempo total de O(N^2 log N).
+	
+
