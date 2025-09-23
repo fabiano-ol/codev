@@ -1,0 +1,5 @@
+- Deve-se alocar uma lista linear L com n1+n2 posições.
+  Em seguida, copiar os n1 elementos de L1 para as
+  primeiras posições de L, e os n2 elementos de L2 para
+  as posições restantes de L.
+
