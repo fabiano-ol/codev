@@ -1,0 +1,8 @@
+- Deve-se percorrer concorrentemente as posições da lista 
+  com duas variáveis:
+  - i=0,1,2,etc., indo da esquerda para direita, e
+  - j=n,n-1,n-2,etc., indo da direita para a esquerda.
+  Para cada par de posições i,j, trocar os elementos entre
+  tais posições.
+  
+  Até quando deve-se repetir a iteração acima?

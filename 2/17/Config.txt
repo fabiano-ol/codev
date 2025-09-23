@@ -1,0 +1,5 @@
+Inversão de lista sequencial
+1
+Dados um inteiro n, uma lista linear L sequencial não-ordenada de 
+n inteiros, elabore uma função que inverta a ordem entre os elementos 
+desta linear [O(n)].
