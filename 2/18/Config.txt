@@ -1,5 +1,5 @@
 Concatenação de listas sequenciais
-1
+3
 Dados inteiros n1, n2, e lista lineares L1,L2 sequenciais 
 não-ordenadas de respectivamente n1,n2 inteiros, elabore 
 uma função que retorne uma nova lista linear sequencial 

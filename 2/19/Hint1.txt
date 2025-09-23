@@ -1,0 +1,5 @@
+- Deve-se alocar uma lista encadeada L inicialmente vazia.
+  Em seguida, copiar os n1 elementos de L1 como primeiros
+  elementos de L, e os n2 elementos de L2 como os elementos
+  seguintes de L.
+

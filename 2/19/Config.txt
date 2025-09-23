@@ -1,0 +1,6 @@
+Concatenação de listas encadeadas
+3
+Dadas lista lineares encadeadas L1,L2 de respectivamente 
+n1,n2 inteiros, elabore uma função que retorne uma nova 
+lista linear encadeada que represente a concatenação de 
+L1 com L2 [O(n1+n2)].
