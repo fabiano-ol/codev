@@ -1,0 +1,13 @@
+- Deve-se alocar uma lista linear L para se computar a 
+  interção das listas L1 e L2. Essa lista L deve ter um 
+  número mínimo de posições. 
+  
+  Qual seria tal número mínimo? Não precisa ser um limite 
+  mínimo justo, basta que seja possível comportar os 
+  elementos da interseção.
+  
+- Em seguida, andar pelos elementos de L1 e, para cada um,
+  andar pelos elementos de L2. Caso um elemento de L2 seja
+  identificado como igual ao corrente de L1, incluí-lo em
+  L.
+
