@@ -14,4 +14,15 @@ um inteiro x, realize as seguintes operações:
       verdadeiro, se encontrado);
 (iii) remova todos os elementos cujos valores são o triplo de x, 
       se existentes.
+      
+Ex:
+ 
+  Entrada:
+  L -> cabeça -> 1 -> 4 -> 6 -> 7 -> cauda
+  x = 2
+  
+  Saída:  
+  L -> cabeça -> 1 -> 2 -> 4 -> 7 -> cauda
+  retorno = verdadeiro (elemento 2*2=4 existe em L)
+
 
