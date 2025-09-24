@@ -1,8 +1,8 @@
 Interseção de listas sequenciais
 3
-Dadas duas lista lineares com estrutura (contendo um vetor
-E[] com os elementos da lista e um inteiro N indicando
+Dadas duas lista sequenciais L1,L2 com estrutura (contendo 
+um vetor E[] com os elementos da lista e um inteiro N indicando
 o número de elementos) de inteiros distintos, elabore uma 
 função que retorne uma lista linear de mesmo tipo com os 
-elementos comuns a ambas as listas.
+elementos comuns a ambas as listas L1 e L2.
 
