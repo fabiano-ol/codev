@@ -1,0 +1,13 @@
+- Pode-se criar três funções auxiliares: uma para inserir
+  um novo elemento na lista, outra para buscar certo
+  elemento na lista, e mais outra para remover todas as
+  ocorrências de determinado elemento da lista. A solução
+  do problema consiste portanto em usar as três funções,
+  respectivamente com os argumentos x, 2*x, 3*x, onde
+  x é o valor dado de entrada.
+  
+- Note que a lista possui cabeça e cauda. Isso significa que
+  o primeiro e último nós nunca devem ter seu conteúdo lido 
+  como se ali contivesse um elemento válido (por exemplo, 
+  no momento da busca ou removação).
+

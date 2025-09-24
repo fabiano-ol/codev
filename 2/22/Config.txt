@@ -1,0 +1,17 @@
+Listas encadeadas com nó cabeça e nó cauda
+3
+Um nó cauda é o último nó de uma lista encadeada cujo campo elemento
+não é utilizado. Portanto, um nó cauda é análogo ao nó cabeça, porém ao
+invés de ser o primeiro nó, é o último da lista. Se uma lista possui N
+elementos, então esta lista possui N+2 nós (nó cabeça, seguido de N nós
+representando os elementos, e por fim o nó cauda).
+
+Dada uma lista encadeada L ordenada, com nó cabeça e nó cauda, e dado 
+um inteiro x, realize as seguintes operações:
+
+(i)   insira o elemento x em L;
+(ii)  determine se o dobro de x está em L (a função deve retornar 
+      verdadeiro, se encontrado);
+(iii) remova todos os elementos cujos valores são o triplo de x, 
+      se existentes.
+
