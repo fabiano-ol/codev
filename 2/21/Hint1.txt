@@ -1,0 +1,12 @@
+- Deve-se alocar uma lista encadeada L (com estrutura) 
+  para se computar a diferença das listas L1\L2. Essa 
+  lista L deve ter um número mínimo de posições. 
+  
+  Qual seria tal número mínimo? Não precisa ser um limite 
+  mínimo justo, basta que seja possível comportar os 
+  elementos da diferença.
+  
+- Em seguida, andar pelos elementos de L1 e, para cada um,
+  procurá-lo pelos elementos de L2. Se não for encontrado,
+  incluí-lo em L.
+

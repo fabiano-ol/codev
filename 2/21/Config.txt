@@ -1,0 +1,8 @@
+Diferença de listas encadeadas
+3
+Dadas duas lista encadeadas L1,L2 com estrutura (contendo um ponteiro
+para o primeiro nó da lista e um inteiro N indicando
+o número de elementos) de inteiros distintos, elabore uma 
+função que retorne uma lista encadeada de mesmo tipo com os 
+elementos de L1 que não estão contidos em L2.
+
