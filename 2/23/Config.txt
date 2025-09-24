@@ -1,0 +1,42 @@
+Listas lineares com chave e informação
+3
+Um tipo de lista bastante comum na prática é aquela em que, a
+cada elemento da lista, guarda-se também uma chave associada.
+A intenção é fazer com que cada elemento possua uma identificação
+única (a chave), que será usada no processo de busca.
+
+Para implementar essa ideia, é comum adicionar ao nó de lista
+encadeada um atributo de chave, além do próprio elemento. Já
+no caso de listas lineares, cada posição do vetor passa a ser
+uma estrutura, contendo o elemento propriamente dito e sua
+chave.
+
+Elabore duas funções, que converte uma lista encadeada em
+lista sequencial e vice-versa, como descrito a seguir.
+
+função ConverterEncParaSeq(L: ^NoEnc, ref N: Inteiro): NoSeq[]
+    // dada uma lista encadeada L onde cada nó (estrutura NoEnc)
+    // contém os campos Chave e E, retornar um vetor que
+    // corresponda à conversão da lista encadeada em uma lista
+    // sequencial. Cada elemento do vetor é nó (estrutura NoSeq)
+    // que também contém os campos Chave e E.
+
+    Ex:
+    Entrada:
+      L -> [Chave: 1, E: 2] -> [Chave: 3, E: 4]
+    Saída:
+      retornar vetor [Chave: 1, E: 2 , Chave: 3, inEfo: 4], 
+      e atribuir N=2
+         
+função ConverterSeqParaEnc(L[]: NoSeq, N: Inteiro): ^NoEnc
+    // dada uma lista sequencial L onde cada nó (estrutura NoSeq)
+    // contém os campos Chave e E, retornar uma lista encadeada 
+    // que corresponda à conversão da lista sequencial em uma lista
+    // encadeada. Cada elemento da lista encadeada é um nó 
+    // (estrutura NoEnc) que também contém os campos Chave e E.
+
+    Ex:
+    Entrada:
+      L = [Chave: 1, E: 2 , Chave: 3, E: 4], N=2
+    Saída:
+      retornar -> [Chave: 1, E: 2] -> [Chave: 3, E: 4]

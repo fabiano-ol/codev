@@ -1,0 +1,15 @@
+- Percorra cada elemento da lista, produzindo um elemento
+  da outra lista, copiando os valores de chave e elemento
+  de cada nó.
+
+  Como nesse exercício tanto a lista sequencial quanto
+  encadeada possuem estruturas, ao invés de simplesmente
+  "Nó", o nó de lista encadeada é do tipo "NoEnc", para
+  diferenciar do nó de lista sequencial ("NoSeq").
+  
+- Para que a memória do vetor esteja acessível no retorno
+  da função, é necessário que sua alocação seja dinâmica.
+
+- No caso da conversão de lista encadeada para lista 
+  sequencial, é necessário saber quantos elementos existem
+  para alocar o vetor. Como fazer isso?

@@ -1,0 +1,108 @@
+K16+4=,-Hd;<,17V0f
+K16+4=,-Hd;<,41*V0f
+K16+4=,-Hd*1<;W;<,+SSV0f
+
+<A8-,-.H;<:=+<Hv7m6+HC
+	16<Hk0)>-c
+	16<Hmc
+	v7m6+HRHx:7@c
+EHv7m6+c
+
+<A8-,-.H;<:=+<Hv7{-9HC
+	16<Hk0)>-c
+	16<Hmc
+EHv7{-9c
+
+v7m6+HRHk76>-:<-:{-9x):)m6+Pv7{-9Ht#%TH16<HvQHC
+	WWH+7,->
+	v7m6+HRHt+76>HeHv}ttcHv7m6+HRH=HeHv}ttc
+	.7:HP16<H1eXcH1dvcH1SSQHC
+		v7m6+HRH67>7HeHPv7m6+HRQH5)447+P;1B-7.Pv7m6+QQc
+		67>7Ufk0)>-HeHt#1%Vk0)>-c
+		67>7UfmHeHt#1%Vmc
+		67>7Ufx:7@HeHv}ttc
+		1.HP=HeeHv}ttQHC
+			t+76>HeH67>7c
+		EH-4;-HC
+			=Ufx:7@HeH67>7c
+		E
+		=HeH67>7c
+	E
+	:-<=:6Ht+76>c
+	WWH+7,->
+E
+
+v7{-9HRHk76>-:<-:m6+x):){-9Pv7m6+HRHtTH16<HNvQHC
+	WWH+7,->
+	v7{-9HRHt+76>cHv7m6+HRH8cHveXc
+	8HeHtc
+	?014-HP8HIeHv}ttQHC
+		vHeHvSYc
+		8HeH8Ufx:7@c
+	E
+	t+76>HeHPv7{-9HRQH5)447+P;1B-7.Pv7{-9QRvQc
+	WW+:1),7H>-<7:Ht+76>#XVVvUY%
+	8HeHtcH16<H1eXc
+	?014-HP8HIeHv}ttQHC
+		t+76>#1%Vk0)>-HeH8Ufk0)>-c
+		t+76>#1%VmHeH8Ufmc
+		8HeH8Ufx:7@cH1HeH1SYc
+	E
+	:-<=:6Ht+76>c
+	WWH+7,->
+E
+
+>71,Hq6;-:-m6+Pv7m6+HRHNtTH16<H+TH16<H-THv7m6+HRHN=QHC
+	v7m6+HRH67>7HeHPv7m6+HRQH5)447+P;1B-7.Pv7m6+QQc
+	67>7Ufk0)>-HeH+cH67>7UfmHeH-cH67>7Ufx:7@HeHv}ttcH
+	1.HP=HeeHv}ttQHC
+		tHeH67>7cH
+	EH-4;-HC
+		=Ufx:7@HeH67>7c
+	E
+	=HeH67>7cH
+E
+
+>71,Hm;+:->-m6+Pv7m6+HRHtQHC
+	16<H6HeHXc
+	v7m6+HRH8HeHtc
+	8:16<.PJ#JQcH
+	?014-HP8HIeHv}ttQHCH8:16<.PJ+eM,c-eM,HJTH8Ufk0)>-TH8UfmQcH8HeH8Ufx:7@cHEc
+	8:16<.PJ%$6JQc
+E
+
+>71,Hl-;<:71Pv7m6+HRHNtQHC
+	v7m6+HRH8THRH8:cH8HeHtcH
+	?014-HP8HIeHv}ttQHC
+		8:HeH8cH8HeH8Ufx:7@cH
+		.:--P8:Qc
+	E
+E
+
+
+16<H5)16PQHC
+	;-<*=.P;<,7=<THv}ttQcH;-<*=.P;<,-::THv}ttQc
+	16<H6cHv7m6+HRHtcHv7m6+HRH=cH16<H+cH16<H-cH16<HvcHv7{-9HRHt+76>YcHv7m6+HRHt+76>Zc
+	?014-HP;+)6.PJM,JTHN6QfXQHC
+		tHeHv}ttcH=HeHv}ttc
+		1.HP6IeUYQHC
+			WRH4êH+YTH1YTH+ZTH1ZTHVVVTH+6TH16HRW
+			.7:HP16<H1eXcH1d6cH1SSQHC
+				;+)6.PJM,HM,JTHN+THN-QcHq6;-:-m6+PtT+T-T=QcH
+			E
+			t+76>YHeHk76>-:<-:m6+x):){-9PtTHvQc
+			t+76>ZHeHk76>-:<-:{-9x):)m6+Pt+76>YTHvQc
+			m;+:->-m6+Pt+76>ZQcH.:--Pt+76>YQcHl-;<:71Pt+76>ZQcHl-;<:71PtQcH
+		EH-4;-HC
+			WRH)=<75)<1+H<-;<HRW
+			6HeH]XXXXXc
+			.7:HP16<H1eXcH1d6cH1SSQHC
+				q6;-:-m6+PtT1T6S1T=QcH
+			E
+			t+76>YHeHk76>-:<-:m6+x):){-9PtTHvQc
+			t+76>ZHeHk76>-:<-:{-9x):)m6+Pt+76>YTHvQc
+			m;+:->-m6+Pt+76>ZQcH.:--Pt+76>YQcHl-;<:71Pt+76>ZQcHl-;<:71PtQcH
+		E
+	E
+	:-<=:6HXc
+E
