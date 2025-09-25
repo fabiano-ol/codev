@@ -1,0 +1,49 @@
+Multiplicação de matrizes esparsas
+3
+Seja M uma matriz NxN. Ao usar uma variável matriz para 
+armazená-la, o espaço ocupado é Theta(N^2).
+
+Seja k a quantidade de entradas não nulas de M. A matriz 
+M é chamada de esparsa quando k é muito menor que N^2 
+(por exemplo, algum valor constante).
+
+Seja R = M x M, isto é, R é a multiplicação de M por ela 
+mesma. Pela definição de multiplicação de matrizes, temos
+
+  R[i][j] = M[i][0..N-1] . M[0..N-1][j], para todo 1 <= i, j <= N
+
+onde v . w denota o produto vetorial entre os vetores v e w,
+isto é, v . w = v[0]*w[0] + v[1]*w[1] + ... + v[N-1]*w[N-1].
+
+Isto conduz a um algoritmo Theta(N^3) para realizar a 
+multiplicação (Theta(N) para fazer cada produto vetorial, e 
+há Theta(N^2) desses a fazer).
+
+Há diversas aplicações de Engenharia em que a matriz M em 
+questão é uma matriz esparsa. Nesse caso, é possível 
+modelar os dados de M de modo que ela ocupe espaço Theta(1) 
+(ao invés de Theta(N^2)) e leve tempo Theta(N^2) quando k 
+é constante (ao invés de Theta(N^3)).
+
+Considere que M será modelada pela seguinte estrutura:
+
+estrutura MatrizEsparsa:
+	N: Inteiro
+	linhas[0..N-1]: ^No 
+
+onde linhas[i] armazena uma lista encadeada dos valores 
+não nulos da matriz na linha i. Cada nó é da forma:
+
+estrutura No:
+	col: Inteiro
+	E: Inteiro
+	Prox: ^No
+
+onde col armazena um índice de coluna, e E o valor que 
+existe na matriz nessa coluna.
+
+Veja a Figura 1 para um exemplo dessa representação.
+
+Dada uma matriz esparsa M, implemente a multiplicação 
+M x M em tempo Theta(N^2) assumindo k constante.
+
