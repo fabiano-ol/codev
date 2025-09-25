@@ -1,0 +1,25 @@
+Avaliação de polinômios
+3
+Suponha que um polinômio
+
+  P(x) = a_n x^n + a_(n-1) x^(n-1) + ... +
+         a_1 x + a_0
+
+seja modelado por uma lista encadeada com
+n+1 nós, onde o primeiro elemento armazena
+o coeficiente a_0 de P, o segundo nó 
+armazena a_1, o terceiro a_2, e assim por
+diante.
+
+Elabore uma função que receba um polinômio P,
+representado por uma lista encadeada, além de um 
+inteiro x, e determine o valor da avaliação 
+desse polinômio no ponto x, isto é, o valor 
+de P(x). [O[n]]
+
+Ex: 
+
+Entrada: L -> 2 -> 3 -> 1, x=3
+(representando o polinômio P(x) = x^2 + 3x + 2)
+
+Saída: 20 (correpondendo a P(3)) 

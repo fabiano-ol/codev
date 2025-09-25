@@ -1,0 +1,21 @@
+- Varra a lista encadeada e, para cada coeficiente,
+  compute a parcela do polinômio associada àquele
+  coeficiente. Em outras palavras, ao ler o
+  coeficiente a_i, compute
+
+  a_i * x^i
+
+  e vá acumulando todas essas parcelas, retornado
+  o valor.
+
+- Cuidado ao tentar computar x^i via exponenciação.
+  O custo de uma exponenciação é O(log n), e como
+  há n parcelas, a complexidade final do algoritmo
+  seria O(n log n), não O(n).
+
+  Como fazer o cálculo de x^i em tempo constante?
+  Dica: use o fato que a potência anterior, x^(i-1),
+  já teve que ser computada.
+
+- Assuma que o valor do polinômio pode chegar a 
+  2^64-1.
