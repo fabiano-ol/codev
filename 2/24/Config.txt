@@ -21,9 +21,9 @@ há Theta(N^2) desses a fazer).
 
 Há diversas aplicações de Engenharia em que a matriz M em 
 questão é uma matriz esparsa. Nesse caso, é possível 
-modelar os dados de M de modo que ela ocupe espaço Theta(1) 
-(ao invés de Theta(N^2)) e leve tempo Theta(N^2) quando k 
-é constante (ao invés de Theta(N^3)).
+modelar os dados de M de modo que ela ocupe espaço Theta(N) 
+(ao invés de Theta(N^2)) e leve tempo Theta(N^2) (ao invés 
+de Theta(N^3)) quando k é constante.
 
 Considere que M será modelada pela seguinte estrutura:
 
