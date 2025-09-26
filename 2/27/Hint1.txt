@@ -1,0 +1,14 @@
+- Note que se a_R x^i é o monômio de grau i no polinômio 
+  a * P, então a_R = a * a_P, onde a_P é o coeficiente
+  do monômio de grau i em P. 
+  
+  Portanto, varra com um ponteiro p a lista encadeada P.
+  Para cada nó p, produza um novo elemento a * p^.E ao 
+  final da lista encadeada R que representa o polinômio
+  resultante.
+
+- Há uma função pronta, que pode ser útil na implementação:
+
+  procedimento InsereEnc(ref L: ^No, e: Inteiro, ref u: ^No)
+    // insere um novo elemento e na lista L após o último nó u
+
