@@ -1,0 +1,33 @@
+- Note que se a_R x^i é o monômio de grau i no polinômio 
+  da soma, então a_R = a_P + a_Q, onde a_P é o coeficiente
+  do monômio de grau i em P e a_Q é o coeficiente do monômio 
+  de grau i em Q. 
+  
+  Portanto, varra com um ponteiro p a lista encadeada P e,
+  concomitantemente, varra com um ponteiro q a lista
+  encadeada Q. Para cada par p,q, produza um novo elemento
+  p^.E + q^.E ao final da lista encadeada S que representa
+  a soma.
+
+- Há duas funções prontas, que podem ser úteis na implementação:
+
+  procedimento InsereEnc(ref L: ^No, e: Inteiro, ref u: ^No)
+    // insere um novo elemento e na lista L após o último nó u
+
+  procedimento Destroi(L: ^No):
+    // desaloca todos os nós de L
+
+- Há dois cuidados importantes nessa implementação:
+
+  (i) Preveja o caso de que os coeficientes finais da lista
+      encadeada S sejam nulos. Nesse caso, como esses termos são
+      cancelados, não devem ser inseridos em S. Ex: 
+      P = -> 1 -> 2 (P(x) = 2x + 1)
+      Q = -> 2 -> -2 (Q(x) = -2x + 2)
+      Logo, S = -> 3 (S(x) = P(x)+Q(x) = 3) 
+
+  (ii) Se todos os termos são cancelados, o resultado deve ser
+      um polinômio constante igual a zero. 
+      P = -> 1 -> -1 (P(x) = -x + 1)
+      Q = -> -1 -> 1 (Q(x) = x - 1)
+      Logo, S = -> 0 (S(x) = P(x)+Q(x) = 0) 
