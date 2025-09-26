@@ -1,4 +1,4 @@
-Multiplicação de polinômios
+Produto de polinômios
 3
 Suponha que um polinômio
 
