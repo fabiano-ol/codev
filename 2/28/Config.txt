@@ -1,0 +1,31 @@
+Multiplicação de polinômios
+3
+Suponha que um polinômio
+
+  P(x) = a_n x^n + a_(n-1) x^(n-1) + ... +
+         a_1 x + a_0
+
+seja modelado por uma lista encadeada com
+n+1 nós, onde o primeiro elemento armazena
+o coeficiente a_0 de P, o segundo nó 
+armazena a_1, o terceiro a_2, e assim por
+diante.
+
+Elabore uma função que receba dois polinômios 
+P e Q, representados cada um por uma lista 
+encadeada, e determine o polinômio correspondente
+ao produto de P por Q, representado também como
+lista encadeada. [O(n^2)]
+
+Ex: 
+
+Entrada: 
+P -> 2 -> 3 -> 1 
+  (representando o polinômio P(x) = x^2 + 3x + 2)
+Q -> 1 -> 4 -> -5 -> 2 
+  (representando o polinômio P(x) = 2x^3 - 5x^2 + 4x + 1)
+
+Saída: 
+-> 2 -> 11 -> 3 -> -7 -> 1 -> 2
+  (representando o polinômio 
+   (P.Q)(x) = 2x^5 + x^4 - 7x^3 + 3x^2 + 11x + 2)

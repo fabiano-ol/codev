@@ -1,0 +1,58 @@
+- Observe o exemplo:
+
+  P(x) = a2 x^2 + a1 x + a0
+  Q(x) = b2 x^2 + b1 x + b0
+
+  Seja R(x) = P(x)Q(x). Portanto,
+
+  R(x) = (a2 x^2 + a1 x + a0)(b2 x^2 + b1 x + b0)
+
+       = b2 x^2 (a2 x^2 + a1 x + a0) + 
+         b1 x (a2 x^2 + a1 x + a0) + 
+         b0 (a2 x^2 + a1 x + a0)
+
+       = x^2 [b2 (a2 x^2 + a1 x + a0)] + 
+         x [b1 (a2 x^2 + a1 x + a0)] + 
+         [b0 (a2 x^2 + a1 x + a0)]
+
+  Note que as expressões entre colchetes corresondem
+  ao polinômio P(x) multiplicado por diferentes escalares
+  (cada um dos coeficientes de Q). Esse problema foi
+  resolvido em um exercício anterior, e sua solução 
+  pode ser empregada como função auxiliar aqui.
+  
+  Ex: b2 (a2 x^2 + a1 x + a0) = ProdutoPolinomioEscalar(P, b2)
+
+- A multiplicação de x^j pela expressão entre colchetes
+  pode ser feita simplesmente pela adição de j zeros no 
+  início da lista. Isto é:
+
+  Ex: x^2 [...polinômio...] => adiciona-se dois zeros no início 
+  da lista do respectivo polinômio.
+
+- As diversas parcelas com somas de polinômios podem ser
+  feitas somando-se dois a dois os polinômios. Esse 
+  problema foi resolvido em um exercício anterior, 
+  e sua solução pode ser empregada como função auxiliar.
+
+  Ex: Seja
+
+  R1 = b2 x^2 (a2 x^2 + a1 x + a0)
+  R2 = b1 x (a2 x^2 + a1 x + a0)
+  R3 = b0 (a2 x^2 + a1 x + a0)
+
+  Logo, o resultado é
+
+  SomaPolinomios(SomaPolinomios(R1, R2), R3)
+
+- Há três funções prontas, que podem ser úteis na implementação:
+
+procedimento InsereInicioEnc(ref L: ^No, e: Inteiro)
+    // insere um novo elemento e no início da lista L
+
+  procedimento InsereFinalEnc(ref L: ^No, e: Inteiro, ref u: ^No)
+    // insere um novo elemento e na lista L após o último nó u
+
+  procedimento Destroi(L: ^No):
+    // desaloca todos os nós de L
+
