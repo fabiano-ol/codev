@@ -1,4 +1,4 @@
-Consulta de elementos em lote [O(n^2 log n)]
+Consulta de elementos em lote
 3
 Dada uma lista linear sequencial LS com N inteiros, 
 e uma lista linear encadeada LE com N^2 inteiros, compute
