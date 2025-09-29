@@ -1,0 +1,6 @@
+Maior elemento (árvore de busca)
+3
+Dada uma árvore de busca T não vazia de inteiros 
+positivos, elabore um algoritmo para determinar 
+o maior elemento de T. [O(log n) médio]
+

@@ -1,0 +1,7 @@
+- Considere obter o maior elemento m pertecente à 
+  árvore T->Dir. A recursão pode lhe ajudar a obter tais
+  valores.
+  
+  O maior elemento de T pode ser m? 
+  Há algum outro elemento que pode ser o maior?
+  Como distinguir o maior da árvore, entre tais candidatos?
