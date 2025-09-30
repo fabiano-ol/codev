@@ -1,4 +1,4 @@
-Maior elemento (árvore de busca)
+Maior elemento em árvores de busca
 3
 Dada uma árvore de busca T não vazia de inteiros 
 positivos, elabore um algoritmo para determinar 
