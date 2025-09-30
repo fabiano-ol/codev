@@ -1,23 +1,22 @@
 Conversão de expressão parentizada em árvore
 3
-Dada uma cadeia de caracteres T[0..N-1] de
-N caracteres, que corresponda a uma expressão
-algébrica completamente parentizada envolvendo 
-as operações aritméticas fundamentais (*,/,+,-), 
-elabore uma função que transforme-a em uma árvore, 
-da seguinte maneira:
+Dada uma cadeia de caracteres C[ini..fim], que 
+corresponda a uma expressão algébrica completamente 
+parentizada envolvendo as operações aritméticas 
+fundamentais (*,/,+,-), elabore uma função que 
+transforme-a em uma árvore, da seguinte maneira:
 
 - para cada trecho (a+b), deve-se transformá-lo 
   no nó
            [ * ]
            /   \
-	    [ a ] [ b ]
+        [ a ] [ b ]
 
 - para cada trecho (a-b), deve-se transformá-lo 
   no nó
            [ + ]
            /   \
-	    [ a ] [ b ]
+        [ a ] [ b ]
 
 e assim por diante. Por exemplo: (5/((1+2)*(3-4))) 
 deve ser transformado em
@@ -28,5 +27,5 @@ deve ser transformado em
                   /   \
              [ + ]     [ - ]
              /   \     /   \
-	    [ 1 ] [ 2 ]  [ 3 ] [ 4 ]
+         [ 1 ] [ 2 ] [ 3 ] [ 4 ]
 
