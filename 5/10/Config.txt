@@ -1,0 +1,21 @@
+Inserção em árvores de busca
+3
+Considere a inserção de um novo elemento x em uma
+árvore de busca T, sendo que x pode ser um elemento
+já existente em T. Para proceder essa inserção, 
+assuma que um nó da árvore possui, além dos campos 
+ponteiros para as subárvores esquerda e direita, um 
+campo E com o elemento inserido, e um campo inteiro 
+Q com a quantidade de vezes que tal elemento foi 
+inserido. 
+
+Elabore um algoritmo que insira x em T como se segue:
+
+(i) se x não pertence a T, a inserção é a padrão,
+    isto é, x é inserido como uma folha de T, em
+	lugar que for conveniente; o novo nó possui o
+	campo E igual a x e o campo Q igual a 1;
+
+(ii) se x pertence a T, o nó associado a x tem
+    o valor associado Q incrementado.
+

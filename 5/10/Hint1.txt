@@ -1,0 +1,11 @@
+- O algoritmo deve seguir o procedimento padrão 
+  de inserção, isto é: compara-se x com o elemento 
+  na raiz de T. Se x for menor (resp. maior), 
+  insere-se recursivamente x na subárvore à esquerda
+  (resp. à direita). Se T for nulo, cria-se um nó 
+  associado a x. 
+  
+  Esse processo deve ser estendido para comparar se 
+  x é igual à raiz: se for, apenas deve-se incrementar
+  a quantidade associada ao elemento da raiz.
+  
