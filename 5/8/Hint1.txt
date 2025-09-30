@@ -1,0 +1,20 @@
+- Considere implementar a seguinte função:
+
+  função ExpressaoParaArvore(C[]: Caractere, 
+                             ini, fim: Inteiro): ^No
+  
+  Note que se C[ini] = '(', então necessariamente a 
+  cadeia deve ser da forma, digamos, '(a+b)', onde
+  a e b são expressões parentizadas e '+' denota um
+  dos 4 operadores. Nesse caso, pode-se criar um
+  nó com op='+', e cuja subárvore esquerda deva ser
+  a computação recursiva da árvore correspondente 
+  à expressão a, e cuja subárvore direita deva ser
+  a computação recursiva da árvore correspondente 
+  à expressão b.
+
+  Se C[ini] != '(', então C[ini..fim] deve ser lido
+  como um número. Nesse caso, a árvore contém somente
+  um nó raiz onde op='@' e E é igual a tal número lido
+  da cadeia.
+
