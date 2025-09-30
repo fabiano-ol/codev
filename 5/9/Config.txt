@@ -1,0 +1,12 @@
+Avaliação de expressão parentizada
+3
+Dada uma árvore correspondendo a uma expressão
+algébrica completamente parentizada envolvendo
+as operações aritméticas fundamentais (*,/,+,-), 
+tal como no exerício anterior, elabore uma função
+avalie a expressão, isto é, compute o valor
+numérico correspondente. 
+
+Por exemplo: para a árvore correspondendo à 
+expressão (4/((1+1)*(3-1))), o resultado deve
+ser 1.

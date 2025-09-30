@@ -1,0 +1,10 @@
+- Considere implementar a seguinte função:
+
+  função AvaliarExpressao(T: ^No): Inteiro
+  
+  Note que se T^.op = '@', então a expressão
+  resultante é simplesmente T^.E. Caso contrário,
+  deve-se avaliar à expressão correspondente 
+  às árvores T^.Esq, T^.Dir e aplicar a operação
+  T^.op entre tais resultados.
+  
