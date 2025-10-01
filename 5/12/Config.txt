@@ -1,0 +1,21 @@
+Criação de árvores de busca de altura mínima
+5
+Dado um vetor ordenado x[] e inteiros ini, fim, 
+elabore uma função que construa uma árvore de 
+busca de altura mínima com a seguinte 
+característica: [O(n)]
+
+- a (menor) mediana de x[ini..fim] será o valor
+  da raiz da árvore. Seja m a posição de tal
+  mediana.
+
+- a (menor) mediana de x[ini..m-1] será o valor
+  da raiz da subárvore esquerda, e a (menor)
+  mediana de x[m+1..fim] será o valor da raiz 
+  da subárvore direita
+  
+- e assim por diante, sempre tomando a (menor) 
+  mediana do conjunto de elementos restantes 
+  para ser o elemento da raiz da árvore de busca
+  que representa tal grupo de elementos.
+

@@ -1,0 +1,13 @@
+- O problema é elaborar a função
+
+  função CriarArvoreAlturaMinima(x[], ini, fim: Inteiro): ^No
+
+- Note que o elemento raiz deve ser x[m], onde 
+  m = (ini+fim) div 2. 
+
+- Podemos calcular as subárvores esquerda e direita 
+  recursivamente, por meio de
+  
+  CriarArvoreAlturaMinima(x, ini, m-1)
+  CriarArvoreAlturaMinima(x, m+1, fim)
+  
