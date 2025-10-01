@@ -1,0 +1,5 @@
+Reconhecimento das árvores de busca
+1
+Dada uma árvore T, elabore uma função para 
+determinar se T é uma árvore de busca. [O(n)]
+

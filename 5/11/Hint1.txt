@@ -1,0 +1,39 @@
+- O problema é elaborar a função
+
+  função EhArvoreBusca(T: ^No): Lógico
+  // retornar V se T é arvore de busca, ou F caso contrário
+
+  Ao invocar a função na subárvore da esquerda e da direita,
+  podemos obter a informação se as respectivas subárvores são
+  de busca. No entanto, como saber se T também é?
+
+  Para isso, seria necessário testar se o elemento da raiz
+  é maior que o maior elemento da subárvore à esquerda, e 
+  menor que o menor elemento da subárvore à direita.
+
+  Para não ter que varrer a árvore para obter o menor e 
+  o maior elemento de cada subárvore, podemos usar uma 
+  versão mais geral como função auxiliar:
+
+  função EhArvoreBuscaMinMax(T: ^No, ref m, ref M: Inteiro): Lógico
+  // retornar V se T é arvore de busca, ou F caso contrário
+  // além disso, escreve em m o menor valor de T, e em M o maior
+	
+  Assim, ao invocar:
+
+  ehbuscae = EhArvoreBuscaMinMax(T^.Esq, me, Me)
+  ehbuscad = EhArvoreBuscaMinMax(T^.Dir, md, Md)
+
+  Podemos saber se a subárvore da esquerda é de 
+  busca (ehbuscae), se a subárvore da esquerda é 
+  de busca (ehbuscae), e quais são o menor e o 
+  maior elemento da esquerda (me, Me), e também 
+  quais são o menor e o maior elemento da direita
+  (md, Md). De posso de todos esses valores, 
+  pode-se agora determinar se T é árvore de busca.
+
+- Depois de determinar se T é de busca, não 
+  esqueça de calcular o menor elemento m e o maior
+  elemento M de T, novamente usando os valores
+  calculados anteriormente.
+  
