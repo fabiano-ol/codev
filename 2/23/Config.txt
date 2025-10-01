@@ -23,9 +23,9 @@ função ConverterEncParaSeq(L: ^NoEnc, ref N: Inteiro): NoSeq[]
 
     Ex:
     Entrada:
-      L -> [Chave: 1, E: 2] -> [Chave: 3, E: 4]
+      L -> [Chave=1, E=2] -> [Chave=3, E=4]
     Saída:
-      retornar vetor [Chave: 1, E: 2 , Chave: 3, inEfo: 4], 
+      retornar vetor [[Chave=1, E=2], [Chave=3, E=4]], 
       e atribuir N=2
          
 função ConverterSeqParaEnc(L[]: NoSeq, N: Inteiro): ^NoEnc
@@ -37,6 +37,6 @@ função ConverterSeqParaEnc(L[]: NoSeq, N: Inteiro): ^NoEnc
 
     Ex:
     Entrada:
-      L = [Chave: 1, E: 2 , Chave: 3, E: 4], N=2
+      L = [[Chave=1, E=2] , [Chave=3, E=4]], N=2
     Saída:
-      retornar -> [Chave: 1, E: 2] -> [Chave: 3, E: 4]
+      retornar -> [Chave=1, E=2] -> [Chave=3, E=4]
