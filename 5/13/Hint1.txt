@@ -1,0 +1,16 @@
+- A descrição do problema já indica a maneira
+  de solucionar o problema. O passo (b) é 
+  o emprego direto do procedimento de inserção
+  em árvores de busca. Para o passo (c), note 
+  que percorrer T por ordem ascendente de seus
+  elementos consiste em:
+  
+  1. percorrer T^.Esq por ordem ascendente de seus
+     elementos
+  2. transferir T^.E para A, para a próxima posição
+     livre
+  3. percorrer T^.Dir por ordem ascendente de seus
+     elementos
+  
+  Para os passos 1 e 3, podemos resolver por recursão.
+  
