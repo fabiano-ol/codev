@@ -1,8 +1,9 @@
-Elementos menores que certo limiar em árvores de busca
+Elementos em certo intervalo numérico em árvores de busca
 3
-Dados uma árvore de busca T e um valor inteiro a,
+Dados uma árvore de busca T e valores inteiros a,b, 
 elabore uma função que retorne a quantidade de nós
-de T cujos elementos são <= a. [O(log n) médio]
+de T cujos elementos estejam entre a e b (extremos
+inclusive). [O(log n) médio]
 
 Assuma que cada nó X, além do campo elemento, possui
 também um campo Q indicando a quantidade de nós
