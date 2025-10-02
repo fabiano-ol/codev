@@ -1,0 +1,12 @@
+- Note que o número de elementos de T que 
+  estejam no intervalo [a,b] é equivalente
+  ao número de elementos de T que sejam:
+  
+  (i)  menores ou iguais ao valor b; e
+  (ii) que não sejam menores ou iguais ao
+       valor a-1
+
+- Pense em como usar a resposta do exercício
+  anterior para verificar os pontos (i) e (ii)
+  acima.
+  

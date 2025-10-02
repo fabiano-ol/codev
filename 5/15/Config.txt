@@ -1,0 +1,10 @@
+Elementos menores que certo limiar em árvores de busca
+3
+Dados uma árvore de busca T e um valor inteiro a,
+elabore uma função que retorne a quantidade de nós
+de T cujos elementos são <= a. [O(log n) médio]
+
+Assuma que cada nó X, além do campo elemento, possui
+também um campo Q indicando a quantidade de nós
+descendentes de X (incluindo o próprio X).
+
