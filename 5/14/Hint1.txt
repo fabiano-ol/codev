@@ -1,0 +1,21 @@
+- Vejamos os casos:
+
+  Se T é nulo, independente do valor de a, o
+  resultado é zero.
+
+  Caso contrário, se o elemento da raiz for
+  maior que a, então nem a raiz nem qualquer
+  nó à direita participam da solução. Assim, 
+  o problema se reduz a contar a quantidade 
+  de elementos na subárvore esquerda que são 
+  <= a (recursão pode ajudar nisso).
+  
+  Se a raiz é menor ou igual ao valor a, então
+  a raiz deve ser contabilizada, assim como todos
+  os elementos à esquerda (lembre-se que o campo 
+  Q pode ajudar a fazer essa última contagem em
+  tempo constante). À quantidade já contabilizada,
+  deve-se somar a quantidade de elementos na 
+  subárvore direita que são <= a (recursão pode 
+  ajudar nisso).
+  
