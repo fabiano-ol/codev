@@ -1,0 +1,5 @@
+Elementos em certo intervalo de uma lista sequencial ordenada
+3
+Dada uma lista sequencial L[0..n-1] ordenada de inteiros, 
+além de dois inteiros a,b, determinar quantos elementos de 
+L estão no intervalo [a,b]. [O(log n)]
