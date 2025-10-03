@@ -1,0 +1,9 @@
+Soma de um par de elementos de lista sequencial
+3
+Dada uma lista sequencial L[0..n-1] de inteiros, 
+e um inteiro k, determinar se há um par de elementos
+de L cuja soma seja k. [O(n log n)]
+
+Você pode assumir a existência de um procedimento
+Ordenar(L, n) diponível para ordenar uma lista 
+sequencial L[0..n-1] em tempo O(n log n).
