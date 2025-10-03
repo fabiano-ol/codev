@@ -1,5 +1,10 @@
 Contagem de elementos distintos em lista sequencial
-1
+3
 Dada uma lista sequencial L[0..n-1] de inteiros, elabore 
 uma função que retorne o número de elementos distintos
 de L [O(n log n)].
+
+Você pode assumir a existência de um procedimento
+Ordenar(L, n) diponível para ordenar uma lista 
+sequencial L[0..n-1] em tempo O(n log n).
+
