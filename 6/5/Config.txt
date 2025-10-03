@@ -1,9 +1,14 @@
-Soma de um par de elementos de lista sequencial
+Soma de par de elementos mais próxima de zero
 3
 Dada uma lista sequencial L[0..n-1] de inteiros, 
-e um inteiro k, determinar se há um par de elementos
-de L cuja soma seja k. [O(n log n)]
+determinar qual o valor da menor soma entre um par
+de elementos de L (não necessariamente consecutivos).
+[O(n log n)]
 
 Você pode assumir a existência de um procedimento
 Ordenar(L, n) diponível para ordenar uma lista 
-sequencial L[0..n-1] em tempo O(n log n).
+sequencial L[0..n-1] de pares ordenados em tempo 
+O(n log n). Cada elemento de L é do tipo Par, uma 
+estrutura (também já existente) com as campos 
+inteiros x,y. A ordenação é feita pelo campo x de 
+cada par, e o desempate pelo campo y.
