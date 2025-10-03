@@ -1,0 +1,73 @@
+K16+4=,-Hd;<,17V0f
+K16+4=,-Hd;<,41*V0f
+K16+4=,-Hd*1<;W;<,+SSV0f
+K16+4=,-HJj1*YV0J
+
+WWH+7,->:-57>-
+*774Hj=;+)P16<Ht#%TH16<H6TH16<H@QHC
+	16<H1TH.cH1HeHXcH.HeH6UYc
+	?014-HP1HdeH.QHC
+		16<H5HeHP1S.QWZc
+		1.HPt#5%HeeH@QHC
+			:-<=:6H<:=-c
+		EH-4;-H1.HPt#5%HfH@QHC
+			.HeH5UYc
+		EH-4;-HCHWWHt#5%HdH@
+			1HeH5SYc
+		E
+	E
+	:-<=:6H.)4;-c
+E
+WWH+7,->:-57>-
+
+16<Hj=;+)m5t7<-P16<Ht#%TH16<Hj#%TH16<H6QHC
+	WWH+7,->
+	16<H9HeHXc
+	w:,-6):PtTH6Qc
+	.7:HP16<H1eXcH1d6cH1SSQHC
+		1.HPj=;+)PtTH6THj#1%QQHC
+			9HeH9SYc
+		E
+	E
+	:-<=:6H9c
+	WWH+7,->
+E
+
+>71,Hq6;-:-P16<Ht#%TH16<HN6TH16<H-QHC
+	t#6%HeH-cH6HeH6SYc
+E
+
+16<H5)16PQHC
+	;-<*=.P;<,7=<THv}ttQcH;-<*=.P;<,-::THv}ttQc
+	16<H5)@'6cH16<HRHtTHRHjcH16<H6c
+	?014-HP;+)6.PJM,JTHN5)@'6QfXQHC
+		1.HP5)@'6IeUYQHC
+			tHeHP16<HRQH5)447+P;1B-7.P16<QR5)@'6QcH
+			jHeHP16<HRQH5)447+P;1B-7.P16<QR5)@'6Qc
+			6HeHXc
+			.7:HP16<H1eXcH1d5)@'6cH1SSQHC
+				16<H-cH;+)6.PJM,JTHN-Qc	q6;-:-PtT6T-Qc
+			E
+			6HeHXc
+			.7:HP16<H1eXcH1d5)@'6cH1SSQHC
+				16<H-cH;+)6.PJM,JTHN-Qc	q6;-:-PjT6T-Qc
+			E
+		EH-4;-HC
+			WRH)=<75)<1+H<-;<HRW
+			5)@'6HeHYXXXXXXc
+			tHeHP16<HRQH5)447+P;1B-7.P16<QR5)@'6QcH
+			jHeHP16<HRQH5)447+P;1B-7.P16<QR5)@'6Qc
+			6HeHXc
+			.7:HP16<H1eXcH1d5)@'6cH1SSQHC
+				q6;-:-PtT6T1QcH
+			E
+			6HeHXc
+			.7:HP16<H1eXcH1d5)@'6cH1SSQHC
+				q6;-:-PjT6TZR1QcH
+			E
+		E
+		8:16<.PJM,$6JTHj=;+)m5t7<-PtTHjTH6QQc
+		.:--PtQcH.:--PjQc
+	E
+	:-<=:6HXc
+E

@@ -1,0 +1,5 @@
+Contagem de elementos distintos em lista sequencial
+3
+Dada uma lista sequencial L[0..n-1] de inteiros, elabore 
+uma função que retorne o número de elementos distintos
+de L [O(n log n)].
