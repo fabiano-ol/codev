@@ -1,0 +1,6 @@
+Maior diferença entre elementos de uma lista sequencial
+3
+Dada uma lista sequencial L[0..n-1] de inteiros, 
+determinar qual a maior diferença entre quaisquer 
+dois de seus elementos distintos. [O(n)]
+
