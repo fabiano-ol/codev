@@ -1,4 +1,4 @@
-Pares em Desordem
+Pares fora de ordem
 3
 Dada uma lista sequencial L[0..n-1] de inteiros, 
 determinar quantos pares de inteiros distintos
