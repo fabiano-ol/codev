@@ -1,0 +1,8 @@
+Pares em Desordem
+3
+Dada uma lista sequencial L[0..n-1] de inteiros, 
+determinar quantos pares de inteiros distintos
+de L está fora de ordem. Um par L[i], L[j] é 
+considerado fora de ordem se i<j e L[i]>L[j].
+[O(n log n)]
+
