@@ -1,0 +1,42 @@
+Ordenação por Contagem
+3
+Um método de ordenação muito conhecido, chamado de
+ordenação por contagem (do inglês, counting sort), 
+emprega tabelas de acesso direto para ordenar um 
+vetor L[0..n-1] em tempo theta(n+T) e espaço 
+theta(T), onde T representa a diferença entre o 
+maior e o menor elemento de L.
+
+O método funciona assim: seja m o menor elemento 
+de L, e M o maior elemento de L. Crie uma tabela 
+de acesso direto C[0..T-1], onde T = M - m + 1.
+
+O vetor C na posição i, com i = 0,...,T-1, 
+representa a contagem de ocorrências do elemento 
+m+i em L[0..n-1]. Pode-se fazer tal contagem 
+varrendo-se os elementos de L, e incrementando a 
+posição correspondente de C, em tempo O(n). 
+
+Em seguida, percorre-se o vetor C, da menor 
+posição para a maior. Se a posição i de C possui 
+certo valor, digamos, k, então deve-se copiar k 
+elementos de valor i+m para o vetor L, a partir 
+de seu início. Cada novo grupo de elementos sendo 
+copiados deve iniciar na última posição livre da 
+cópia anterior. Isso pode ser feito em tempo O(T).
+
+Exemplo: se L = [4, 2, 4, 7, 1], n = 5, então 
+temos que m = 1, M = 7, e portanto T = 7. Cria-se 
+o vetor C = [1, 1, 0, 2, 0, 0, 1], onde C[0] 
+representa a quantidade de elementos 1, C[1] a 
+quantidade de elementos 2, C[2] a quantidade de 
+elementos 3, e assim por diante.
+
+Logo, escreve-se 1 cópia do valor 1 em L, seguido 
+de 1 cópia de valor 2 em L, seguido de 0 cópias 
+do valor 3 em L, e assim por diante, produzindo 
+L = [1, 2, 4, 4, 7].
+
+Elabore um procedimento que receba L, n, e o 
+ordene por contagem.
+

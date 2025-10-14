@@ -1,2 +1,2 @@
 Tabela de Acesso Direto e de Dispersão
-1 2
+1 2 3
