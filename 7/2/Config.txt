@@ -1,0 +1,12 @@
+Anagramas
+3
+Duas sequências de caracteres são chamadas de
+anagramas se uma pode ser obtida a partir de
+uma permutação dos caracteres da outra. 
+
+Exemplos: 'niteroi' e 'inteiro' são anagramas, 
+          'amor' e 'remo' não são anagramas.
+
+Elabore uma função que reconheça se duas cadeias
+de n caracteres são anagramas. [O(n)]
+
