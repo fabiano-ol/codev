@@ -1,0 +1,40 @@
+Histograma
+3
+Um histograma é uma ferramenta utilizada na estatística 
+para representar a distribuição de frequência de um 
+conjunto de dados numéricos. 
+
+Sejam X = {x_1, x_2, ..., x_n} um conjunto numérico
+e k um inteiro representando o número de grupos desejado.
+
+Sejam: m = o menor elemento de X
+       M = o maior elemento de X
+
+Um histograma de X com k grupos divide o intervalo
+numérico [m, M] em k intervalos de mesmo tamanho
+t = (M-m)/k. Cada grupo contabiliza a quantidade 
+de elementos de X que estão no respectivo intervalo.
+
+Por exemplo, se X = [4, 2, 33, 20, 1, 7, 10, 30] e 
+k = 4, então cada grupo de um histograma de X 
+contabiliza a quantidade de elementos nos seguintes 
+intervalos de tamanho t = (33-1)/4 = 8:
+
+[1,9) --> 4 elementos
+[9,17) --> 1 elemento
+[17,25) --> 1 elemento
+[25,33] --> 2 elementos
+
+onde [a,b] representa o intervalo dos números reais
+entre a (inclusive) e b (inclusive), e [a,b)
+representa o intervalo dos números reais entre 
+a (inclusive) e b (exclusive). 
+
+Elabore uma função em que, dado um vetor X[0..n-1] 
+com os elementos de certo conjunto X, e um inteiro k, 
+retorne um vetor H[0..k-1] que represente o 
+histograma de X em k grupos, onde H[i] é igual ao 
+número de elementos no i-ésimo grupo. No exemplo 
+anterior, a resposta esperado seria H[0]=4, H[1]=1, 
+H[2]=1, H[3]=2. [O(n)]
+
