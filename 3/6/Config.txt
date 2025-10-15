@@ -1,0 +1,45 @@
+Manobra de vagões no pátio
+3
+Imagine que há uma linha de trem onde chegam 3 vagões 
+sequencialmente identificados pelos inteiros 3,2,1,
+onde 3 é o último vagão e, portanto, 1 é o primeiro. 
+Deseja-se permutar a ordem dos vagões de modo que a 
+nova sequência deles seja, digamos, 2,1,3 (2 sendo o
+último, 3 o primeiro). 
+
+Naturalmente, no caso de vagões, é difícil trocar a
+ordem deles, uma vez que é difícil tirá-los da linha. 
+Felizmente, há uma possibilidade se houver uma linha
+auxiliar, conectada à linha onde estão os vagões 
+(veja Figura 1), que funciona como um desvio. 
+Os vagões chegam pela linha principal e devem ser 
+manobrados, usando a linha auxiliar, para sair na ordem 
+final desejada. Os vagões podem ser desconectados entre
+si e separados dos demais, para serem reconectados
+na saída.
+
+Elabore um procedimento que imprima na tela a menor 
+sequência de manobras para realizar tal permutação. 
+Cada manobra corresponde a (ver Figura 2):
+
+- "E=>M" [correspondendo a encaminhar uma vagão da
+          entrada para a área de manobra]
+- "M=>E" [correspondendo a encaminhar uma vagão da
+          área de manobra para a entrada]
+- "M=>S" [correspondendo a encaminhar uma vagão da
+          área de manobra para a saída]
+
+No exemplo dado, podemos mudar a sequência 3,2,1
+para a sequência 2,1,3 com a seguinte sequência de
+manobras:
+
+E=>M,E=>M,E=>M,M=>S,M=>E,M=>S,E=>M,M=>S
+
+Elabore um procedimento em que, dado o número de 
+vagões n, inicialmente sequenciados n,n-1,...,2,1, 
+sendo n o último e 1 o primeiro, e um vetor V[0..n-1] 
+indicando uma permutação de saída de interesse,
+sendo V[0] a identificação do último vagão e V[n-1]
+do primeiro, escreva na tela a menor sequência de 
+manobras que realiza a permutação.
+
