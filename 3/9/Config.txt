@@ -5,17 +5,18 @@ Ele entra uma sequência de inteiros, e deseja somar
 todos eles. No entanto, durante a digitação, quando 
 ele percebe que entrou com o inteiro errado, o usuário
 clica na opção 'Undo' da calculadora, que apaga o 
-último dígito da sequência. O usuário pode clicar quantas
-vezes quiser no botão 'Undo', consecutivamente ou não. 
-Se ele clicar em 'Undo' e não há inteiros entrados, a
-operação de desfazer é ignorada.
+último inteiro da sequência. O usuário pode clicar 
+quantas vezes quiser no botão 'Undo', consecutivamente
+ou não. Se ele clicar em 'Undo' e não há inteiros na 
+sequência, a operação de desfazer é ignorada.
 
 Elabore uma função que, dado a sequência S[0..n-1]
-de n entradas do usuário, calcule a soma das entradas.
-Considere que uma entrada igual a 0 não é um número
-digitado, mas o indicador que o 'Undo' foi pressionado.
+de n entradas do usuário, calcule a soma dos inteiros
+entrados. Considere que uma entrada igual a 0 não é 
+um inteiro a ser somado, mas o indicador que o 'Undo' 
+foi pressionado.
 
 Ex: S = [1, 2, 0, 0, 3, 4, 0, 5], n = 7, deve resultar em
-3 + 5 = 8 (note que as entradas 1,2,4 foram descartasdas 
+3 + 5 = 8 (note que as entradas 1,2,4 foram descartadas 
 pela operação de 'Undo')
 
