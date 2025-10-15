@@ -1,0 +1,8 @@
+Filas idênticas
+3
+Elabore uma função que, dadas duas filas, determine
+se elas são idênticas (mesmos elementos, na mesma 
+ordem). As filas podem se lidas/modificadas, desde 
+que ao final do processo mantenham a mesma
+sequência original de elementos.
+
