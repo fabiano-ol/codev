@@ -29,6 +29,11 @@ Cada manobra corresponde a (ver Figura 2):
 - "M=>S" [correspondendo a encaminhar uma vagão da
           área de manobra para a saída]
 
+Como seria de se esperar, os vagões não podem passar
+uns sobre os outros. Assim, nas manobras anteriores,
+presume-se que o vagão mais próximo do desvio é que 
+faz a manobra.
+
 No exemplo dado, podemos mudar a sequência 3,2,1
 para a sequência 2,1,3 com a seguinte sequência de
 manobras:
