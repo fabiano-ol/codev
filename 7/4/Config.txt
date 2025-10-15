@@ -1,6 +1,6 @@
 Número mais frequente
 3
-Elabore uma função para, dado um vetor L[0..n-1] 
+Elabore uma função em que, dado um vetor L[0..n-1] 
 com inteiros grandes (até 2^63-1), determine aquele 
 que aparece com mais frequência em L. Assuma que 
 n <= 3 x 10^6, e que só exista um único elemento
