@@ -1,0 +1,107 @@
+K16+4=,-Hd;<,17V0f
+K16+4=,-Hd;<,41*V0f
+K16+4=,-Hd*1<;W;<,+SSV0f
+
+WWH+7,->:-57>-
+<A8-,-.H;<:=+<Hv7HC
+	476/H476/H16<HmcHWWH-4-5-6<7
+	16<HycHWWH9=)6<1,),-H,-H7+7::ê6+1);H,7H-4-5-6<7
+	v7HRHx:7@c
+EHv7c
+
+K,-.16-HsHYXXXXXa
+
+16<H0P476/H476/H16<H@QHC
+	:-<=:6H@HMHsc
+E
+
+v7HRHq6;-:-m6+),-),)Pv7HRHNtTH476/H476/H16<H@QHC
+	v7HRH8HeHtc
+	?014-HP8HIeHv}ttQHC
+		1.HP8UfmHeeH@QHC
+			8UfyHeH8UfyHSHYc
+			:-<=:6H8c
+		E
+		8HeH8Ufx:7@c
+	E
+	v7HRH6HeHPv7HRQH5)447+P;1B-7.Pv7QQc
+	6UfmHeH@cH6UfyHeHYcH6Ufx:7@HeHtcH
+	tHeH6c
+	:-<=:6H6c
+E
+
+v7HRHq6;-:-|)*-4)l1;8-:;)7Pv7HRHp#%TH476/H476/H16<H@QHC
+	16<H1HeH0P@Qc
+	:-<=:6Hq6;-:-m6+),-),)Pp#1%TH@Qc
+E
+
+>71,Hl-;<:71m6+),-),)Pv7HRHtQHC
+	v7HRH8THRH9cH8HeHtc
+	?014-HP8HIeHv}ttQHC
+		9HeH8Ufx:7@cH.:--P8Qc
+		8HeH9c
+	E
+E
+
+>71,Hl-;<:71|)*-4)l1;8-:;)7Pv7HRHp#%QHC
+	.7:HP16<H1HeHXcH1HdHscH1SSQHC
+		l-;<:71m6+),-),)Pp#1%Qc
+	E
+	.:--PpQc
+E
+
+v7HRRHk76;<:71|)*-4)l1;8-:;)7PQHC
+	v7HRRHpHeHPv7HRRQH5)447+P;1B-7.Pv7HRQHRHsQc
+	.7:HP16<H1HeHXcH1HdHscH1SSQHC
+		p#1%HeHv}ttc
+	E
+	:-<=:6Hpc
+E
+WWH+7,->:-57>-
+
+476/H476/H16<Hv=5-:7u)1;n:-9=-6<-P476/H476/H16<Ht#%TH16<H6QHC
+	WWH+7,->
+	v7HRRHpHeHk76;<:71|)*-4)l1;8-:;)7PQc
+	v7HRH8u)@HeHv}ttc
+	.7:HP16<H1eXcH1d6cH1SSQHC
+		v7HRH8HeHq6;-:-|)*-4)l1;8-:;)7PpTHt#1%Qc
+		1.HPP8u)@HeeHv}ttQHDDHP8UfyHfH8u)@UfyQQH8u)@HeH8c
+	E
+	476/H476/H16<H:HeH8u)@Ufmc
+	l-;<:71|)*-4)l1;8-:;)7PpQc
+	:-<=:6H:c
+	WWH+7,->
+E
+
+>71,Hq6;-:-P476/H476/H16<Ht#%TH16<HN6TH476/H476/H16<H-QHC
+	t#6%HeH-c
+	6HeH6HSHYc
+E
+
+16<H5)16PQHC
+	;-<*=.P;<,7=<THv}ttQcH;-<*=.P;<,-::THv}ttQc
+	16<H5)@'6cH476/H476/H16<HRHtcH16<H6c
+	?014-HP;+)6.PJM,JTHN5)@'6QHfHXQHC
+		1.HP5)@'6HIeHUYQHC
+			tHeHP476/H476/H16<HRQH5)447+P;1B-7.P476/H476/H16<QHRH5)@'6Qc
+			6HeHXc
+			.7:HP16<H1HeHXcH1HdH5)@'6cH1SSQHC
+				476/H476/H16<H-c
+				;+)6.PJM44,JTHN-Qc
+				q6;-:-PtTH6TH-Qc
+			E
+		EH-4;-HC
+			WRH)=<75)<1+H<-;<HRW
+			5)@'6HeH[XXXXXXc
+			tHeHP476/H476/H16<HRQH5)447+P;1B-7.P476/H476/H16<QHRH5)@'6Qc
+			6HeHXc
+			.7:HP476/H476/H16<H1HeH5)@'6cH1HfHXcH1UUQHC
+				q6;-:-PtTH6THYXXXXXXR1Qc
+			E
+			t#YXXXXX%HeHYXXXXXXRP476/H476/H16<QYaYYaYc
+		E
+		8:16<.PJM44,$6JTHv=5-:7u)1;n:-9=-6<-PtTH6QQc
+		.:--PtQc
+	E
+	:-<=:6HXc
+E
