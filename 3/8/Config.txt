@@ -1,0 +1,8 @@
+Pilhas idênticas
+3
+Elabore uma função que, dadas duas pilhas, determine
+se elas são idênticas (mesmos elementos, na mesma 
+ordem). As pilhas podem se lidas/modificadas, desde 
+que ao final do processo mantenham a mesma
+sequência original de elementos.
+
