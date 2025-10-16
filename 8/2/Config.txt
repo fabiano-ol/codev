@@ -1,0 +1,18 @@
+Ordenação HeapSort
+3
+A ordenação HeapSort emprega o conceito de 
+filas de prioridade, da seguinte forma. 
+Dada uma lista sequencial L[0..n-1], cria-se
+uma fila de prioridade e adiciona-se todos os
+elementos de L na fila. Agora, remove-se 
+um a um os elementos da fila. Como o primeiro
+elemento que sai da fila é o maior entre todos,
+deve ser armazenado na última posição de L. O 
+segundo a ser removido da fila, como é o segundo
+maior, deve ser armazenado na penúltima posição
+de L, e assim por diante. Note que, ao final, 
+o vetor estará ordenado.
+
+Elabore um procedimento que ordene com essa
+estratégia. [O(n log n)]
+
