@@ -1,0 +1,7 @@
+Determinar os maiores elementos de uma lista sequencial
+3
+Elabore uma função que, dado uma lista sequencial
+L[0..n-1], um vetor M[], e um inteiro k, escreva 
+no vetor M[0..k-1] os k maiores elementos de L. 
+[O(n log k)]
+
