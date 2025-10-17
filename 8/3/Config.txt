@@ -1,0 +1,47 @@
+Estrutura de dados para medianas
+3
+É possível elabrar uma estrutura de dados que guarde
+um conjunto C de valores de modo que:
+
+- um novo valor é inserido na estrutura em tempo O(log n);
+- a mediana dos elementos inseridos é obtida em tempo O(1).
+
+A mediana de um conjunto de elementos C é definida por:
+
+- se n é ímpar, a mediana é o elemento central que se obtém
+  ao ordenar C;
+- se n é par, a mediana é a média aritmética dos dois 
+  elementos centrais obtidos pela ordenação de C.
+
+Por exemplo, se C = {1, 4, 2}, então a mediana é 2
+(elemento central de 1,2,4). Se C = {1, 3, 4, 2}, então 
+a mediana é 2.5 (média dos elementos centrais 2 e 3). 
+
+Esta estrutura de dados, em linhas gerais, pode ser feita
+da seguinte forma:
+
+estrutura Mediana:
+	med: Real  // valor da mediana
+	n: Inteiro //número de elementos inseridos
+    ante: FilaPrioridade // elementos anteriores 
+                         // a mediana na ordenacao
+	post: FilaPrioridade // elementos posteriores 
+                         // a mediana na ordenacao
+
+A ideia é que med armazene o valor da mediana, ante 
+armazene todos os elementos anteriores a mediana
+em uma fila de prioridade (prioridade no máximo), 
+e post armazene todos os elementos posteriores a 
+mediana em uma fila de prioridade (prioridade no 
+mínimo). 
+
+Elabore as seguintes operações:
+
+função ObterMediana(ref C: Mediana): Real 
+  // obtém a mediana dos elementos inseridos em C
+  // tempo O(1)
+
+procedimento Insere(ref C: Mediana, x: Inteiro):
+  // insere o elemento x em C
+  // tempo O(log n)
+
