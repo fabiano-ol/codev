@@ -7,6 +7,17 @@ tal como no exerício anterior, elabore uma função
 avalie a expressão, isto é, compute o valor
 numérico correspondente. 
 
-Por exemplo: para a árvore correspondendo à 
+Por exemplo: para a árvore 
+
+              [ / ]
+              /   \
+          [ 4 ]   [ * ]
+                  /   \
+             [ + ]     [ - ]
+             /   \     /   \
+         [ 1 ] [ 1 ] [ 3 ] [ 1 ]
+
+correspondendo à 
 expressão (4/((1+1)*(3-1))), o resultado deve
 ser 1.
+

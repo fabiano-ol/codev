@@ -6,15 +6,17 @@ parentizada envolvendo as operações aritméticas
 fundamentais (*,/,+,-), elabore uma função que 
 transforme-a em uma árvore, da seguinte maneira:
 
-- para cada trecho (a+b), deve-se transformá-lo 
-  no nó
-           [ * ]
+- para cada expressão (a+b), deve-se transformá-la 
+  na subárvore
+
+           [ + ]
            /   \
         [ a ] [ b ]
 
-- para cada trecho (a-b), deve-se transformá-lo 
-  no nó
-           [ + ]
+- para cada expressão (a-b), deve-se transformá-la 
+  na subárvore
+
+           [ - ]
            /   \
         [ a ] [ b ]
 
