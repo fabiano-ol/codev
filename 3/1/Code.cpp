@@ -3,22 +3,22 @@ K16+4=,-Hd;<,41*V0f
 K16+4=,-HJj1*YV0J
 
 WRHq6<-:.)+-H8),:ã7H,-H8140)HRW
->71,Hk76;<:71Px140)HNxQc
 >71,Hm58140)Px140)HNxTH16<H@Qc
 16<Hl-;-58140)Px140)HNxQc
 16<H|787Px140)HNxQc
 16<H|)5)607Px140)HNxQc
 WRHq6<-:.)+-H8),:ã7H,-H8140)HRW
 
+>71,Hk76;<:71Px140)HNxQc
+
 <A8-,-.H;<:=+<Hn14)HC
 	x140)HxYTxZc
 EHn14)c
 
 >71,Hk76;<:71Pn14)HNnQHC
-	WWH+7,->
 	k76;<:71PnVxYQcHk76;<:71PnVxZQc
-	WWH+7,->
 E
+
 >71,Hm6.14-1:)Pn14)HNnTH16<H@QHC
 	WWH+7,->
 	m58140)PnVxYTH@Qc
