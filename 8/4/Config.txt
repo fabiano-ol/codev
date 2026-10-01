@@ -1,0 +1,31 @@
+Ordem de atendimento
+4
+Um hospital tem a política de atender seus pacientes 
+em ordem de prioridade de acordo com a gravidade do 
+caso. Se um paciente chega e não há ninguém sendo 
+atendido, ele entra em atendimento imediatamente. 
+Caso contrário, ele fica em fila aguardando atendimento.
+Quando o atendimento corrente se encerra, o paciente
+na fila de espera com maior gravidade é imediatamente
+atendido.
+
+Elabore um algoritmo que receba um vetor L[0..n-1] de 
+elementos do tipo Atendimento, e escreva na tela uma 
+lista de CPFs dos pacientes indicando a ordem com que 
+eles foram atendidos. 
+
+A estrutura Atendimento é composta por:
+
+- um inteiro Chegada, indicando o instante de tempo 
+  que o paciente deu entrada no hospital, 
+- um inteiro Duracao, indicando o tempo que durou 
+  o atendimento deste paciente, 
+- um inteiro Gravidade (quanto maior a gravidade, 
+  maior a urgência), e
+- um inteiro CPF, com o identificador do paciente.
+
+Você pode assumir que os atendimentos são dados
+ordenados por chegada. Vários pacientes podem
+chegar ao mesmo tempo ao hospital. Além disso, não
+há duas gravidades iguais.
+
