@@ -1,0 +1,31 @@
+Conexão de cabos
+3
+Há n cabos com tamanhos diferentes. Para conectar 
+dois cabos de tamanhos X e Y, o custo da operação
+é X+Y. Você precisa conectar todos os cabos em um
+só com o menor custo total possível. 
+
+Os tamanhos dos cabos são dados em um vetor 
+T[0..n-1].
+
+Exemplo:
+
+n = 4, T = [4, 3, 2, 6]
+
+Conectar 4 e 3: custo = 7.
+Conectar 2 e 6: custo = 8.
+Conectar 7 e 8 (produzidos anteriormente): custo = 15.
+Custo total = 7+8+15 = 30. 
+
+Mas esta não é maneira de menor custo. 
+Veja a solução de custo mínimo:
+
+Conectar 2 e 3: custo = 5.
+Conectar 5 (recém produzido) e 4: custo = 9.
+Conectar 9 (recém produzido) e 6: custo = 15.
+Custo total = 5+9+15 = 29.
+
+Elabore uma função em que, dados n e T, retorne 
+o custo mínimo para conectar todos os n cabos de
+tamanhos T[0..n-1].
+
