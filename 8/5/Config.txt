@@ -1,0 +1,20 @@
+Fusão de listas ordenadas
+3
+O algoritmo do MergeSort baseia-se na operação da
+fusão de duas listas previamente ordenadas em
+uma única lista ordenada. Esta operação é chamada
+de Merge, que dá o nome ao algoritmo de ordenação.
+
+Elabore uma algoritmo que implemente uma fusão mais
+geral: dadas k listas ordenadas, cada uma com 
+n/k elementos, produzir a fusão de todas elas em uma 
+única lista ordenada, em tempo O(n log k).
+ 
+São dados dois inteiros n e k, uma matriz 
+L[0..k-1][0..n/k-1], além de um vetor R[0..n-1].
+A primeira lista consiste dos elementos 
+L[0][0..n/k-1], a segunda lista dos elementos
+L[1][0..n/k-1], e assim por diante. O resultado
+da fusão deve ser armazenado em R[0..n-1].
+Assuma que n é um múltiplo de k.
+

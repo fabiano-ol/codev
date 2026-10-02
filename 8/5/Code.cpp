@@ -1,0 +1,84 @@
+K16+4=,-Hd;<,17V0f
+K16+4=,-Hd;<,41*V0f
+K16+4=,-Hd*1<;W;<,+SSV0f
+K16+4=,-HJj1*YV0J
+
+WRHq6<-:.)+-H8),:ã7H,-H.14)H,-H8:17:1,),-HP5)@0-)8QHRW
+WRH|H:-8:-;-6<)H7H<187H,-H,),7H9=-H;-H,-;-2)H16;-:1:H6)H.14)HRWH
+<-584)<-Hd<A8-6)5-H|fH>71,Hk76;<:71Pn14)x:17:1,),-d|fHNnTH16<H6Qc
+<-584)<-Hd<A8-6)5-H|fH16<H|)5)607Pn14)x:17:1,),-d|fHNnQc
+<-584)<-Hd<A8-6)5-H|fH>71,Hm6.14-1:)Pn14)x:17:1,),-d|fHNnTH|H@Qc
+<-584)<-Hd<A8-6)5-H|fH|Hl-;-6.14-1:)Pn14)x:17:1,),-d|fHNnQc
+<-584)<-Hd<A8-6)5-H|fH|H|787Pn14)x:17:1,),-d|fHNnQc
+<-584)<-Hd<A8-6)5-H|fH>71,Hl-;<:71Pn14)x:17:1,),-d|fHNnQc
+WRHq6<-:.)+-H8),:ã7H,-H.14)H,-H8:17:1,),-HP5)@0-)8QHRW
+
+WWH+7,->:-57>-
+<A8-,-.H;<:=+<Hm4-5-6<7n14)HC
+	16<HmcHWWH-4-5-6<7H16;-:1,7
+	16<H7:1/-5cHWWH)H9=)4H41;<)H8-:<-6+-H7H-4-5-6<7
+	16<H8:7@cHWWHí6,1+-H,7H8:ó@157H-4-5-6<7H,)H41;<)H7:1/-5
+
+	*774H78-:)<7:dP+76;<Hm4-5-6<7n14)HN7=<:)QH+76;<HC
+		:-<=:6HmHdH7=<:)Vmc
+	E
+EHm4-5-6<7n14)c
+WWH+7,->:-57>-
+
+>71,Hn=;)7st1;<);P16<H6TH16<H3TH16<HRHt#%TH16<Hz#%QHC
+	WWH+7,->
+	n14)x:17:1,),-dm4-5-6<7n14)fHncH
+	k76;<:71PnTH3Qc
+	.7:HP16<H1HeHXcH1HdH3cH1SSQHC
+		m4-5-6<7n14)H-c
+		-VmHeHUt#1%#X%cHWWH8:15-1:7H-4-5-6<7H,-H+),)H41;<)
+		-V7:1/-5HeH1cHWWH,-H9=)4H41;<)
+		-V8:7@HeHYc
+		m6.14-1:)PnTH-Qc
+	E
+	16<H1HeHXc
+	?014-HP|)5)607PnQHfHXQHC
+		m4-5-6<7n14)H-HeHl-;-6.14-1:)PnQc
+		z#1%HeHU-VmcH1HeH1SYc
+		1.HP-V8:7@HdH6W3QHC
+			-VmHeHUt#-V7:1/-5%#-V8:7@%c
+			-V8:7@HeH-V8:7@HSHYc
+			m6.14-1:)PnTH-Qc
+		E
+	E
+	l-;<:71PnQc
+	WWH+7,->
+E
+
+16<H5)16PQHC
+	;-<*=.P;<,7=<THv}ttQcH;-<*=.P;<,-::THv}ttQc
+	16<HRRHtcH16<H6cH16<H3cH16<HRHzc
+	?014-HP;+)6.PJM,JTHN6QfXQHC
+		1.HP6IeUYQHC
+			;+)6.PJM,JTHN3Qc
+			zHeHP16<HRQH5)447+P;1B-7.P16<QR6Qc
+			tHeHP16<HRRQH5)447+P;1B-7.P16<HRQHRH3QcH
+			.7:HP16<H1eXcH1d3cH1SSQHC
+				t#1%HeHP16<HRQH5)447+P;1B-7.P16<QHRH6W3Qc
+				.7:HP16<H2eXcH2d6W3cH2SSQHC
+					;+)6.PJM,JTHNt#1%#2%Qc
+				E
+			E
+		EH-4;-HC
+			WRH)=<75)<1+H<-;<HRW
+			6HeHYXXXXXcH3HeH6c
+			zHeHP16<HRQH5)447+P;1B-7.P16<QR6Qc
+			tHeHP16<HRRQH5)447+P;1B-7.P16<HRQHRH3QcH
+			.7:HP16<H1eXcH1d3cH1SSQHC
+				t#1%HeHP16<HRQH5)447+P;1B-7.P16<QQc
+				t#1%#X%HeH1c
+			E
+		E
+		n=;)7st1;<);P6TH3THtTHzQc
+		.7:HP16<H1eXcH1d6cH1SSQH8:16<.PJM,HJTHz#1%Qc
+		8:16<.PJ$6JQc
+		.7:HP16<H1eXcH1d3cH1SSQH.:--Pt#1%Qc
+		.:--PtQcH.:--PzQcH
+	E
+	:-<=:6HXc
+E
